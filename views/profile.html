@@ -1,0 +1,193 @@
+{% extends 'layout.html' %}
+
+{% block title %} My Page {% endblock %}
+
+{% block head %}
+  {% parent %}
+
+{% endblock %}
+
+{% block content %}
+<div class="container">
+  <h1><i class="fa fa-fw fa-user"></i>{{ __('프로필') }}</h1>
+  <hr />
+
+  <div class="row">
+    <div class="col-sm-6">
+      <br>
+      <form class="form-horizontal" role="form" action="/user/{{ user.id }}" method="POST">
+        <div class="form-group">
+          <label for="email" class="col-sm-4 control-label">{{ __('이메일') }}</label>
+          <div class="col-sm-8">
+            <p class="form-control-static">{{ user.email }}</p>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="name" class="col-sm-4 control-label">{{ __('이름') }}</label>
+          <div class="col-sm-8">
+            <input type="text" class="form-control" name="name" id="name"  placeholder="{{ __('이름') }}" value="{{ user.name }}">
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="phone" class="col-sm-4 control-label">{{ __('전화번호') }}</label>
+          <div class="col-sm-8">
+            <input type="text" class="form-control" name="phone" id="phone" placeholder="{{ __('전화번호') }}" value="{{ user.phone }}">
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="address" class="col-sm-4 control-label">{{ __('주소') }}</label>
+          <div class="col-sm-8">
+            <input type="text" class="form-control" name="address" id="address" placeholder="{{ __('주소') }}" value="{{ user.address }}">
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="postcode" class="col-sm-4 control-label">{{ __('우편번호') }}</label>
+          <div class="col-sm-8">
+            <input type="text" class="form-control" name="postcode" id="postcode" placeholder="{{ __('우편번호') }}" value="{{ user.postcode }}">
+          </div>
+        </div>
+        <hr />
+
+        <button type="submit" class="btn btn-primary pull-right">{{ __('저장하기') }}</button>
+      </form>
+    </div>
+
+    <div class="col-sm-6">
+      여기다 뭐쓰지
+    </div>
+  </div>
+  <hr />
+
+  <div class="row">
+    <div class="col-sm-12">
+      <h1><i class="fa fa-fw fa-truck"></i> {{ __('주문 내역') }}</h1>
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>{{ __('날짜') }}</th>
+            <th>{{ __('이름') }}</th>
+            <th>{{ __('가격') }}</th>
+            <th>{{ __('전화') }}</th>
+            <th>{{ __('주소') }}</th>
+            <th>{{ __('배송') }}</th>
+            <th>{{ __('결제') }}</th>
+            <th>{{ __('상태') }}</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for order in orders %}
+          <tr data-id="{{ order.id }}">
+            <td>{{ loop.index }}</td>
+            <td>{{ order.createdAt|date('Y-m-d', '-540') }}</td>
+            <td>{{ order.name }}</td>
+            <td>{{ order.price|currency }}</td>
+            <td>{{ order.phone }}</td>
+            <td>{{ order.address }}</td>
+            <td>
+              {% if order.shipping > 0 %}
+              <span class="badge badge-success">{{ __('선불') }}</span>
+              {% else %}
+              <span class="badge badge-warning">{{ __('후불') }}</span>
+              {% endif %}
+            </td>
+            <td>
+              {% if order.payment == 'TRANSFER' %}
+              <span class="badge badge-default">{{ __('계좌 이체') }}</span>
+              {% elseif order.payment == 'CARD' %}
+              <span class="badge badge-default">{{ __('카드') }}</span>
+              {% endif %}
+            </td>
+            <td>
+              {% if order.status == 'PREPARE' %}
+              <span class="badge badge-default">{{ __('결제대기') }}</span>
+              {% elseif order.status =='PAID' %}
+              <span class="badge badge-info">{{ __('결제완료') }}</span>
+              {% elseif order.status == 'SENT' %}
+              <span class="badge badge-primary">{{ __('배송중') }}</span>
+              {% elseif order.status == 'DONE' %}
+              <span class="badge badge-success">{{ __('배송완료') }}</span>
+              {% elseif order.status == 'CANCEL' %}
+              <span class="badge badge-danger">{{ __('취소됨') }}</span>
+              {% else %}
+              <span class="badge badge-warning">{{ __('재고없음') }}</span>
+              {% endif %}
+            </td>
+            <td>
+              <a href="/order/{{ order.id }}" class="btn btn-xs btn-default" button-action="edit">{{ __('보기') }}</a>
+              {% if order.status === 'PREPARE' %}
+              <a href="/pay/{{ order.id }}" class="btn btn-xs btn-primary" button-action="edit">{{ __('결제') }}</a>
+              {% endif %}
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+
+      <div style="text-align: center;">
+        <ul class="pagination">
+          <li><a href="/profile">&laquo;</a></li>
+          {% for index in pages %}
+          {% if page == loop.index %}
+          <li class="active"><a href="/profile?page={{ loop.index }}">{{ loop.index }}</a></li>
+          {% else %}
+          <li><a href="/profile?page={{ loop.index }}">{{ loop.index }}</a></li>
+          {% endif %}
+          {% if loop.last %}
+          <li><a href="/profile?page={{ loop.index }}">&raquo;</a></li>
+          {% endif %}
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript">
+$(document).ready(function () {
+  $('[button-action="status"]').on('click', function () {
+    var product_id = $(this).parent().parent().data('id');
+
+    $.ajax({
+      type: 'PUT',
+      url: '/product/status/' + product_id,
+      success: function (data, status) {
+        alert('Deleted succesfully.');
+        window.location = '/admin/product';
+        return;
+      },
+      error: function (error) {
+        console.log(error);
+        return;
+      }
+    });
+  });
+
+  // POST DELETE
+  $('[button-action="delete"]').on('click', function () {
+    if ( !confirm ('Do you really want to delete this?') ) {
+      return;
+    }
+
+    var product_id = $(this).parent().parent().data('id');
+
+    $.ajax({
+      type: 'DELETE',
+      url: '/order/' + product_id,
+      success: function (data, status) {
+        alert('Deleted succesfully.');
+        window.location = '/admin/order';
+        return;
+      },
+      error: function (error) {
+        console.log(error);
+        return;
+      }
+    });
+  });
+});
+</script>
+
+
+{% endblock %}

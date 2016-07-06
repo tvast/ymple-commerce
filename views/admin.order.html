@@ -1,0 +1,154 @@
+ {% extends 'layout.html' %}
+
+{% block title %} ORDER MANAGER {% endblock %}
+
+{% block head %}
+  {% parent %}
+
+{% endblock %}
+
+{% block content %}
+<div class="container">
+  <h1><a href="/admin"><i class="fa fa-fw fa-chevron-circle-left"></i></a>ORDER MANAGER</h1>
+  <hr />
+
+  <div class="row clearfix">
+    <div class="col-lg-12">
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>{{ __('생성일') }}</th>
+            <th>{{ __('이름') }}</th>
+            <th>{{ __('제품') }}</th>
+            <th>{{ __('가격') }}</th>
+            <th>{{ __('전화번호') }}</th>
+            <th>{{ __('주소') }}</th>
+            <th>{{ __('배송') }}</th>
+            <th>{{ __('결제') }}</th>
+            <th>{{ __('상태') }}</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for order in orders %}
+          <tr data-id="{{ order.id }}">
+            <td>{{ loop.index }}</td>
+            <td>{{ order.createdAt|date('Y-m-d', '-540') }}</td>
+            <td>
+            {% if order.owner %}
+            <a href="/user/{{ order.owner.id }}">{{ order.name }}</a>
+            {% else %}
+            {{ order.name }}
+            {% endif %}
+            </td>
+            <td>
+              {% for product in order.products %}
+              <a href="/product/view/{{ product.id }}">{{ product.name }}</a>
+              {{ product.quantity }}{% if !loop.last %},{% endif %}
+              {% endfor %}
+            </td>
+            <td>{{ order.price|currency }}</td>
+            <td>{{ order.phone }}</td>
+            <td>{{ order.address }}</td>
+            <td>
+              {% if order.shipping > 0 %}
+              <span class="badge badge-success">{{ __('선불') }}</span>
+              {% else %}
+              <span class="badge badge-warning">{{ __('후불') }}</span>
+              {% endif %}
+            </td>
+            <td><span class="badge badge-default">{{ order.payment }}</span></td>
+            <td>
+              {% if order.status == 'PREPARE' %}
+              <span class="badge badge-default">{{ __('결제대기') }}</span>
+              {% elseif order.status =='PAID' %}
+              <span class="badge badge-info">{{ __('결제완료') }}</span>
+              {% elseif order.status == 'SENT' %}
+              <span class="badge badge-primary">{{ __('배송중') }}</span>
+              {% elseif order.status == 'DONE' %}
+              <span class="badge badge-success">{{ __('배송완료') }}</span>
+              {% elseif order.status == 'CANCEL' %}
+              <span class="badge badge-danger">{{ __('취소됨') }}</span>
+              {% else %}
+              <span class="badge badge-warning">{{ __('재고없음') }}</span>
+              {% endif %}
+            </td>
+            <td>
+              <div class="btn-group">
+                <button class="btn btn-xs btn-default">Action</button>
+                <button class="btn btn-xs btn-default dropdown-toggle" data-toggle="dropdown">
+                  <span class="caret"></span>
+                  <span class="sr-only">Toggle Dropdown</span>
+                </button>
+                <ul class="dropdown-menu" role="menu">
+                  <li><a href="/order/{{ order.id }}">{{ __('주문보기') }}</a></li>
+                  {% if order.status !== 'CANCEL' %}
+
+                  {% if order.status !== 'PAID' %}
+                  <li><a href="/order/change/{{ order.id }}?type=PAID">{{ __('결재완료') }}</a></li>
+                  {% else %}
+                  <li><a href="/order/change/{{ order.id }}?type=PREPARE">{{ __('결재취소') }}</a></li>
+                  {% endif %}
+                  <li><a href="#">{{ __('송장입력') }}</a></li>
+                  <li><a href="/order/cancel/{{ order.id }}">{{ __('취소하기') }}</a></li>
+
+                  {% endif %}
+                  <li class="divider"></li>
+                  <li><a href="#" data-id="{{ order.id }}" button-action="delete">{{ __('삭제') }}</a></li>
+                </ul>
+              </div>
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+
+      <div style="text-align: center;">
+        <ul class="pagination">
+          <li><a href="/admin/order">&laquo;</a></li>
+          {% for index in pages %}
+          {% if page == loop.index %}
+          <li class="active"><a href="/admin/order?page={{ loop.index }}">{{ loop.index }}</a></li>
+          {% else %}
+          <li><a href="/admin/order?page={{ loop.index }}">{{ loop.index }}</a></li>
+          {% endif %}
+          {% if loop.last %}
+          <li><a href="/admin/order?page={{ loop.index }}">&raquo;</a></li>
+          {% endif %}
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript">
+$(document).ready(function () {
+  // POST DELETE
+  $('[button-action="delete"]').on('click', function () {
+    if ( !confirm ('Do you really want to delete this?') ) {
+      return;
+    }
+
+    var product_id = $(this).data('id');
+
+    $.ajax({
+      type: 'DELETE',
+      url: '/order/' + product_id,
+      success: function (data, status) {
+        alert('Deleted succesfully.');
+        window.location = '/admin/order';
+        return;
+      },
+      error: function (error) {
+        console.log(error);
+        return;
+      }
+    });
+  });
+});
+</script>
+
+
+{% endblock %}
