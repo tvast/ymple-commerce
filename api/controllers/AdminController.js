@@ -14,6 +14,8 @@ module.exports = {
     return res.view('admin.html', result);
   },
 
+
+
 	product: function (req, res) {
     var result = {
       admin: req.session.user
