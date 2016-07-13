@@ -26,7 +26,7 @@
   {% if products.length == 0 %}
   <div style="text-align: center; margin: 150px;">
     <h1><i class="fa fa-fw fa-warning"></i></h1>
-    <h1>{{ __('아직 등록된 상품이 없습니다.') }}</h1>
+    <h1>{{ __('This item is not yet registered.') }}</h1>
   </div>
   {% endif %}
 
@@ -42,8 +42,8 @@
           <p class="ellipsis">{{ product.description }}</p>
           <p>
             <input type="text" style="width: 20px;" value="1" /> 개
-            <button data-id="{{ product.id }}" data-role="add" class="btn btn-default">{{ __('장바구니에 넣기') }}</button>
-            <button data-id="{{ product.id }}" data-role="buy" class="btn btn-primary">{{ __('구입') }}</button>
+            <button data-id="{{ product.id }}" data-role="add" class="btn btn-default">{{ __('Add to Cart') }}</button>
+            <button data-id="{{ product.id }}" data-role="buy" class="btn btn-primary">{{ __('purchase') }}</button>
           </p>
         </div>
       </div>

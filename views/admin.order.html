@@ -18,15 +18,20 @@
         <thead>
           <tr>
             <th>#</th>
-            <th>{{ __('생성일') }}</th>
-            <th>{{ __('이름') }}</th>
-            <th>{{ __('제품') }}</th>
-            <th>{{ __('가격') }}</th>
-            <th>{{ __('전화번호') }}</th>
-            <th>{{ __('주소') }}</th>
-            <th>{{ __('배송') }}</th>
-            <th>{{ __('결제') }}</th>
-            <th>{{ __('상태') }}</th>
+
+
+
+
+            <th> {{__ ( 'one generation')}} </th>
+                         <th> {{__ ( 'name')}} </th>
+                         <th> {{__ ( 'products')}} </th>
+                         <Th> {{__ ( 'Price')}} </th>
+                         <Th> {{__ ( 'Telephone')}} </th>
+                         <Th> {{__ ( 'address')}} </th>
+                         <Th> {{__ ( 'shipping')}} </th>
+                         <Th> {{__ ( 'Payment')}} </th>
+                         <Th> {{__ ( 'state')}} </th>
+
             <th></th>
           </tr>
         </thead>
@@ -53,26 +58,34 @@
             <td>{{ order.address }}</td>
             <td>
               {% if order.shipping > 0 %}
-              <span class="badge badge-success">{{ __('선불') }}</span>
-              {% else %}
-              <span class="badge badge-warning">{{ __('후불') }}</span>
-              {% endif %}
-            </td>
-            <td><span class="badge badge-default">{{ order.payment }}</span></td>
-            <td>
-              {% if order.status == 'PREPARE' %}
-              <span class="badge badge-default">{{ __('결제대기') }}</span>
-              {% elseif order.status =='PAID' %}
-              <span class="badge badge-info">{{ __('결제완료') }}</span>
-              {% elseif order.status == 'SENT' %}
-              <span class="badge badge-primary">{{ __('배송중') }}</span>
-              {% elseif order.status == 'DONE' %}
-              <span class="badge badge-success">{{ __('배송완료') }}</span>
-              {% elseif order.status == 'CANCEL' %}
-              <span class="badge badge-danger">{{ __('취소됨') }}</span>
-              {% else %}
-              <span class="badge badge-warning">{{ __('재고없음') }}</span>
-              {% endif %}
+
+
+              <Span class = "badge badge-success"> {{__ ( 'advance payment')}} </span>
+                            {% Else%}
+                            <Span class = "badge badge-warning"> {{__ ( 'arrears')}} </span>
+                            {% Endif%}
+                          </ Td>
+                        <Td> <span class = "badge badge-default"> {{order.payment}} </span> </td>
+                        <Td>
+                          {% If order.status == 'PREPARE'%}
+                          <Span class = "badge badge-default"> {{__ ( 'standby payment')}} </span>
+                          {% Elseif order.status == 'PAID'%}
+                          <Span class = "badge badge-info"> {{__ ( 'payment received')}} </span>
+                          {% Elseif order.status == 'SENT'%}
+                          <Span class = "badge badge-primary"> {{__ ( 'delivery of')}} </span>
+                          {% Elseif order.status == 'DONE'%}
+                          <Span class = "badge badge-success"> {{__ ( 'Delivered')}} </span>
+                          {% Elseif order.status == 'CANCEL'%}
+                          <Span class = "badge badge-danger"> {{__ ( 'Cancelled')}} </span>
+                          {% Else%}
+                          <Span class = "badge badge-warning"> {{__ ( 'Out of stock')}} </span>
+                          {% Endif%}
+
+
+
+
+
+
             </td>
             <td>
               <div class="btn-group">
@@ -82,20 +95,30 @@
                   <span class="sr-only">Toggle Dropdown</span>
                 </button>
                 <ul class="dropdown-menu" role="menu">
-                  <li><a href="/order/{{ order.id }}">{{ __('주문보기') }}</a></li>
-                  {% if order.status !== 'CANCEL' %}
 
-                  {% if order.status !== 'PAID' %}
-                  <li><a href="/order/change/{{ order.id }}?type=PAID">{{ __('결재완료') }}</a></li>
-                  {% else %}
-                  <li><a href="/order/change/{{ order.id }}?type=PREPARE">{{ __('결재취소') }}</a></li>
-                  {% endif %}
-                  <li><a href="#">{{ __('송장입력') }}</a></li>
-                  <li><a href="/order/cancel/{{ order.id }}">{{ __('취소하기') }}</a></li>
 
-                  {% endif %}
-                  <li class="divider"></li>
-                  <li><a href="#" data-id="{{ order.id }}" button-action="delete">{{ __('삭제') }}</a></li>
+
+
+
+                  <Li> <a href="/order/{{ order.id }}"> {{__ ( 'View Order')}} </a> </li>
+                                     {% If order.status! == 'CANCEL'%}
+
+                                     {% If order.status! == 'PAID'%}
+                                     <Li> <a href="/order/change/{{ order.id }}?type=PAID"> {{__ ( 'payment completed')}} </a> </li>
+                                     {% Else%}
+                                     <Li> <a href="/order/change/{{ order.id }}?type=PREPARE"> {{__ ( 'Payment Canceled')}} </a> </li>
+                                     {% Endif%}
+                                     <Li> <a href="#"> {{__ ( 'Enter Invoice')}} </a> </li>
+                                     <Li> <a href="/order/cancel/{{ order.id }}"> {{__ ( 'Cancel')}} </a> </li>
+
+                                     {% Endif%}
+                                     <Li class = "divider"> </ li>
+                                     <Li> <a href="#" data-id="{{ order.id }}" button-action="delete"> {{__ ( 'delete')}} </a> </li>
+
+
+
+
+
                 </ul>
               </div>
             </td>
