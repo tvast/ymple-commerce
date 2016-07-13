@@ -59,12 +59,24 @@
     <div class="col-sm-6">
       <h3>{{ product.name }}
         {% if product.stock < 0 %}
-        <span class="badge badge-success"> {{ __('재고있음') }} </span>
-        {% elseif product.stock > 0 %}
-        <span class="badge badge-success"> {{ __('재고') }}: {{ product.stock }} </span>
-        {% else %}
-        <span class="badge"> {{ __('재고없음') }} </span>
-        {% endif %}
+
+
+
+
+
+
+        <Span class = "badge badge-success"> {{__ ( 'In Stock')}} </span>
+                 {% Elseif product.stock> 0%}
+                 <Span class = "badge badge-success"> {{__ ( 'Inventory')}}: {{product.stock}} </span>
+                 {% Else%}
+                 <Span class = "badge"> {{__ ( 'Out of stock')}} </span>
+                 {% Endif%}
+
+
+
+
+
+
       </h3>
       <hr>
 
@@ -72,14 +84,24 @@
       <hr>
 
       <div class="form-group form-inline">
-        <label for="quantity">{{ __('수량') }} : </label>
-        <input type="text" class="form-control" id="quantity" name="quantity" value="1">
-      </div>
-      <button data-id="{{ product.id }}" data-role="add" class="btn btn-default btn-lg" >{{ __('장바구니에 넣기') }}</button>
-      <button data-id="{{ product.id }}" data-role="buy" class="btn btn-primary btn-lg">{{ __('구입') }}</button>
+
+
+
+
+        <Label for = "quantity"> {{__ ( 'Unit')}}: </label>
+                 <Input type = "text" class = "form-control" id = "quantity" name = "quantity" value = "1">
+               </Div>
+             <button data-id="{{ product.id }}" data-role="add" class="btn btn-default btn-lg"> {{__ ( 'Add to Cart')}} </button>
+             <Button data-id = "{{product.id}}" data-role = "buy" class = "btn btn-primary btn-lg"> {{__ ( 'Purchase')}} </button>
+
+
+
+
+
+
       <hr>
 
-      <h4>{{ __('설명') }}</h4>
+      <h4>{{ __('Explanation') }}</h4>
       <p>{{ product.description|replace('\n', '<br />', 'g')|safe }}</p>
 
       {% for tag in product.tags %}

@@ -11,26 +11,31 @@
 {% block content %}
 
 <div class="container">
-  <h2>{{ __('주문 결제') }}</h2>
-  <hr />
 
-  <div style="text-align: center; margin: 150px;">
-  {% if order.payment === 'TRANSFER' && order.status === 'PREPARE' %}
-    <h1><i class="fa fa-fw fa-2x fa-check"></i></h1>
-    <h1>{{ __('주문이 완료되었습니다. 입금이 확인되면 배송이 시작됩니다.') }}</h1>
-    <h3>계좌: 우리은행 1005-102-532536 (예금주: 김석준)</h3>
-    <br>
-    <a href="/order/{{ order.id }}" class="btn btn-lg btn-default">{{ __('주문확인') }}</a>
-  {% elseif order.payment === 'CARD' && order.status === 'PREPARE' %}
-    <h1><i class="fa fa-fw fa-2x fa-spin fa-refresh"></i></h1>
-    <h1>{{ (order.price+order.shipping)|currency }} {{ __('결제가 진행중입니다.') }}</h1>
-    <h3>{{ __('페이지를 닫거나 다른 사이트로 이동하지 마세요.') }}</h3>
-  {% else %}
-    <h1><i class="fa fa-fw fa-2x fa-ban"></i></h1>
-    <h1>{{ __('이미 결제하셨거나 취소된 주문입니다.') }}</h1>
-  {% endif %}
-  </div>
-</div>
+
+  <H2> {{__ ( 'payment orders')}} </ h2>
+     <Hr />
+
+     <Div style = "text-align: center; margin: 150px;">
+     {% If order.payment === 'TRANSFER' && order.status === 'PREPARE'%}
+       <H1> <i class = "fa fa-fw fa-2x fa-check"> </i> </h1>
+       <H1> {{__ ( 'Once the order is completed. The payment is confirmed shipment starts.')}} </H1>
+       <H3> Account: Woori Bank 1005-102-532536 (Name: gimseokjun) </h3>
+       <br>
+       <a href="/order/{{ order.id }}" class="btn btn-lg btn-default"> {{__ ( 'Order Confirmation')}} </a>
+     {% Elseif order.payment === 'CARD' && order.status === 'PREPARE'%}
+       <H1> <i class = "fa fa-fw fa-2x fa-spin fa-refresh"> </i> </h1>
+       <H1> {{(order.price + order.shipping) | currency}} {{__ ( '. Is in progress payments')}} </h1>
+       <H3> {{__ ( 'Do not close the page and go to another site.')}} </H3>
+     {% Else%}
+       <H1> <i class = "fa fa-fw fa-2x fa-ban"> </i> </h1>
+       <H1> {{__ ( 'hasyeotgeona payment order is already canceled.')}} </H1>
+     {% Endif%}
+     </Div>
+</Div>
+
+
+
 
 {% if sails.config.project.paymentMethods.iamport.using %}
 
@@ -44,7 +49,7 @@ IMP.init('{{ sails.config.project.paymentMethods.iamport.id }}');
 var payment = {
   merchant_uid : '{{ order.id }}',
   name : '{{ order.id }}',
-  amount : {{ order.price+order.shipping }},
+  amount : '{{ order.price+order.shipping }}',
   buyer_email : '{{ order.email }}',
   buyer_name : '{{ order.name }}',
   buyer_tel : '{{ order.phone }}',
@@ -56,9 +61,16 @@ IMP.request_pay(payment, function(rsp) {
   var msg;
 
   if ( rsp.success ) {
-    msg = '결제가 완료되었습니다.';
-    msg += '결제 금액 : ' + rsp.paid_amount;
-    msg += ', 카드 승인번호 : ' + rsp.apply_num;
+
+
+
+
+    msg = 'Your payment has been successfully completed.';
+    msg += 'Payments:' + rsp.paid_amount;
+    msg += ', the card approval number:' + rsp.apply_num;
+
+
+
 
     $.ajax({
       type: 'POST',
@@ -75,14 +87,13 @@ IMP.request_pay(payment, function(rsp) {
   } else {
     if ( rsp.error_code === 'STOP' ) {
       // Payment cancelled during process
-      msg = '결제를 취소하셨습니다.'
+      msg = 'You cancel payments.'
       alert(msg);
       window.location = '/profile';
       return;
     }
-
-    msg = '결제에 실패하였습니다.';
-    msg += '에러내용 : ' + rsp.error_msg;
+    msg = 'failed payment.';
+    msg += 'Error description:' + rsp.error_msg;
 
     if ( alert(msg) )
       window.location = '/order/{{ order.id }}';

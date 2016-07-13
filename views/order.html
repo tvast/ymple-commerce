@@ -26,11 +26,24 @@
     <div class="col-md-6">
       <div class="alert alert-info alert-dismissable">
         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-        <h4>{{ __('결제 완료') }}!</h4>
-        <p>{{ __('이미 결제하신 주문입니다.') }}</p>
+
+
+
+        <H4> {{__ ( 'payment received')}}! </H4>
+                 <P> {{__ ( 'already ordered your payment.')}} </P>
+
+
+
+
         <p>
-          <a class="btn btn-primary" href="/order/delivery/{{ order.id }}">{{ __('배송확인') }}</a>
-          <a class="btn btn-link" href="/order/cancel/{{ order.id }}" onclick="return confirm('{{ __('Are you sure you want to cancel your order?') }}')">{{ __('주문취소') }}</a>
+
+
+          <a class="btn btn-primary" href="/order/delivery/{{ order.id }}"> {{__ ( 'confirm delivery')}} </a>
+                     <A class = "btn btn-link" href = "/ order / cancel / {{order.id}}" onclick = "return confirm ( '{{__ (' Are you sure you want to cancel your order? ') }} ') "> {{__ (' order cancellation ')}} </a>
+
+
+
+
         </p>
       </div>
     </div>
@@ -40,11 +53,18 @@
     <div class="col-md-6">
       <div class="alert alert-warning alert-dismissable">
         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-        <h4>{{ __('결제 대기중') }}!</h4>
-        <p>{{ __('이 주문은 아직 결제가 완료되지 않았습니다.') }} {{ __('결제가 확인되면 배송이 시작됩니다.') }} {{ __('결제를 진행하시거나 주문을 취소하시려면 아래 버튼을 선택하세요.') }}</p>
-        <p>
-          <a class="btn btn-warning" href="/pay/{{ order.id }}">{{ __('결제하기') }}</a>
-          <a class="btn btn-link" href="/order/cancel/{{ order.id }}" onclick="return confirm('{{ __('주문을 취소하시겠습니까?') }}')">{{ __('주문취소') }}</a>
+
+
+        <H4> {{__ ( 'Pending payments')}}! </ H4>
+                 <P> {{__ ( 'the order has not yet payment is complete.')}} {{__ ( 'Once the payment is confirmed shipment starts.')}} {{__ ('Buy Guests can make payments to cancel, select the button below. ')}} </p>
+                 <P>
+                   <a class="btn btn-warning" href="/pay/{{ order.id }}"> {{__ ( 'Make Payment')}} </a>
+                   <A class = "btn btn-link" href = "/ order / cancel / {{order.id}}" onclick = "return confirm ( '{{__ (' Are you sure you want to cancel your order? ')}}')" > {{__ ( 'order cancellation')}} </a>
+
+
+
+
+
         </p>
       </div>
     </div>
@@ -54,8 +74,12 @@
     <div class="col-md-6">
       <div class="alert alert-info alert-dismissable">
         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-        <h4>{{ __('배송 준비중') }}!</h4>
-        <p>{{ __(' 배송을 준비하고 있습니다.') }} {{ __('잠시만 기다려주세요!') }}</p>
+
+
+        <H4> {{__ ( 'shipping preparation')}}! </H4>
+                 <P> {( 'preparing the ship.')}} {{{__ __ ( 'Please wait!')}} </P>
+
+
       </div>
     </div>
   </div>
@@ -67,9 +91,14 @@
         <thead>
           <tr>
             <th>#</th>
-            <th>{{ __('항목') }}</th>
-            <th>{{ __('수량') }}</th>
-            <th>{{ __('가격') }}</th>
+
+
+            <Th> {{__ ( 'item')}} </th>
+            <th> {{__ ( 'Unit')}} </th>
+              <th> {{__ ('Price')}} </th >
+
+
+
           </tr>
         </thead>
         <tbody>
@@ -85,9 +114,18 @@
           {% endfor %}
           <tr>
             <td colspan="2"></td>
-            <td>{{ __('합계') }}</td>
-            {% if order.shipping > 0 %}
-            <td>{{ (order.price+order.shipping)|currency }} ({{ __('배송비 포함') }})</td>
+
+
+
+
+
+            <Td> {{__ ( 'Total')}} </td>
+                         {% If order.shipping> 0%}
+                         <Td> {{(order.price + order.shipping) | currency}} ({{__ ( 'including shipping')}}) </td>
+
+
+
+
             {% else %}
             <td>{{ order.price|currency }}</td>
             {% endif %}
@@ -95,12 +133,14 @@
         </tbody>
       </table>
       {% if order.delivery %}
-      <a href="/order/delivery/{{ order.id }}">배송 확인</a>
+      <a href="/order/delivery/{{ order.id }}">Delivery confirmation</a>
       {% endif %}
 
       {% if order.payment == 'TRANSFER' && order.status !== 'PAID' %}
       <br><br>
-      <p><strong>우리은행 1005-102-532536 김석준</strong>으로 입금 후 확인되면 발송됩니다.</p>
+
+      <P> <strong> When will be sent to our bank 1005-102-532536 gimseokjun </ strong> confirmed after the payment. </ P>
+
       {% endif %}
     </div>
     <hr>
