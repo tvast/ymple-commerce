@@ -31,7 +31,7 @@ IMP.init('{{ sails.config.project.iamport.id }}');
 var payment = {
   merchant_uid : '{{ order.id }}',
   name : '{{ order.id }}',
-  amount : {{ order.price }},
+  amount : '{{ order.price }}',
   buyer_email : '{{ order.email }}',
   buyer_name : '{{ order.name }}',
   buyer_tel : '{{ order.phone }}',

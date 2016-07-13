@@ -28,45 +28,62 @@
     <div class="row clearfix">
       <div class="col-lg-6">
         <div class="form-group">
-          <label for="name">{{ __('이름') }}</label>
-          <input type="text" class="form-control" id="name" name="name" placeholder="{{ __('제품명을 입력하세요') }}" value="{{ edit.name }}">
-        </div>
-        <div class="form-group">
-          <label for="price">{{ __('가격') }}</label>
-          <input type="text" class="form-control" id="price" name="price" placeholder="{{ __('가격을 입력하세요') }}" value="{{ edit.price }}">
-        </div>
-        <div class="form-group">
-          <label for="stock">{{ __('재고') }}</label>
-          <input type="text" class="form-control" id="stock" name="stock" placeholder="{{ __('재고를 입력하세요') }}" value="{{ edit.stock }}">
+
+
+
+          <Label for = "name"> {{__ ( 'name')}} </label>
+                     <Input type = "text" class = "form-control" id = "name" name = "name" placeholder = "{{__ ( 'Please enter your name')}}" value = "{{edit.name} } ">
+                   </ Div>
+                 <Div class = "form-group">
+                   <Label for = "price"> {{__ ( 'Price')}} </label>
+                   <Input type = "text" class = "form-control" id = "price" name = "price" placeholder = "{{__ ( 'Please enter the price')}}" value = "{{edit.price} } ">
+                 </ Div>
+                 <Div class = "form-group">
+                   <Label for = "stock"> {{__ ( 'Inventory')}} </label>
+                   <Input type = "text" class = "form-control" id = "stock" name = "stock" placeholder = "{{__ ( 'Please enter the inventory')}}" value = "{{edit.stock} } ">
+
+
+
+
         </div>
       </div>
 
       <div class="col-lg-6">
         <div class="form-group">
-          <label for="video">{{ __('VIMEO 영상 ID') }}</label><br>
-          <input type="text" class="form-control" id="video" name="video" placeholder="{{ __('VIMEO 영상 ID를 입력하세요.') }}" value="{{ edit.video }}">
-        </div>
-        <div class="form-group">
-          <label for="thumbnail">{{ __('대표 사진') }}</label><br>
-          <input type="text" class="form-control" id="thumbnail" name="thumbnail" placeholder="{{ __('대표 이미지 URL을 입력하세요') }}" value="{{ edit.thumbnail }}">
-        </div>
-        <div class="form-group">
-          <label for="thumbnail">{{ __('제품 사진') }}</label><br>
-          <input type="text" class="form-control" id="photos" name="photos" placeholder="{{ __('제품 사진의 URL을 입력하세요 (콤마로 구분)') }}" value="{{ edit.photos }}">
-        </div>
 
-        <!-- <div class="form-group">
-          <label for="name">{{ __('관련 제품') }}</label>
-          <select name="related" class="form-control">
-            <option value="">{{ __('없음') }}</option>
+
+          <Label for = "video"> {{__ ( 'VIMEO Video ID')}} </ label> <br>
+                    <Input type = "text" class = "form-control" id = "video" name = "video" placeholder = "{{__ ( 'VIMEO image ID input please.')}}" Value = "{{edit .video}} ">
+                  </Div>
+                <Div class = "form-group">
+                  <Label for = "thumbnail"> {{__ ( 'representative picture')}} </ label> <br>
+                  <Input type = "text" class = "form-control" id = "thumbnail" name = "thumbnail" placeholder = "{{__ ( 'representative image URL input please')}}" value = "{{edit. thumbnail}} ">
+                </Div>
+                <Div class = "form-group">
+                  <Label for = "thumbnail"> {{__ ( 'Product photos')}} </ label> <br>
+                  <Input type = "text" class = "form-control" id = "photos" name = "photos" placeholder = "{{__ ( 'product images URL to enter your (comma as the separator)')}}" value = "{{edit.photos}}">
+                </Div>
+
+                <-! <Div class = "form-group">
+                  <Label for = "name"> {{__ ( 'product')}} </label>
+                  <Select name = "related" class = "form-control">
+                    <Option value = ""> {{__ ( 'No')}} </option>
+
+
+
             {% for product in products %}
             <option value="{{ product.id }}">{{ product.name }}</option>
             {% endfor %}
           </select>
         </div> -->
         <div class="form-group">
-          <label for="tags">{{ __('태그') }}</label>
-          <input type="text" class="form-control" id="tags" name="tags" placeholder="{{ __('콤마로 구분되는 태그를 입력하세요') }}" value="{{ edit.tags }}">
+
+
+
+          <Label for = "tags"> {{__ ( 'tags')}} </ label>
+          <Input type = "text" class = "form-control" id = "tags" name = "tags" placeholder = "{{__ ( 'Please enter tags separated by commas')}}" value = "{{ edit.tags}} ">
+
+
         </div>
       </div>
     </div>
@@ -74,9 +91,13 @@
     <div class="row clearfix">
       <div class="col-lg-12">
         <div class="form-group">
-          <label for="description">{{ __('설명') }}</label>
-          <textarea class="form-control" name="description" id="description" cols="30" rows="10" placeholder="{{ __('이 제품에 대한 설명을 MARKDOWN 형식으로 입력하세요') }}">{{ edit.description }}</textarea>
-          <!-- <input type="text" class="form-control" id="name" name="name" placeholder="{{ __('제품명을 입력하세요') }}"> -->
+
+
+          <Label for = "description"> {{__ ( 'description')}} </label>
+                     <Textarea class = "form-control" name = "description" id = "description" cols = "30" rows = "10"
+                               placeholder = "{{__ ( 'the product to explain MARKDOWN format as input please') }} "> {{edit.description}} </textarea>
+                   <!-- <Input type = "text" class = "form-control" id = "name" name = "name" placeholder = "{( 'Enter the name') {__}}"> -->
+
         </div>
         <!-- <div class="form-group" style="margin-left: 15px;">
           <div class="checkbox">
@@ -90,11 +111,21 @@
           </div>
         </div> -->
         <p class="help-block">
-          <i class="fa fa-fw fa-warning"></i> {{ __('상품을 등록하면 기본적으로 판매 불가 상태로 저장됩니다. 하단의 Status 버튼을 클릭하여 상태를 변경하세요.') }}
-          {% if edit %}
-          <button type="submit" class="btn btn-primary btn-lg pull-right">{{ __('수정하기') }}</button>
-          {% else %}
-          <button type="submit" class="btn btn-primary btn-lg pull-right">{{ __('등록하기') }}</button>
+
+
+
+
+          <I class = "fa fa-fw fa-warning"> </ i> {{__ ( 'When you register your product is stored in Unavailable state by default.
+          Change your status by clicking the Status button at the bottom. ") }}
+                     {% If edit%}
+                     <Button type = "submit" class = "btn btn-primary btn-lg pull-right"> {{__ ( 'modify')}} </button>
+                     {% Else%}
+                     <Button type = "submit" class = "btn btn-primary btn-lg pull-right"> {{__ ( 'Register')}} </button>
+
+
+
+
+
           {% endif %}
         </p>
       </div>
@@ -108,14 +139,25 @@
         <thead>
           <tr>
             <th>#</th>
-            <th>{{ __('생성일') }}</th>
-            <th>{{ __('이름') }}</th>
-            <th style="width: 200px;">{{ __('사진') }}</th>
-            <th>{{ __('가격') }}</th>
-            <th>{{ __('재고') }}</th>
-            <th>{{ __('관련 제품') }}</th>
-            <th>{{ __('태그') }}</th>
-            <th>{{ __('상태') }}</th>
+
+
+
+
+
+            <Th> {{__ ( 'one generation')}} </th>
+                         <Th> {{__ ( 'name')}} </th>
+                         <Th style = "width: 200px;"> {{__ ( 'Photo')}} </th>
+                         <Th> {{__ ( 'Price')}} </th>
+                         <Th> {{__ ( 'Inventory')}} </th>
+                         <Th> {{__ ( 'product')}} </th>
+                         <Th> {{__ ( 'tags')}} </th>
+                         <Th> {{__ ( 'state')}} </th>
+
+
+
+
+
+
             <th></th>
           </tr>
         </thead>
@@ -135,9 +177,14 @@
               {% if product.stock > 0 %}
               {{ product.stock }}
               {% elseif product.stock == 0 %}
-              {{ __('재고없음') }}
-              {% else %}
-              {{ __('확인불가') }}
+
+
+              {{ __('No stock') }}
+                             {% Else%}
+                             {{__ ( 'Unavailable')}}
+
+
+
               {% endif %}
             </td>
             <td>{{ product.related }}</td>
@@ -148,9 +195,17 @@
             </td>
             <td>
               {% if product.isSelling %}
-              <button class="btn btn-xs btn-success" button-action="status">{{ __('판매중') }}</button>
-              {% else %}
-              <button class="btn btn-xs btn-warning" button-action="status">{{ __('판매중지') }}</button>
+
+
+
+              <Button class = "btn btn-xs btn-success" button-action = "status"> {{__ ( 'sale')}} </button>
+                             {% Else%}
+                             <Button class = "btn btn-xs btn-warning" button-action = "status"> {{__ ( 'Sell Stop')}} </button>
+
+
+
+
+
               {% endif %}
             </td>
             <td>

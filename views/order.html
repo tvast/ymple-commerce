@@ -30,7 +30,7 @@
         <p>{{ __('이미 결제하신 주문입니다.') }}</p>
         <p>
           <a class="btn btn-primary" href="/order/delivery/{{ order.id }}">{{ __('배송확인') }}</a>
-          <a class="btn btn-link" href="/order/cancel/{{ order.id }}" onclick="return confirm('{{ __('주문을 취소하시겠습니까?') }}')">{{ __('주문취소') }}</a>
+          <a class="btn btn-link" href="/order/cancel/{{ order.id }}" onclick="return confirm('{{ __('Are you sure you want to cancel your order?') }}')">{{ __('주문취소') }}</a>
         </p>
       </div>
     </div>

@@ -11,12 +11,14 @@
 {% block content %}
 
 <div class="container">
-  <h2>{{ __('장바구니') }} <a href="/cart/clear" class="btn btn-warning pull-right">{{ __('장바구니 비우기') }}</a></h2>
 
+
+
+  <h2> {{__ ( 'cart')}} <a href="/cart/clear" class="btn btn-warning pull-right"> {{__ ( 'Empty Cart')}} </a> </h2>
   <hr />
 
   {% if cart.length <= 0 %}
-  <h3>{{ __('현재 장바구니가 비어있습니다') }}</h3>
+  <h3>{{ __('Your shopping cart is currently empty') }}</h3>
   {% else %}
   <div class="row clearfix">
     <div class="col-lg-12">
@@ -24,10 +26,13 @@
         <thead>
           <tr>
             <th>No.</th>
-            <th>{{ __('이름') }}</th>
-            <th>{{ __('가격') }}</th>
-            <th>{{ __('수량') }}</th>
-            <th>{{ __('합계') }}</th>
+
+
+
+            <Th> {{__ ( 'name')}} </th> <small> {{__ ('Price')}} </th> <small> {{__ ( 'Unit')}} </th > <th> {{__ ( 'total')}} </th>
+
+
+
             <th></th>
           </tr>
         </thead>
@@ -49,10 +54,10 @@
           {% endfor %}
 
           <tr>
-            <td colspan="3">{{ __('합계') }}</td>
+            <td colspan="3">{{ __('Sum') }}</td>
             <td>{{ total }}</td>
             <td colspan>{{ sails.config.project.currency.symbol }}{{ summary|currency }}</td>
-            <td><a href="/checkout" class="btn btn-success">{{ __('주문하기') }}</a></td>
+            <td><a href="/checkout" class="btn btn-success">{{ __('Order') }}</a></td>
           </tr>
         </tbody>
       </table>
