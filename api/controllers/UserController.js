@@ -104,7 +104,7 @@ module.exports = {
       }
     ], function (err, isSuccess) {
       if (err) return res.serverError(err);
-      if ( !isSuccess ) return res.serverError('권한이 없거나. 비밀번호가 다릅니다.');
+      if ( !isSuccess ) return res.serverError('Or permission. The password is different.');
 
       return res.redirect('/');
     });
