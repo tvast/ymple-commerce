@@ -37,7 +37,7 @@ module.exports.project = {
       user: 'google@gmail.com',
       pass: ''
     },
-    sender: 'OPEN SHOP ✔ <google@gmail.com>',
+    sender: 'YMPLE COMMERCE ✔ <google@gmail.com>',
     mailToAlert: 'admin@gmail.com'
   }
 }
