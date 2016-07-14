@@ -20,13 +20,13 @@
             <th>#</th>
 
 
-            <Th> {{__ ( 'one generation')}} </th>
-                         <Th> {{__ ( 'name')}} </th>
-                         <Th> {{__ ( 'E')}} </th>
-                         <Th> {{__ ( 'Telephone')}} </th>
-                         <Th> {{__ ( 'address')}} </th>
-                         <Th> {{__ ( 'Order')}} </th>
-                         <Th> {{__ ( 'authorization')}} </th>
+            <Th> {{__( 'one generation')}} </th>
+                         <Th> {{__( 'name')}} </th>
+                         <Th> {{__( 'E')}} </th>
+                         <Th> {{__( 'Telephone')}} </th>
+                         <Th> {{__( 'address')}} </th>
+                         <Th> {{__( 'Order')}} </th>
+                         <Th> {{__( 'authorization')}} </th>
 
 
 
@@ -46,11 +46,11 @@
             <td>{{ user.orders.length }}</td>
             <td>
               {% if user.permission == 'ADMIN' %}
-              <span class="badge badge-primary">{{ __('관리자') }}</span>
+              <span class="badge badge-primary">{{ __('manager') }}</span>
               {% elseif user.permission == 'CUSTOMER' %}
-              <span class="badge badge-success">{{ __('고객') }}</span>
+              <span class="badge badge-success">{{ __('customer') }}</span>
               {% else %}
-              <span class="badge badge-warning">{{ __('알수없음') }}</span>
+              <span class="badge badge-warning">{{ __('Unknown') }}</span>
               {% endif %}
             </td>
             <td>
