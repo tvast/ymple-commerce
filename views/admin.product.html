@@ -92,7 +92,7 @@
                         {% endfor %}
                     </select>
                     </div>
-                    -->
+
                     <div class="form-group">
 
 
@@ -205,9 +205,8 @@
                         <td>{{ product.related }}</td>
                         <td>
                             {% for tag in product.tags %}
-                            {{ tag }}{% if loop.last %}, {% endif %}
+                            {{ tag }}{% if !loop.last %}, {% endif %}
                             {% endfor %}
-
                         </td>
                         <td>
                             {% if product.isSelling %}
