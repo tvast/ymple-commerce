@@ -22,15 +22,15 @@
 
 
 
-            <th> {{__ ( 'one generation')}} </th>
-                         <th> {{__ ( 'name')}} </th>
-                         <th> {{__ ( 'products')}} </th>
-                         <Th> {{__ ( 'Price')}} </th>
-                         <Th> {{__ ( 'Telephone')}} </th>
-                         <Th> {{__ ( 'address')}} </th>
-                         <Th> {{__ ( 'shipping')}} </th>
-                         <Th> {{__ ( 'Payment')}} </th>
-                         <Th> {{__ ( 'state')}} </th>
+            <th> {{__( 'one generation')}} </th>
+                         <th> {{__( 'name')}} </th>
+                         <th> {{__( 'products')}} </th>
+                         <Th> {{__( 'Price')}} </th>
+                         <Th> {{__( 'Telephone')}} </th>
+                         <Th> {{__( 'address')}} </th>
+                         <Th> {{__( 'shipping')}} </th>
+                         <Th> {{__( 'Payment')}} </th>
+                         <Th> {{__( 'state')}} </th>
 
             <th></th>
           </tr>
@@ -60,26 +60,26 @@
               {% if order.shipping > 0 %}
 
 
-              <Span class = "badge badge-success"> {{__ ( 'advance payment')}} </span>
-                            {% Else%}
-                            <Span class = "badge badge-warning"> {{__ ( 'arrears')}} </span>
-                            {% Endif%}
-                          </ Td>
+              <Span class = "badge badge-success"> {{__( 'advance payment')}} </span>
+                            {% else%}
+                            <Span class = "badge badge-warning"> {{__( 'arrears')}} </span>
+                            {% endif%}
+                          </Td>
                         <Td> <span class = "badge badge-default"> {{order.payment}} </span> </td>
                         <Td>
-                          {% If order.status == 'PREPARE'%}
-                          <Span class = "badge badge-default"> {{__ ( 'standby payment')}} </span>
-                          {% Elseif order.status == 'PAID'%}
-                          <Span class = "badge badge-info"> {{__ ( 'payment received')}} </span>
-                          {% Elseif order.status == 'SENT'%}
-                          <Span class = "badge badge-primary"> {{__ ( 'delivery of')}} </span>
-                          {% Elseif order.status == 'DONE'%}
-                          <Span class = "badge badge-success"> {{__ ( 'Delivered')}} </span>
-                          {% Elseif order.status == 'CANCEL'%}
-                          <Span class = "badge badge-danger"> {{__ ( 'Cancelled')}} </span>
-                          {% Else%}
-                          <Span class = "badge badge-warning"> {{__ ( 'Out of stock')}} </span>
-                          {% Endif%}
+                          {% if order.status == 'PREPARE'%}
+                          <Span class = "badge badge-default"> {{__( 'standby payment')}} </span>
+                          {% elseif order.status == 'PAID'%}
+                          <Span class = "badge badge-info"> {{__( 'payment received')}} </span>
+                          {% elseif order.status == 'SENT'%}
+                          <Span class = "badge badge-primary"> {{__( 'delivery of')}} </span>
+                          {% elseif order.status == 'DONE'%}
+                          <Span class = "badge badge-success"> {{__( 'Delivered')}} </span>
+                          {% elseif order.status == 'CANCEL'%}
+                          <Span class = "badge badge-danger"> {{__( 'Cancelled')}} </span>
+                          {% else%}
+                          <Span class = "badge badge-warning"> {{__( 'Out of stock')}} </span>
+                          {% endif%}
 
 
 
@@ -100,20 +100,20 @@
 
 
 
-                  <Li> <a href="/order/{{ order.id }}"> {{__ ( 'View Order')}} </a> </li>
-                                     {% If order.status! == 'CANCEL'%}
+                  <Li> <a href="/order/{{ order.id }}"> {{__( 'View Order')}} </a> </li>
+                                     {% if order.status!== 'CANCEL'%}
 
-                                     {% If order.status! == 'PAID'%}
-                                     <Li> <a href="/order/change/{{ order.id }}?type=PAID"> {{__ ( 'payment completed')}} </a> </li>
-                                     {% Else%}
-                                     <Li> <a href="/order/change/{{ order.id }}?type=PREPARE"> {{__ ( 'Payment Canceled')}} </a> </li>
-                                     {% Endif%}
-                                     <Li> <a href="#"> {{__ ( 'Enter Invoice')}} </a> </li>
-                                     <Li> <a href="/order/cancel/{{ order.id }}"> {{__ ( 'Cancel')}} </a> </li>
+                                     {% if order.status!== 'PAID'%}
+                                     <Li> <a href="/order/change/{{ order.id }}?type=PAID"> {{__( 'payment completed')}} </a> </li>
+                                     {% else%}
+                                     <Li> <a href="/order/change/{{ order.id }}?type=PREPARE"> {{__( 'Payment Canceled')}} </a> </li>
+                                     {% endif%}
+                                     <Li> <a href="#"> {{__( 'Enter Invoice')}} </a> </li>
+                                     <Li> <a href="/order/cancel/{{ order.id }}"> {{__( 'Cancel')}} </a> </li>
 
-                                     {% Endif%}
+                                     {% endif%}
                                      <Li class = "divider"> </ li>
-                                     <Li> <a href="#" data-id="{{ order.id }}" button-action="delete"> {{__ ( 'delete')}} </a> </li>
+                                     <Li> <a href="#" data-id="{{ order.id }}" button-action="delete"> {{__( 'delete')}} </a> </li>
 
 
 
