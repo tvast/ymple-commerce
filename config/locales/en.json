@@ -78,5 +78,10 @@
   "콤마로 구분되는 태그를 입력하세요": "Edit tag with comma sperated",
   "대표 이미지 URL을 입력하세요": "Enter thumbnail image URL",
   "제품 사진의 URL을 입력하세요 (콤마로 구분)": "Enter product image URLs with comma",
-  "이 제품에 대한 설명을 MARKDOWN 형식으로 입력하세요": "Edit product description with MARKDOWN style"
+  "이 제품에 대한 설명을 MARKDOWN 형식으로 입력하세요": "Edit product description with MARKDOWN style",
+
+  "Hello!": "Hola!",
+  "Hello %s, how are you today?": "¿Hola %s, como estas?",
+  "name": "name"
+
 }
