@@ -1,5 +1,8 @@
-Ymple-Shop
+Ymple-Commerce
 ========
+
+### [Website](http://ymple-commerce.ymple.com/) 
+
 
 Open Source E-Commerce Solution for Everyone built with Sails.js (Node.js + MongoDB)
 
