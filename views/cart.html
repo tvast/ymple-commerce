@@ -11,10 +11,8 @@
 {% block content %}
 
 <div class="container">
-
-
-
-  <h2> {{__ ( 'cart')}} <a href="/cart/clear" class="btn btn-warning pull-right"> {{__ ( 'Empty Cart')}} </a> </h2>
+  
+  <h2> {{__( 'cart')}} <a href="/cart/clear" class="btn btn-warning pull-right"> {{__( 'Empty Cart')}} </a> </h2>
   <hr />
 
   {% if cart.length <= 0 %}
@@ -27,11 +25,10 @@
           <tr>
             <th>No.</th>
 
-
-
-            <Th> {{__ ( 'name')}} </th> <small> {{__ ('Price')}} </th> <small> {{__ ( 'Unit')}} </th > <th> {{__ ( 'total')}} </th>
-
-
+            <th> {{__( 'name')}} </th>
+            <th> {{__('Price')}} </th>
+            <th> {{__( 'Unit')}} </th >
+            <th> {{__( 'total')}} </th>
 
             <th></th>
           </tr>

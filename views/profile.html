@@ -20,38 +20,38 @@
 
 
 
-          <Label for = "email" class = "col-sm-4 control-label"> {{__ ( 'E')}} </label>
+          <Label for = "email" class = "col-sm-4 control-label"> {{__( 'E')}} </label>
                     <Div class = "col-sm-8">
                       <P class = "form-control-static"> {{user.email}} </p>
                     </Div>
                   </Div>
                 <Div class = "form-group">
-                  <Label for = "name" class = "col-sm-4 control-label"> {{__ ( 'name')}} </label>
+                  <Label for = "name" class = "col-sm-4 control-label"> {{__( 'name')}} </label>
                   <Div class = "col-sm-8">
-                    <Input type = "text" class = "form-control" name = "name" id = "name" placeholder = "{{__ ( 'name')}}" value = "{{user.name}}">
+                    <Input type = "text" class = "form-control" name = "name" id = "name" placeholder = "{{__( 'name')}}" value = "{{user.name}}">
                   </Div>
                 </Div>
                 <Div class = "form-group">
-                  <Label for = "phone" class = "col-sm-4 control-label"> {{__ ( 'Telephone')}} </label>
+                  <Label for = "phone" class = "col-sm-4 control-label"> {{__( 'Telephone')}} </label>
                   <Div class = "col-sm-8">
-                    <Input type = "text" class = "form-control" name = "phone" id = "phone" placeholder = "{{__ ( 'Telephone')}}" value = "{{user.phone}}" >
+                    <Input type = "text" class = "form-control" name = "phone" id = "phone" placeholder = "{{__( 'Telephone')}}" value = "{{user.phone}}" >
                   </Div>
                 </Div>
                 <Div class = "form-group">
-                  <Label for = "address" class = "col-sm-4 control-label"> {{__ ( 'address')}} </label>
+                  <Label for = "address" class = "col-sm-4 control-label"> {{__( 'address')}} </label>
                   <Div class = "col-sm-8">
                     <input type="text" class="form-control" name="address" id="address" placeholder="{{ __('juso') }}" value="{{ user.address }}">
                   </Div>
                 </Div>
                 <Div class = "form-group">
-                  <Label for = "postcode" class = "col-sm-4 control-label"> {{__ ( 'Zip')}} </label>
+                  <Label for = "postcode" class = "col-sm-4 control-label"> {{__( 'Zip')}} </label>
                   <Div class = "col-sm-8">
-                    <Input type = "text" class = "form-control" name = "postcode" id = "postcode" placeholder = "{{__ ( 'Zip')}}" value = "{{user.postcode}}" >
+                    <Input type = "text" class = "form-control" name = "postcode" id = "postcode" placeholder = "{{__( 'Zip')}}" value = "{{user.postcode}}" >
                   </Div>
                 </Div>
                 <Hr/>
 
-                <Button type = "submit" class = "btn btn-primary pull-right"> {{__ ( 'Save')}} </button>
+                <Button type = "submit" class = "btn btn-primary pull-right"> {{__( 'Save')}} </button>
 
 
 
@@ -74,19 +74,19 @@
 
 
 
-      <H1> <i class = "fa fa-fw fa-truck"> </ i> {{__ ( 'Order History')}} </h1>
+      <H1> <i class = "fa fa-fw fa-truck"> </ i> {{__( 'Order History')}} </h1>
              <Table class = "table table-hover">
                <Thead>
                <Tr>
                    <Th> # </th>
-                   <Th> {{__ ( 'Date')}} </th>
-                   <Th> {{__ ( 'name')}} </th>
-                   <Th> {{__ ( 'Price')}} </th>
-                   <Th> {{__ ( 'Telephone')}} </th>
-                   <Th> {{__ ( 'address')}} </th>
-                   <Th> {{__ ( 'shipping')}} </th>
-                   <Th> {{__ ( 'Payment')}} </th>
-                   <Th> {{__ ( 'state')}} </th>
+                   <Th> {{__( 'Date')}} </th>
+                   <Th> {{__( 'name')}} </th>
+                   <Th> {{__( 'Price')}} </th>
+                   <Th> {{__( 'Telephone')}} </th>
+                   <Th> {{__( 'address')}} </th>
+                   <Th> {{__( 'shipping')}} </th>
+                   <Th> {{__( 'Payment')}} </th>
+                   <Th> {{__( 'state')}} </th>
 
 
 
@@ -112,31 +112,31 @@
 
 
 
-              <Span class = "badge badge-success"> {{__ ( 'advance payment')}} </span>
+              <Span class = "badge badge-success"> {{__( 'advance payment')}} </span>
                             {% else%}
-                            <Span class = "badge badge-warning"> {{__ ( 'arrears')}} </span>
+                            <Span class = "badge badge-warning"> {{__( 'arrears')}} </span>
                             {% endif%}
                           </Td>
                         <Td>
                           {% if order.payment == 'TRANSFER'%}
-                          <Span class = "badge badge-default"> {{__ ( 'Bank Transfer')}} </span>
+                          <Span class = "badge badge-default"> {{__( 'Bank Transfer')}} </span>
                           {% elseif order.payment == 'CARD'%}
-                          <Span class = "badge badge-default"> {{__ ( 'Card')}} </span>
+                          <Span class = "badge badge-default"> {{__( 'Card')}} </span>
                           {% endif%}
                         </ Td>
                         <Td>
                           {% if order.status == 'PREPARE'%}
-                          <Span class = "badge badge-default"> {{__ ( 'standby payment')}} </span>
+                          <Span class = "badge badge-default"> {{__( 'standby payment')}} </span>
                           {% elseif order.status == 'PAID'%}
-                          <Span class = "badge badge-info"> {{__ ( 'payment received')}} </span>
+                          <Span class = "badge badge-info"> {{__( 'payment received')}} </span>
                           {% elseif order.status == 'SENT'%}
-                          <Span class = "badge badge-primary"> {{__ ( 'delivery of')}} </span>
+                          <Span class = "badge badge-primary"> {{__( 'delivery of')}} </span>
                           {% elseif order.status == 'DONE'%}
-                          <Span class = "badge badge-success"> {{__ ( 'Delivered')}} </span>
+                          <Span class = "badge badge-success"> {{__( 'Delivered')}} </span>
                           {% elseif order.status == 'CANCEL'%}
-                          <Span class = "badge badge-danger"> {{__ ( 'Cancelled')}} </span>
+                          <Span class = "badge badge-danger"> {{__( 'Cancelled')}} </span>
                           {% else%}
-                          <Span class = "badge badge-warning"> {{__ ( 'Out of stock')}} </span>
+                          <Span class = "badge badge-warning"> {{__( 'Out of stock')}} </span>
 
 
 
@@ -149,9 +149,9 @@
 
 
 
-              <a href="/order/{{ order.id }}" class="btn btn-xs btn-default" button-action="edit"> {{__ ( 'View')}} </a>
+              <a href="/order/{{ order.id }}" class="btn btn-xs btn-default" button-action="edit"> {{__( 'View')}} </a>
                              {% if order.status === 'PREPARE'%}
-                             <a href="/pay/{{ order.id }}" class="btn btn-xs btn-primary" button-action="edit"> {{__ ( 'Payment')}} </a>
+                             <a href="/pay/{{ order.id }}" class="btn btn-xs btn-primary" button-action="edit"> {{__( 'Payment')}} </a>
 
 
 
