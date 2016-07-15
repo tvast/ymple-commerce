@@ -49,6 +49,9 @@ module.exports.routes = {
 
   // ADMIN
   'GET    /admin'               : 'AdminController.index',
+
+  'GET    /admin/product_create': 'AdminController.productCreate',
+
   'GET    /admin/product'       : 'AdminController.product',
   'GET    /admin/product/:id'   : 'AdminController.product',
   'GET    /admin/order'         : 'AdminController.order',

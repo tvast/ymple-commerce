@@ -198,5 +198,26 @@ module.exports = {
 
       return res.view('admin.user.html', result);
     });
+  },
+  
+  
+  
+  
+  productCreate: function (req, res){
+
+
+
+
+    Product.create({name:'Walter Jr', price: 10}, function (err, product) {
+      if (err) return res.serverError (err);
+
+      return res.redirect('/admin/product');
+    });
+
   }
+
+
+
+
+
 };
