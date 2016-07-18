@@ -55,7 +55,7 @@ module.exports = {
     ], function (err, result) {
       if (err) return res.serverError (err);
 
-      return res.view('cart.ejs', result);
+      return res.view('front/cart.ejs', result);
     });
   },
 

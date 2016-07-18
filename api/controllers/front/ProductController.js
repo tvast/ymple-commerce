@@ -83,7 +83,7 @@ module.exports = {
 
       result.query = ( req.query.hasOwnProperty('name') ) ? req.query.name : undefined;
 
-      return res.view('index.ejs', result);
+      return res.view('front/index.ejs', result);
     });
   },
 
