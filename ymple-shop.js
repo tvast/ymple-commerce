@@ -1,1 +1,0 @@
-var OpenShopServer = require('./app.js');
