@@ -1,8 +1,7 @@
 
 <%- include layout %>
-{% block title %} {{ __('FLIT SHOP') }} {% endblock %}
+<%= __('FLIT SHOP') %>
 
-{% block head %}
 <style>
 .ellipsis{
   overflow: hidden;
@@ -18,40 +17,43 @@
 <script>
 
 </script>
-{% endblock %}
 
-{% block content %}
 
 <div class="container" width="100%">
-  {% if products.length == 0 %}
+  <% if (products.length == 0) { %>
   <div style="text-align: center; margin: 150px;">
     <h1><i class="fa fa-fw fa-warning"></i></h1>
-    <h1>{{ __('This item is not yet registered.') }}</h1>
+    <h1><%= __('This item is not yet registered.') %></h1>
   </div>
-  {% endif %}
+  <% } %>
 
-  {% for product in products %}
-  {% if loop.index == 0 || loop.index%4 == 0 %}
+
+
+
+  <% products.forEach(function(product){ %>
+
+  <div>
+  <!--% if loop.index == 0 || loop.index%4 == 0 %}-->
   <div class="row"><!-- PRODUCT -->
-  {% endif %}
+  <!--{% endif %}-->
     <div class="col-sm-6 col-md-3">
       <div class="thumbnail">
-        <a href="/product/{{ product.id }}"><img class="img-rounded" src="{% if product.thumbnail %}{{ product.thumbnail }}{% else %}http://lorempixel.com/500/500{% endif %}">
+        <a href="/product/<%= product.id %>"><img class="img-rounded" src="{% if product.thumbnail %}{{ product.thumbnail }}{% else %}http://lorempixel.com/500/500{% endif %}">
         <div class="caption text-left">
-          <h3>{{ product.name }}</a> <span class="badge badge-info pull-right">{{ sails.config.project.currency.symbol }}{{ product.price|currency }}</span></h3>
-          <p class="ellipsis">{{ product.description }}</p>
+          <h3><%= product.name %></h3></a> <span class="badge badge-info pull-right"><%= sails.config.project.currency.symbol %> <%= product.price|currency%></span></h3>
+          <p class="ellipsis"><%= product.description %></p>
           <p>
             <input type="text" style="width: 20px;" value="1" /> 개
-            <button data-id="{{ product.id }}" data-role="add" class="btn btn-default">{{ __('Add to Cart') }}</button>
-            <button data-id="{{ product.id }}" data-role="buy" class="btn btn-primary">{{ __('purchase') }}</button>
+            <button data-id="<%= product.id %>" data-role="add" class="btn btn-default">{{ __('Add to Cart') }}</button>
+            <button data-id="<%= product.id %>" data-role="buy" class="btn btn-primary">{{ __('purchase') }}</button>
           </p>
         </div>
       </div>
     </div>
-  {% if loop.index == 0 || loop.index%4 == 0 || loop.last %}
+ <!-- {% if loop.index == 0 || loop.index%4 == 0 || loop.last %}-->
   </div><!-- PRODUCT -->
-  {% endif %}
-  {% endfor %}
+
+  <% }) %>
 </div><!-- /.container -->
 
 <script type="text/javascript">
@@ -86,4 +88,3 @@ $(document).ready(function () {
   }
 });
 </script>
-{% endblock %};

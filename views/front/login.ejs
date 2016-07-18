@@ -1,6 +1,3 @@
-
-FFFF
-
 <%- include layout.ejs %>
 
 <div class="container" width="400">
@@ -9,7 +6,13 @@ FFFF
     <div class="col-md-4 col-md-offset-4">
       <div class="row" id="login-window">
         <h3><%= __('login') %></h3>
+
+
+
         <form role="form" action='/login' method="POST">
+
+
+
           <div class="form-group">
             <label for="email"><%= __('e-mail') %></label>
             <div class="input-group">
@@ -27,7 +30,7 @@ FFFF
           <hr />
 
           <button type="submit" class="btn btn-primary pull-right"><%= __('login') %></button>
-          <button type="button" id="signup" class="btn btn-default"><%= __('Sign Up') %></button>
+            <button type="button" id="signup" class="btn btn-default"><%= __('Sign Up') %></button>
         </form>
       </div><!-- LOGIN FORM -->
 

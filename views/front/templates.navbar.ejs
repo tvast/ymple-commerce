@@ -28,18 +28,23 @@
         </li>
         <% } %>
         <li class="dropdown">
-          <% if ((!this.user) && (!this.admin)) { %>
+          <% if ((!user) && (!admin)) { %>
           <a href="/login">
             <%= __('login') %>
           </a>
           <% } %>
-          <% if (this.user) { %>
+
+
+          <% if (user) { %>
           <a href="#" class="dropdown-toggle" data-toggle="dropdown">
             <% if (user.name) { %>
             <%= user.name %>
             <% } else { %>
             <%= user.email %>
             <% } %>
+
+
+
             <i class="fa fa-fw fa-lg fa-cog"></i><strong class="caret"></strong>
           </a>
           <ul class="dropdown-menu" role="menu">
