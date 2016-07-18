@@ -1,0 +1,107 @@
+{% extends 'layout.html' %}
+
+{% block title %} Payment {% endblock %}
+
+{% block head %}
+  {% parent %}
+  <!-- STYLESHEETS -->
+  <!-- SCRIPTS -->
+{% endblock %}
+
+{% block content %}
+
+<div class="container">
+
+
+  <H2> {{__ ( 'payment orders')}} </ h2>
+     <Hr />
+
+     <Div style = "text-align: center; margin: 150px;">
+     {% If order.payment === 'TRANSFER' && order.status === 'PREPARE'%}
+       <H1> <i class = "fa fa-fw fa-2x fa-check"> </i> </h1>
+       <H1> {{__ ( 'Once the order is completed. The payment is confirmed shipment starts.')}} </H1>
+       <H3> Account: Woori Bank 1005-102-532536 (Name: gimseokjun) </h3>
+       <br>
+       <a href="/order/{{ order.id }}" class="btn btn-lg btn-default"> {{__ ( 'Order Confirmation')}} </a>
+     {% Elseif order.payment === 'CARD' && order.status === 'PREPARE'%}
+       <H1> <i class = "fa fa-fw fa-2x fa-spin fa-refresh"> </i> </h1>
+       <H1> {{(order.price + order.shipping) | currency}} {{__ ( '. Is in progress payments')}} </h1>
+       <H3> {{__ ( 'Do not close the page and go to another site.')}} </H3>
+     {% Else%}
+       <H1> <i class = "fa fa-fw fa-2x fa-ban"> </i> </h1>
+       <H1> {{__ ( 'hasyeotgeona payment order is already canceled.')}} </H1>
+     {% Endif%}
+     </Div>
+</Div>
+
+
+
+
+{% if sails.config.project.paymentMethods.iamport.using %}
+
+{% if order.payment === 'CARD' && order.status === 'PREPARE' %}
+<script type="text/javascript" src="https://service.iamport.kr/js/iamport.payment.js"></script>
+
+<script type="text/javascript">
+var IMP = window.IMP;
+IMP.init('{{ sails.config.project.paymentMethods.iamport.id }}');
+
+var payment = {
+  merchant_uid : '{{ order.id }}',
+  name : '{{ order.id }}',
+  amount : '{{ order.price+order.shipping }}',
+  buyer_email : '{{ order.email }}',
+  buyer_name : '{{ order.name }}',
+  buyer_tel : '{{ order.phone }}',
+  buyer_addr : '{{ order.address }}',
+  buyer_postcode : '{{ order.postcode }}'
+};
+
+IMP.request_pay(payment, function(rsp) {
+  var msg;
+
+  if ( rsp.success ) {
+
+
+
+
+    msg = 'Your payment has been successfully completed.';
+    msg += 'Payments:' + rsp.paid_amount;
+    msg += ', the card approval number:' + rsp.apply_num;
+
+
+
+
+    $.ajax({
+      type: 'POST',
+      url: '/order/paid',
+      data: rsp,
+      success: function (data, success) {
+        alert(msg);
+        window.location = '/order/{{ order.id }}';
+      },
+      error: function (error) {
+        return alert(error);
+      }
+    });
+  } else {
+    if ( rsp.error_code === 'STOP' ) {
+      // Payment cancelled during process
+      msg = 'You cancel payments.'
+      alert(msg);
+      window.location = '/profile';
+      return;
+    }
+    msg = 'failed payment.';
+    msg += 'Error description:' + rsp.error_msg;
+
+    if ( alert(msg) )
+      window.location = '/order/{{ order.id }}';
+  }
+});
+</script>
+{% endif %}
+
+{% endif %}
+
+{% endblock %}

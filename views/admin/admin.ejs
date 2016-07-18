@@ -1,0 +1,25 @@
+{% extends 'layout.html' %}
+
+{% block title %} ADMIN PANEL {% endblock %}
+
+{% block head %}
+  {% parent %}
+
+{% endblock %}
+
+{% block content %}
+<div class="container">
+  <h1>ADMIN PANEL</h1>
+  <hr />
+
+  <p>
+    <a href="/admin/user">USER MANAGER</a>
+  </p>
+  <p>
+    <a href="/admin/product">PRODUCT MANAGER</a>
+  </p>
+  <p>
+    <a href="/admin/order">ORDER MANAGER</a>
+  </p>
+</div>
+{% endblock %}

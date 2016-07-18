@@ -1,0 +1,29 @@
+{% extends 'layout.html' %}
+
+{% block title %} Complete {% endblock %}
+
+{% block head %}
+  {% parent %}
+  <!-- STYLESHEETS -->
+  <!-- SCRIPTS -->
+{% endblock %}
+
+{% block content %}
+
+<div class="container">
+
+
+
+  <H2> {{__ ( 'Complete Order')}} </h2>
+     <Hr />
+
+     <Div style = "text-align: center; margin: 150px;">
+       <H1> <i class = "fa fa-fw fa-check-circle-o"> </i> </h1>
+       <H1> {{__ ( 'Once the order is completed. The payment is confirmed shipment starts.')}} </H1>
+       <H3> Account: Woori Bank 1005-102-532536 (Name: gimseokjun) </h3>
+       <a href="/" class="btn btn-default"> {{__ ( 'Return')}} </a>
+
+
+  </div>
+</div>
+{% endblock %}

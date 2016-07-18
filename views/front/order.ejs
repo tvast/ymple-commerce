@@ -1,0 +1,196 @@
+{% extends 'layout.html' %}
+
+{% block title %} ORDER DETAIL {% endblock %}
+
+{% block head %}
+  {% parent %}
+
+{% endblock %}
+
+{% block content %}
+<div class="container">
+  <h1><a href="/profile"><i class="fa fa-fw fa-chevron-circle-left"></i></a>ORDER DETAIL</h1>
+  <hr />
+
+  <div class="row">
+    <div class="col-lg-12">
+      <h3>{{ order.name }} {% if order.email %}({{ order.email }}){% endif %}</h3>
+      <p><strong>{{ order.createdAt|date('Y-m-d', '-540') }}</strong> | {{ order.address }} | {{ order.postcode }} | {{ order.phone }} | {{ order.id }}</p>
+      <p>{{ order.comment }}</p>
+      <hr />
+    </div>
+  </div>
+
+  {% if error === 'ALREADY_PAID' %}
+  <div class="row">
+    <div class="col-md-6">
+      <div class="alert alert-info alert-dismissable">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+
+
+
+        <H4> {{__ ( 'payment received')}}! </H4>
+                 <P> {{__ ( 'already ordered your payment.')}} </P>
+
+
+
+
+        <p>
+
+
+          <a class="btn btn-primary" href="/order/delivery/{{ order.id }}"> {{__ ( 'confirm delivery')}} </a>
+                     <A class = "btn btn-link" href = "/ order / cancel / {{order.id}}" onclick = "return confirm ( '{{__ (' Are you sure you want to cancel your order? ') }} ') "> {{__ (' order cancellation ')}} </a>
+
+
+
+
+        </p>
+      </div>
+    </div>
+  </div>
+  {% elseif order.status === 'PREPARE' %}
+  <div class="row">
+    <div class="col-md-6">
+      <div class="alert alert-warning alert-dismissable">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+
+
+        <H4> {{__ ( 'Pending payments')}}! </ H4>
+                 <P> {{__ ( 'the order has not yet payment is complete.')}} {{__ ( 'Once the payment is confirmed shipment starts.')}} {{__ ('Buy Guests can make payments to cancel, select the button below. ')}} </p>
+                 <P>
+                   <a class="btn btn-warning" href="/pay/{{ order.id }}"> {{__ ( 'Make Payment')}} </a>
+                   <A class = "btn btn-link" href = "/ order / cancel / {{order.id}}" onclick = "return confirm ( '{{__ (' Are you sure you want to cancel your order? ')}}')" > {{__ ( 'order cancellation')}} </a>
+
+
+
+
+
+        </p>
+      </div>
+    </div>
+  </div>
+  {% elseif order.status === 'PAID' && !order.delivery %}
+  <div class="row">
+    <div class="col-md-6">
+      <div class="alert alert-info alert-dismissable">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+
+
+        <H4> {{__ ( 'shipping preparation')}}! </H4>
+                 <P> {( 'preparing the ship.')}} {{{__ __ ( 'Please wait!')}} </P>
+
+
+      </div>
+    </div>
+  </div>
+  {% endif %}
+
+  <div class="row">
+    <div class="col-lg-12">
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th>#</th>
+
+
+            <Th> {{__ ( 'item')}} </th>
+            <th> {{__ ( 'Unit')}} </th>
+              <th> {{__ ('Price')}} </th >
+
+
+
+          </tr>
+        </thead>
+        <tbody>
+          {% for product in order.products %}
+          <a href="/product/{{ product.id }}">
+          <tr>
+            <td>{{ loop.index }}</td>
+            <td>{{ product.name }}</td>
+            <td>{{ product.quantity }}</td>
+            <td>{{ product.price|currency }}</td>
+          </tr>
+          </a>
+          {% endfor %}
+          <tr>
+            <td colspan="2"></td>
+
+
+
+
+
+            <Td> {{__ ( 'Total')}} </td>
+                         {% If order.shipping> 0%}
+                         <Td> {{(order.price + order.shipping) | currency}} ({{__ ( 'including shipping')}}) </td>
+
+
+
+
+            {% else %}
+            <td>{{ order.price|currency }}</td>
+            {% endif %}
+          </tr>
+        </tbody>
+      </table>
+      {% if order.delivery %}
+      <a href="/order/delivery/{{ order.id }}">Delivery confirmation</a>
+      {% endif %}
+
+      {% if order.payment == 'TRANSFER' && order.status !== 'PAID' %}
+      <br><br>
+
+      <P> <strong> When will be sent to our bank 1005-102-532536 gimseokjun </ strong> confirmed after the payment. </ P>
+
+      {% endif %}
+    </div>
+    <hr>
+  </div>
+</div>
+
+<script type="text/javascript">
+$(document).ready(function () {
+  $('[button-action="status"]').on('click', function () {
+    var product_id = $(this).parent().parent().data('id');
+
+    $.ajax({
+      type: 'PUT',
+      url: '/product/status/' + product_id,
+      success: function (data, status) {
+        alert('Deleted succesfully.');
+        window.location = '/admin/product';
+        return;
+      },
+      error: function (error) {
+        console.log(error);
+        return;
+      }
+    });
+  });
+
+  // POST DELETE
+  $('[button-action="delete"]').on('click', function () {
+    if ( !confirm ('Do you really want to delete this?') ) {
+      return;
+    }
+
+    var product_id = $(this).parent().parent().data('id');
+
+    $.ajax({
+      type: 'DELETE',
+      url: '/order/' + product_id,
+      success: function (data, status) {
+        alert('Deleted succesfully.');
+        window.location = '/admin/order';
+        return;
+      },
+      error: function (error) {
+        console.log(error);
+        return;
+      }
+    });
+  });
+});
+</script>
+
+
+{% endblock %}
