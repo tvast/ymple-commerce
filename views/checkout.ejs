@@ -1,0 +1,258 @@
+{% extends 'layout.html' %}
+
+{% block title %} Checking out... {% endblock %}
+
+{% block head %}
+  {% parent %}
+  <!-- STYLESHEETS -->
+  <style>
+    .error {
+      color: red;
+      margin: 5px;
+    }
+  </style>
+  <!-- SCRIPTS -->
+{% endblock %}
+
+{% block content %}
+
+<div class="container">
+
+
+
+  <H2> {{__ ( 'Order Confirmation')}} <a href="/cart" class="btn btn-warning pull-right"> {{__ ( 'change')}} </a> </h2>
+
+
+  <hr />
+
+  {% if cart.length <= 0 %}
+
+
+  <H2> {{__ ( 'You Cart is currently empty')}} </h2>
+
+
+
+  {% else %}
+  <div class="row clearfix">
+    <div class="col-lg-12">
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th>No.</th>
+
+
+            <Th> {{__ ( 'name')}} </th> <small> {{__ ('Price')}} </th> <small> {{__ ( 'Unit')}} </th > <th> {{__ ( 'total')}} </th>
+
+
+
+          </tr>
+        </thead>
+        <tbody>
+          {% for product in cart %}
+          <tr data-id="{{ product.id }}">
+            <td>{{ loop.index }}</td>
+            <td>{{ product.name }}</td>
+            <td>{{ sails.config.project.currency.symbol }}{{ product.price|currency }}</td>
+            <td>{{ product.quantity }}</td>
+            <td>{{ sails.config.project.currency.symbol }}{{ (product.price * product.quantity)|currency }}</td>
+          </tr>
+          {% endfor %}
+
+          <tr>
+            <td colspan="2"></td>
+            <td>{{ __('Sum') }}</td>
+            <td>{{ total }}</td>
+            <td>{{ sails.config.project.currency.symbol }}{{ summary|currency }}</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h2>{{ __('Shipping information input') }}</h2>
+      <hr />
+
+      <form role="form" id="order" action="/order" method="POST">
+        <div class="row">
+          <div class="col-sm-4">
+            <div class="form-group">
+
+
+              <Label for = "name"> {{__ ( 'seein minutes')}} </ label>
+                             <Input type = "text" class = "form-control" id = "name" name = "name" placeholder = "{{__ ( 'Please enter the name of seein minutes')}}" value = "{{user .name}} "required>
+                           </ Div>
+                         <Div class = "form-group">
+                           <Label for = "phone"> {{__ ( 'Telephone')}} </ label>
+                           <Input type = "text" class = "form-control" id = "phone" name = "phone" placeholder = "{{__ ( 'Contact get your phone number')}}" value = "{{user .phone}} "required>
+                         </ Div>
+                         {% If! User%}
+                         <Div class = "form-group">
+                           <Label for = "email"> {{__ ( 'E')}} </ label>
+                           <Input type = "text" class = "form-control" id = "email" name = "email" placeholder = "{{__ ( 'Please enter your email address to be contact')}}" value = "{{user .email}} "required>
+
+
+
+
+            </div>
+            {% endif %}
+            {% if user %}
+            <div class="form-group" style="margin-left: 15px;">
+              <div class="checkbox">
+                <label>
+                  <input type="checkbox" name="remember" checked> {{ __('Save this address as the default shipping') }}
+                </label>
+              </div>
+            </div>
+            {% endif %}
+          </div>
+
+          <div class="col-sm-8">
+            <div class="form-group">
+
+
+              <Label for = "address"> {{__ ( 'address')}} </ label>
+                             <Input type = "text" class = "form-control" id = "address" name = "address"
+                                    placeholder = "{{( 'Please enter the address') __}}" value = "{{user.address} } "required>
+                           </Div>
+                         <Div class = "form-group">
+                           <Label for = "postcode"> {{__ ( 'Zip')}} </label>
+                           <Input type = "text" class = "form-control" id = "postcode" name = "postcode"
+                                  placeholder = "{{__ ( 'Please enter your zip code')}}" value = "{{user.postcode }} "required>
+                         </Div>
+                         <Div class = "form-group">
+                           <Label for = "comment"> {{__ ( 'delivery Notice')}} </label>
+                           <Textarea class = "form-control" name = "comment" id = "comment" cols = "30" rows = "3"
+                                     placeholder = "{{__ ( 'Please enter a description for this product MARKDOWN form') }} "> </textarea>
+                         </Div>
+
+
+
+
+          </div>
+        </div>
+
+        <H2> {{__ ( 'delivery method')}} </h2>
+                
+                 <Hr />
+                 <Div class = "form-horizontal">
+                   <Div class = "form-group">
+                     <Div class = "col-sm-2">
+                       <Select class = "form-control" name = "shipping">
+                         <Option value = "PRE"> {{__ ( 'freight prepaid')}} </option>
+                         <Option value = "POST"> {{__ ( 'postpaid courier')}} </option>
+                       </Select>
+
+
+
+
+
+
+
+            </div>
+        <Label id = "shipping" class = "control-label"> {{__ ( 'prepaid shipping will be automatically added 3,000 raw courier.')}} </Label>
+                   </Div>
+                 </Div>
+
+                 <H2> {{__ ( 'Payment')}} </h2>
+        <hr />
+
+        <div class="form-horizontal">
+          <div class="form-group">
+            <div class="col-sm-2">
+              <select id="payment" class="form-control" name="payment">
+
+
+
+                <Option value = "TRANSFER"> {{__ ( 'Bank Transfer')}} </option>
+                                 {% If sails.config.project.paymentMethods.iamport.using%}
+                                 <Option value = "CARD"> {{__ ( 'cards')}} </option>
+
+
+
+
+
+                {% endif %}
+              </select>
+            </div>
+
+
+
+            <Label id = "payment-label" class = "control-label"> Woori Bank 1005-102-532536 gimseokjun </label>
+                       </Div>
+                     {% If! Sails.config.project.paymentMethods.iamport.using%}
+                     <P class = "help-block"> {{__ ( 'payment methods except for the current account transfers are not supported, so please understand.')}} </P>
+
+
+
+
+
+          {% endif %}
+        </div>
+        <hr />
+
+        <button type="submit" class="btn btn-info btn-lg">{{ __('주문') }}</button>
+      </form>
+    </div>
+  </div>
+  {% endif %}
+</div>
+
+<script type="text/javascript">
+$(document).ready(function () {
+  $('#order').validate({
+    lang: 'ko',
+    highlight: function(element) {
+        $(element).closest('.form-group').addClass('has-error');
+    },
+    unhighlight: function(element) {
+        $(element).closest('.form-group').removeClass('has-error');
+    }
+  });
+
+  jQuery.extend(jQuery.validator.messages, {
+    required: "Required entry.",
+  });
+
+  $('[button-action="apply"]').on('click', function () {
+    var product_id = $(this).parent().parent().data('id');
+    var quantity = $(this).parent().parent().find('input').val();
+
+    $.ajax({
+      type: 'PUT',
+      url: '/cart/apply/' + product_id + '?quantity=' + quantity,
+      success: function (data, status) {
+        window.location = '/cart';
+        return;
+      },
+      error: function (error) {
+        console.log(error);
+        return;
+      }
+    });
+  });
+
+  // POST DELETE
+  $('[button-action="delete"]').on('click', function () {
+    if ( !confirm ('Do you really want to delete this?') ) {
+      return;
+    }
+
+    var product_id = $(this).parent().parent().data('id');
+
+    $.ajax({
+      type: 'DELETE',
+      url: '/product/' + product_id,
+      success: function (data, status) {
+        alert('Deleted succesfully.');
+        window.location = '/admin/product';
+        return;
+      },
+      error: function (error) {
+        console.log(error);
+        return;
+      }
+    });
+  });
+});
+</script>
+
+
+{% endblock %}

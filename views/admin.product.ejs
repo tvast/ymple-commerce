@@ -1,0 +1,189 @@
+{% extends 'layout.html' %}
+
+{% block title %} PRODUCT MANAGER {% endblock %}
+
+{% block head %}
+{% parent %}
+<!-- STYLESHEETS -->
+<style>
+    .ellipsis {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+</style>
+<!-- SCRIPTS -->
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1><a href="/admin"><i class="fa fa-fw fa-chevron-circle-left"></i></a>PRODUCT MANAGER</h1>
+    <hr/>
+
+    {% if edit %}
+    <form role="form" action="/product/{{ edit.id }}" method="POST">
+        {% else %}
+        <form role="form" action="/product" method="POST">
+            {% endif %}
+
+
+
+
+
+            {% include 'admin_product/include.admin.product.html' %}
+
+
+        </form>
+        <hr/>
+
+        <div class="row">
+            <div class="col-lg-12">
+                <table class="table table-hover">
+                    <thead>
+                    <tr>
+                        <th>#</th>
+
+
+                        <Th> {{__( 'one generation')}}</th>
+                                    
+                        <Th> {{__( 'name')}}</th>
+                                    
+                        <Th style="width: 200px;"> {{__( 'Photo')}}</th>
+                                    
+                        <Th> {{__( 'Price')}}</th>
+                                    
+                        <Th> {{__( 'Inventory')}}</th>
+                                    
+                        <Th> {{__( 'product')}}</th>
+                                    
+                        <Th> {{__( 'tags')}}</th>
+                                    
+                        <Th> {{__( 'state')}}</th>
+
+
+                        <th></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for product in products %}
+                    <tr data-id="{{ product.id }}">
+                        <td>{{ loop.index }}</td>
+                        <td>{{ product.createdAt|date('Y-m-d', '-540') }}</td>
+                        <td>{{ product.name }}</td>
+                        <td class="ellipsis">
+                            {% for photo in product.photos %}
+                            <a href="{{ product.photos }}">{{ loop.index }}</a>&nbsp;
+                            {% endfor %}
+                        </td>
+                        <td>{{ product.price|currency }}</td>
+                        <td>
+                            {% if product.stock > 0 %}
+                            {{ product.stock }}
+                            {% elseif product.stock == 0 %}
+
+
+                            {{ __('No stock') }}
+                                           {% else%}
+                                           {{__( 'Unavailable')}}
+
+
+                            {% endif %}
+                        </td>
+                        <td>{{ product.related }}</td>
+                        <td>
+                            {% for tag in product.tags %}
+                            {{ tag }}{% if !loop.last %}, {% endif %}
+                            {% endfor %}
+                        </td>
+                        <td>
+                            {% if product.isSelling %}
+
+
+                            <Button class="btn btn-xs btn-success" button-action="status"> {{__( 'sale')}}</button>
+                                           {% else %}
+                                          
+                            <Button class="btn btn-xs btn-warning" button-action="status"> {{__( 'Sell Stop')}}
+                            </button>
+
+
+                            {% endif %}
+                        </td>
+                        <td>
+                            <a href="/product/{{ product.id }}" class="btn btn-xs btn-default" button-action="edit">PREVIEW</a>
+                            <a href="/admin/product/{{ product.id }}" class="btn btn-xs btn-primary"
+                               button-action="edit">EDIT</a>
+                            <button class="btn btn-xs btn-danger" button-action="delete">DELETE</button>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+
+                <div style="text-align: center;">
+                    <ul class="pagination">
+                        <li><a href="/admin/product">&laquo;</a></li>
+                        {% for index in pages %}
+                        {% if page == loop.index %}
+                        <li class="active"><a href="/admin/product?page={{ loop.index }}">{{ loop.index }}</a></li>
+                        {% else %}
+                        <li><a href="/admin/product?page={{ loop.index }}">{{ loop.index }}</a></li>
+                        {% endif %}
+                        {% if loop.last %}
+                        <li><a href="/admin/product?page={{ loop.index }}">&raquo;</a></li>
+                        {% endif %}
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        </form>
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('[button-action="status"]').on('click', function () {
+            var product_id = $(this).parent().parent().data('id');
+
+            $.ajax({
+                type: 'PUT',
+                url: '/product/status/' + product_id,
+                success: function (data, status) {
+                    alert('Status changed succesfully.');
+                    window.location = '/admin/product';
+                    return;
+                },
+                error: function (error) {
+                    console.log(error);
+                    return;
+                }
+            });
+        });
+
+        // POST DELETE
+        $('[button-action="delete"]').on('click', function () {
+            if (!confirm('Do you really want to delete this?')) {
+                return;
+            }
+
+            var product_id = $(this).parent().parent().data('id');
+
+            $.ajax({
+                type: 'DELETE',
+                url: '/product/' + product_id,
+                success: function (data, status) {
+                    alert('Deleted succesfully.');
+                    window.location = '/admin/product';
+                    return;
+                },
+                error: function (error) {
+                    console.log(error);
+                    return;
+                }
+            });
+        });
+    });
+</script>
+
+
+{% endblock %}
