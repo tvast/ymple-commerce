@@ -22,6 +22,6 @@
 
 
 
-var route_front_end = require('./route_front_end');
+var route_front_end = require('./route_front');
 var route_api = require('./route_api');
-var route_back_end = require('./route_back_end');
+var route_back_end = require('./route_admin');
