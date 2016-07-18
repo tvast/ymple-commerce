@@ -55,7 +55,7 @@ module.exports = {
     ], function (err, result) {
       if (err) return res.serverError (err);
 
-      return res.view('cart.html', result);
+      return res.view('cart.ejs', result);
     });
   },
 
@@ -154,7 +154,7 @@ module.exports = {
     ], function (err, result) {
       if (err) return res.serverError(err);
 
-      return res.view('checkout.html', result);
+      return res.view('checkout.ejs', result);
     });
   },
 

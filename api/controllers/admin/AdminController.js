@@ -11,7 +11,7 @@ module.exports = {
       admin: req.session.user
     };
 
-    return res.view('admin.html', result);
+    return res.view('admin.ejs', result);
   },
 
 
@@ -78,7 +78,7 @@ module.exports = {
     ], function (err) {
       if (err) return res.serverError(err);
 
-      return res.view('admin.product.html', result);
+      return res.view('admin.product.ejs', result);
     });
   },
 
@@ -144,7 +144,7 @@ module.exports = {
       if (err) return res.serverError(err);
 
       // res.json(result);
-      return res.view('admin.order.html', result);
+      return res.view('admin.order.ejs', result);
     });
   },
 
@@ -196,7 +196,7 @@ module.exports = {
     ], function (err) {
       if (err) return res.serverError(err);
 
-      return res.view('admin.user.html', result);
+      return res.view('admin.user.ejs', result);
     });
   },
   

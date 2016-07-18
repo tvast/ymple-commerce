@@ -50,6 +50,6 @@ module.exports = {
   },
 
   test: function (req, res) {
-    res.view('test.html');
+    res.view('test.ejs');
   }
 };

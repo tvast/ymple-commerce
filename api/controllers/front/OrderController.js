@@ -9,7 +9,7 @@ var SHIPPING_FEE = 3000;
 
 module.exports = {
   find: function (req, res) {
-    return res.view('complete.html', { failed: true });
+    return res.view('complete.ejs', { failed: true });
   },
 
   check: function (req, res) {
@@ -105,7 +105,7 @@ module.exports = {
 
       if ( req.query.hasOwnProperty('error') ) result.error = req.query.error.toUpperCase();
 
-      return res.view('order.html', result);
+      return res.view('order.ejs', result);
     });
 
   },
@@ -138,7 +138,7 @@ module.exports = {
 
       result.message = '주문을 취소하셨습니다.';
 
-      return res.view('message.html', result);
+      return res.view('message.ejs', result);
     });
   },
 
@@ -187,7 +187,7 @@ module.exports = {
     ], function (err) {
       if (err) return res.redirect('/order/'+req.params.id+'?error='+err);
 
-      return res.view('pay.html', result)
+      return res.view('pay.ejs', result)
     });
   },
 

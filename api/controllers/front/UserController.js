@@ -56,7 +56,7 @@ module.exports = {
     ], function (err) {
       if (err) return res.serverError (err);
 
-      return res.view('profile.html', result);
+      return res.view('profile.ejs', result);
     });
   },
 

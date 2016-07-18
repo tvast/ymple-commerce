@@ -45,7 +45,7 @@ module.exports = {
     ], function (err, result) {
       if (err) res.serverError (err);
 
-      return res.view('product.html', result);
+      return res.view('product.ejs', result);
     });
   },
 
@@ -83,7 +83,7 @@ module.exports = {
 
       result.query = ( req.query.hasOwnProperty('name') ) ? req.query.name : undefined;
 
-      return res.view('index.html', result);
+      return res.view('index.ejs', result);
     });
   },
 
