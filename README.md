@@ -16,5 +16,13 @@ How To Run
     $ node app.js
 
 
+Contributing
+--------
+
+Ymple-Commerce is an Open Source project.
+
+If you want to contribute code to Ymple-Commerce, read the [CONTRIBUTING.md][7] file in this repository or read the [tutorials about contribution][8] on the documentation site.
+
+
 ========
 Code licensed under GPL v2 License.
