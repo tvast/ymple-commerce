@@ -1,13 +1,7 @@
- {% extends 'layout.html' %}
+<%- include ../front/layout.ejs %>
 
-{% block title %} ORDER MANAGER {% endblock %}
+ ORDER MANAGER 
 
-{% block head %}
-  {% parent %}
-
-{% endblock %}
-
-{% block content %}
 <div class="container">
   <h1><a href="/admin"><i class="fa fa-fw fa-chevron-circle-left"></i></a>ORDER MANAGER</h1>
   <hr />
@@ -19,66 +13,62 @@
           <tr>
             <th>#</th>
 
-
-
-
-            <th> {{__( 'one generation')}} </th>
-                         <th> {{__( 'name')}} </th>
-                         <th> {{__( 'products')}} </th>
-                         <Th> {{__( 'Price')}} </th>
-                         <Th> {{__( 'Telephone')}} </th>
-                         <Th> {{__( 'address')}} </th>
-                         <Th> {{__( 'shipping')}} </th>
-                         <Th> {{__( 'Payment')}} </th>
-                         <Th> {{__( 'state')}} </th>
-
+            <th> <%= __( 'one generation')%> </th>
+                         <th> <%= __( 'name')%> </th>
+                         <th> <%= __( 'products')%> </th>
+                         <Th> <%= __( 'Price')%> </th>
+                         <Th> <%= __( 'Telephone')%> </th>
+                         <Th> <%= __( 'address')%> </th>
+                         <Th> <%= __( 'shipping')%> </th>
+                         <Th> <%= __( 'Payment')%> </th>
+                         <Th> <%= __( 'state')%> </th>
             <th></th>
           </tr>
         </thead>
         <tbody>
           {% for order in orders %}
-          <tr data-id="{{ order.id }}">
-            <td>{{ loop.index }}</td>
-            <td>{{ order.createdAt|date('Y-m-d', '-540') }}</td>
+          <tr data-id="{{ order.id %>">
+            <td>{{ loop.index %></td>
+            <td>{{ order.createdAt|date('Y-m-d', '-540') %></td>
             <td>
             {% if order.owner %}
-            <a href="/user/{{ order.owner.id }}">{{ order.name }}</a>
+            <a href="/user/{{ order.owner.id %>">{{ order.name %></a>
             {% else %}
-            {{ order.name }}
+            {{ order.name %>
             {% endif %}
             </td>
             <td>
               {% for product in order.products %}
-              <a href="/product/view/{{ product.id }}">{{ product.name }}</a>
-              {{ product.quantity }}{% if !loop.last %},{% endif %}
+              <a href="/product/view/{{ product.id %>">{{ product.name %></a>
+              {{ product.quantity %>{% if !loop.last %},{% endif %}
               {% endfor %}
             </td>
-            <td>{{ order.price|currency }}</td>
-            <td>{{ order.phone }}</td>
-            <td>{{ order.address }}</td>
+            <td>{{ order.price|currency %></td>
+            <td>{{ order.phone %></td>
+            <td>{{ order.address %></td>
             <td>
               {% if order.shipping > 0 %}
 
 
-              <Span class = "badge badge-success"> {{__( 'advance payment')}} </span>
+              <Span class = "badge badge-success"> <%= __( 'advance payment')%> </span>
                             {% else%}
-                            <Span class = "badge badge-warning"> {{__( 'arrears')}} </span>
+                            <Span class = "badge badge-warning"> <%= __( 'arrears')%> </span>
                             {% endif%}
                           </Td>
-                        <Td> <span class = "badge badge-default"> {{order.payment}} </span> </td>
+                        <Td> <span class = "badge badge-default"> {{order.payment%> </span> </td>
                         <Td>
                           {% if order.status == 'PREPARE'%}
-                          <Span class = "badge badge-default"> {{__( 'standby payment')}} </span>
+                          <Span class = "badge badge-default"> <%= __( 'standby payment')%> </span>
                           {% elseif order.status == 'PAID'%}
-                          <Span class = "badge badge-info"> {{__( 'payment received')}} </span>
+                          <Span class = "badge badge-info"> <%= __( 'payment received')%> </span>
                           {% elseif order.status == 'SENT'%}
-                          <Span class = "badge badge-primary"> {{__( 'delivery of')}} </span>
+                          <Span class = "badge badge-primary"> <%= __( 'delivery of')%> </span>
                           {% elseif order.status == 'DONE'%}
-                          <Span class = "badge badge-success"> {{__( 'Delivered')}} </span>
+                          <Span class = "badge badge-success"> <%= __( 'Delivered')%> </span>
                           {% elseif order.status == 'CANCEL'%}
-                          <Span class = "badge badge-danger"> {{__( 'Cancelled')}} </span>
+                          <Span class = "badge badge-danger"> <%= __( 'Cancelled')%> </span>
                           {% else%}
-                          <Span class = "badge badge-warning"> {{__( 'Out of stock')}} </span>
+                          <Span class = "badge badge-warning"> <%= __( 'Out of stock')%> </span>
                           {% endif%}
 
 
@@ -100,24 +90,20 @@
 
 
 
-                  <Li> <a href="/order/{{ order.id }}"> {{__( 'View Order')}} </a> </li>
+                  <Li> <a href="/order/{{ order.id %>"> <%= __( 'View Order')%> </a> </li>
                                      {% if order.status!== 'CANCEL'%}
 
                                      {% if order.status!== 'PAID'%}
-                                     <Li> <a href="/order/change/{{ order.id }}?type=PAID"> {{__( 'payment completed')}} </a> </li>
+                                     <Li> <a href="/order/change/{{ order.id %>?type=PAID"> <%= __( 'payment completed')%> </a> </li>
                                      {% else%}
-                                     <Li> <a href="/order/change/{{ order.id }}?type=PREPARE"> {{__( 'Payment Canceled')}} </a> </li>
+                                     <Li> <a href="/order/change/{{ order.id %>?type=PREPARE"> <%= __( 'Payment Canceled')%> </a> </li>
                                      {% endif%}
-                                     <Li> <a href="#"> {{__( 'Enter Invoice')}} </a> </li>
-                                     <Li> <a href="/order/cancel/{{ order.id }}"> {{__( 'Cancel')}} </a> </li>
+                                     <Li> <a href="#"> <%= __( 'Enter Invoice')%> </a> </li>
+                                     <Li> <a href="/order/cancel/{{ order.id %>"> <%= __( 'Cancel')%> </a> </li>
 
                                      {% endif%}
                                      <Li class = "divider"> </ li>
-                                     <Li> <a href="#" data-id="{{ order.id }}" button-action="delete"> {{__( 'delete')}} </a> </li>
-
-
-
-
+                                     <Li> <a href="#" data-id="{{ order.id %>" button-action="delete"> <%= __( 'delete')%> </a> </li>
 
                 </ul>
               </div>
@@ -132,12 +118,12 @@
           <li><a href="/admin/order">&laquo;</a></li>
           {% for index in pages %}
           {% if page == loop.index %}
-          <li class="active"><a href="/admin/order?page={{ loop.index }}">{{ loop.index }}</a></li>
+          <li class="active"><a href="/admin/order?page={{ loop.index %>">{{ loop.index %></a></li>
           {% else %}
-          <li><a href="/admin/order?page={{ loop.index }}">{{ loop.index }}</a></li>
+          <li><a href="/admin/order?page={{ loop.index %>">{{ loop.index %></a></li>
           {% endif %}
           {% if loop.last %}
-          <li><a href="/admin/order?page={{ loop.index }}">&raquo;</a></li>
+          <li><a href="/admin/order?page={{ loop.index %>">&raquo;</a></li>
           {% endif %}
           {% endfor %}
         </ul>
@@ -174,4 +160,3 @@ $(document).ready(function () {
 </script>
 
 
-{% endblock %}

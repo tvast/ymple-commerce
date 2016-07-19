@@ -1,13 +1,6 @@
- {% extends 'layout.html' %}
+<%- include ../front/layout.ejs %>
 
-{% block title %} USER MANAGER {% endblock %}
 
-{% block head %}
-  {% parent %}
-
-{% endblock %}
-
-{% block content %}
 <div class="container">
   <h1><a href="/admin"><i class="fa fa-fw fa-chevron-circle-left"></i></a>USER MANAGER</h1>
   <hr />
@@ -20,13 +13,13 @@
             <th>#</th>
 
 
-            <Th> {{__( 'one generation')}} </th>
-                         <Th> {{__( 'name')}} </th>
-                         <Th> {{__( 'E')}} </th>
-                         <Th> {{__( 'Telephone')}} </th>
-                         <Th> {{__( 'address')}} </th>
-                         <Th> {{__( 'Order')}} </th>
-                         <Th> {{__( 'authorization')}} </th>
+            <Th> <%= __( 'one generation')%> </th>
+                         <Th> <%= __( 'name')%> </th>
+                         <Th> <%= __( 'E')%> </th>
+                         <Th> <%= __( 'Telephone')%> </th>
+                         <Th> <%= __( 'address')%> </th>
+                         <Th> <%= __( 'Order')%> </th>
+                         <Th> <%= __( 'authorization')%> </th>
 
 
 
@@ -36,45 +29,60 @@
         </thead>
         <tbody>
           {% for user in users %}
-          <tr data-id="{{ order.id }}">
-            <td>{{ loop.index }}</td>
-            <td>{{ user.createdAt|date('Y-m-d', '-540') }}</td>
-            <td>{{ user.name }}</td>
-            <td>{{ user.email }}</td>
-            <td>{{ user.phone }}</td>
-            <td>{{ user.address }}</td>
-            <td>{{ user.orders.length }}</td>
+
+
+          <% if (typeof user == 'object' && user) { %>
+          <tr data-id="<%= 'order.id' %>">
+            <td><%='loop.index' %></td>
+            <td><%=user.createdAt|date('Y-m-d', '-540') %></td>
+            <td><%=user.name %></td>
+            <td><%=user.email %></td>
+            <td><%=user.phone %></td>
+            <td><%=user.address %></td>
+            <td><%=user.orders.length %></td>
             <td>
               {% if user.permission == 'ADMIN' %}
-              <span class="badge badge-primary">{{ __('manager') }}</span>
+              <span class="badge badge-primary"><%=__('manager') %></span>
               {% elseif user.permission == 'CUSTOMER' %}
-              <span class="badge badge-success">{{ __('customer') }}</span>
+              <span class="badge badge-success"><%=__('customer') %></span>
               {% else %}
-              <span class="badge badge-warning">{{ __('Unknown') }}</span>
+              <span class="badge badge-warning"><%=__('Unknown') %></span>
               {% endif %}
             </td>
             <td>
-              <a href="/user/{{ user.id }}" class="btn btn-xs btn-default">RAW</a>
+              <a href="/user/<%=user.id %>" class="btn btn-xs btn-default">RAW</a>
               <button class="btn btn-xs btn-danger" button-action="delete">DELETE</button>
             </td>
           </tr>
           {% endfor %}
+        <%}%>
+
+
         </tbody>
       </table>
 
       <div style="text-align: center;">
         <ul class="pagination">
           <li><a href="/admin/user">&laquo;</a></li>
+
+
+          <% if (typeof loop == 'object' && loop) { %>
+
+
           {% for index in pages %}
           {% if page == loop.index %}
-          <li class="active"><a href="/admin/user?page={{ loop.index }}">{{ loop.index }}</a></li>
+          <li class="active"><a href="/admin/user?page=<%=loop.index %>"><%=loop.index %></a></li>
           {% else %}
-          <li><a href="/admin/user?page={{ loop.index }}">{{ loop.index }}</a></li>
+          <li><a href="/admin/user?page=<%=loop.index %>"><%=loop.index %></a></li>
           {% endif %}
           {% if loop.last %}
-          <li><a href="/admin/user?page={{ loop.index }}">&raquo;</a></li>
+          <li><a href="/admin/user?page=<%=loop.index %>">&raquo;</a></li>
           {% endif %}
           {% endfor %}
+          <%}%>
+
+
+
         </ul>
       </div>
     </div>
@@ -109,4 +117,3 @@ $(document).ready(function () {
 </script>
 
 
-{% endblock %}

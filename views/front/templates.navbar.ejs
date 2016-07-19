@@ -28,14 +28,14 @@
         </li>
         <% } %>
         <li class="dropdown">
-          <% if ((!user) && (!admin)) { %>
+          <% if (typeof user !== 'object' && typeof admin !== 'object') { %>
           <a href="/login">
             <%= __('login') %>
           </a>
           <% } %>
 
 
-          <% if (user) { %>
+          <% if (typeof user == 'object' && user) { %>
           <a href="#" class="dropdown-toggle" data-toggle="dropdown">
             <% if (user.name) { %>
             <%= user.name %>
@@ -49,7 +49,7 @@
           </a>
           <ul class="dropdown-menu" role="menu">
             <li class="dropdown-header"><%= __('User Menu') %></li>
-            <% if (user.permission == 'ADMIN') { %>
+            <% if (typeof user == 'object' && user.permission == 'ADMIN') { %>
             <li><a href="/admin"><%= __('Manager page') %></a></li>
             <% } %>
             <li><a href="/profile" id="edit-profile"><%= __('my page') %></a></li>

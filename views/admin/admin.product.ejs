@@ -1,9 +1,7 @@
-{% extends 'layout.html' %}
+<%- include ../front/layout.ejs %>
 
-{% block title %} PRODUCT MANAGER {% endblock %}
+ PRODUCT MANAGER
 
-{% block head %}
-{% parent %}
 <!-- STYLESHEETS -->
 <style>
     .ellipsis {
@@ -13,24 +11,22 @@
     }
 </style>
 <!-- SCRIPTS -->
-{% endblock %}
 
-{% block content %}
 <div class="container">
     <h1><a href="/admin"><i class="fa fa-fw fa-chevron-circle-left"></i></a>PRODUCT MANAGER</h1>
     <hr/>
 
-    {% if edit %}
+
+
+    <% if (typeof loop == 'edit' && edit) { %>
     <form role="form" action="/product/{{ edit.id }}" method="POST">
-        {% else %}
+        <% }else {%>
         <form role="form" action="/product" method="POST">
-            {% endif %}
+            <% } %>
 
 
 
-
-
-            {% include 'admin_product/include.admin.product.html' %}
+            <%- include admin_product/include.admin.product.ejs %>
 
 
         </form>
@@ -44,21 +40,21 @@
                         <th>#</th>
 
 
-                        <Th> {{__( 'one generation')}}</th>
+                        <Th> <%= __( 'one generation') %></th>
                                     
-                        <Th> {{__( 'name')}}</th>
+                        <Th> <%= __( 'name')%></th>
                                     
-                        <Th style="width: 200px;"> {{__( 'Photo')}}</th>
+                        <Th style="width: 200px;"> <%= __( 'Photo') %></th>
                                     
-                        <Th> {{__( 'Price')}}</th>
+                        <Th> <%= __( 'Price') %></th>
                                     
-                        <Th> {{__( 'Inventory')}}</th>
+                        <Th> <%= __( 'Inventory') %></th>
                                     
-                        <Th> {{__( 'product')}}</th>
+                        <Th> <%= __( 'product') %></th>
                                     
-                        <Th> {{__( 'tags')}}</th>
+                        <Th> <%= __( 'tags') %></th>
                                     
-                        <Th> {{__( 'state')}}</th>
+                        <Th> <%= __( 'state') %></th>
 
 
                         <th></th>
@@ -84,7 +80,7 @@
 
                             {{ __('No stock') }}
                                            {% else%}
-                                           {{__( 'Unavailable')}}
+                                           <%= __( 'Unavailable')%>
 
 
                             {% endif %}
@@ -99,10 +95,10 @@
                             {% if product.isSelling %}
 
 
-                            <Button class="btn btn-xs btn-success" button-action="status"> {{__( 'sale')}}</button>
+                            <Button class="btn btn-xs btn-success" button-action="status"> <%= __( 'sale')%></button>
                                            {% else %}
                                           
-                            <Button class="btn btn-xs btn-warning" button-action="status"> {{__( 'Sell Stop')}}
+                            <Button class="btn btn-xs btn-warning" button-action="status"> <%= __( 'Sell Stop')%>
                             </button>
 
 
