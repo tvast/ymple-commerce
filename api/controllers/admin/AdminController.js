@@ -214,7 +214,45 @@ module.exports = {
       return res.redirect('/admin/product');
     });
 
+  },
+
+  productNewValidation: function (req, res){
+
+
+    console.info('req');
+
+    console.info(req.body);
+
+    if (req && req.body && req.body.name) {
+
+
+      var data = {};
+
+      data = req.body;
+
+      Product.create(data, function (err, product) {
+        if (err) {
+          return res.serverError(err);
+        }
+        else {
+
+          return res.ok('ok', req.body);
+        }
+
+        //return res.redirect('/admin/product');
+      });
+
+    }
+    else {
+
+      return res.ok('missing one parameter');
+
+    }
+
+
+
   }
+
 
 
 

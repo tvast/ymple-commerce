@@ -1,13 +1,5 @@
-{% extends 'layout.html' %}
+ ORDER DETAIL
 
-{% block title %} ORDER DETAIL {% endblock %}
-
-{% block head %}
-  {% parent %}
-
-{% endblock %}
-
-{% block content %}
 <div class="container">
   <h1><a href="/profile"><i class="fa fa-fw fa-chevron-circle-left"></i></a>ORDER DETAIL</h1>
   <hr />
@@ -147,7 +139,11 @@
   </div>
 </div>
 
-<script type="text/javascript">
+
+ <%- include ../front/layout.ejs %>
+
+
+ <script type="text/javascript">
 $(document).ready(function () {
   $('[button-action="status"]').on('click', function () {
     var product_id = $(this).parent().parent().data('id');
@@ -193,4 +189,3 @@ $(document).ready(function () {
 </script>
 
 
-{% endblock %}

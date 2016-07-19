@@ -25,9 +25,14 @@ module.exports.routes = {
     // ADMIN
     'GET    /admin'               : 'admin/AdminController.index',
 
-    'GET    /admin/product/create': {view: 'front_end/my_account'},
-    
-    
+    'GET    /admin/product/new': {view: 'admin/product/new'},
+
+
+    // create the new product in db 
+    '/admin/product/new/validation': 'admin/AdminController.productNewValidation',
+
+
+
     //'admin/AdminController.productCreate',
 
     'GET    /admin/product'       : 'admin/AdminController.product',

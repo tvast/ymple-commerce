@@ -29,7 +29,7 @@ module.exports = {
     },
     stock: {
       type: 'INTEGER',
-      defaultsTo: -1 // 0 인 경우 재고 없음 표시, -1인 경우 무한대
+      defaultsTo: -1 // 0 
     },
     isSelling: {
       type: 'BOOLEAN',

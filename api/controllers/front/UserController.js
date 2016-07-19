@@ -26,6 +26,8 @@ module.exports = {
 
     result.page = page;
 
+    result.order = {};
+
     async.waterfall([
       function GetTotalCount (next) {
         Order.count({ owner: req.session.user.id }, function (err, num) {
@@ -42,6 +44,10 @@ module.exports = {
       },
 
       function GetUserAndOrders (next) {
+
+        console.info('user id ', req.session.user.id); 
+
+
         User.findOne(req.session.user.id).populate('orders', queryOptions).exec(function (err, user) {
           if (err) return next (err);
           if (!user) return next ('NO_USER_FOUND');
@@ -56,7 +62,7 @@ module.exports = {
     ], function (err) {
       if (err) return res.serverError (err);
 
-      return res.view('profile.ejs', result);
+      return res.view('front/profile.ejs', result);
     });
   },
 
