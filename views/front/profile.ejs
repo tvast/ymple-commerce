@@ -65,12 +65,8 @@ My Page
                             
                 </div>
                         
-                <Hr/>
-
-                        
+                <hr/>  
                 <Button type="submit" class="btn btn-primary pull-right"> <%= __('Save') %> </button>
-
-
             </form>
         </div>
 
@@ -116,9 +112,10 @@ My Page
                 </thead>
                 <tbody>
 
-                {% for order in orders %}
 
-                <% if (typeof order == 'object' && order) { %>
+                <% if (typeof orders == 'object' && orders) { %>
+
+                <% orders.forEach(function(order){%>
 
                 <tr data-id="<%= order.id %>">
                     <td><%= 'loop.index' %></td>
@@ -128,25 +125,29 @@ My Page
                     <td><%= order.phone %></td>
                     <td><%= order.address %></td>
                     <td>
-                        {% if order.shipping > 0 %}
+                        <% if (order.shipping > 0) { %>
 
                         <Span class="badge badge-success"> <%= __('advance payment') %> </span>
-                                      {% else%}
+                                      <% } else { %>
                                       <Span class="badge badge-warning"> <%= __('arrears') %> </span>
-                                      {% endif%}
+                                      <% }%>
                                     
                     </Td>
                                 
                     <Td>
-                                      {% if order.payment == 'TRANSFER'%}
+                                      <% if (order.payment == 'TRANSFER'){ %>
                                       <Span class="badge badge-default"> <%= __('Bank Transfer') %> </span>
-                                      {% elseif order.payment == 'CARD'%}
+                                      
+
+                                        <%}%>
+
+                        <% if (order.payment == 'CARD') {%>
                                       <Span class="badge badge-default"> <%= __('Card') %> </span>
-                                      {% endif%}           
+                                      <% } %>           
                     </Td>
                                 
                     <Td>
-                                      {% if order.status == 'PREPARE'%}
+                                      <% if (order.status == 'PREPARE') {%>
                                       <Span class="badge badge-default"> <%= __('standby payment') %> </span>
                                       {% elseif order.status == 'PAID'%}
                                       <Span class="badge badge-info"> <%= __('payment received') %> </span>
@@ -156,34 +157,33 @@ My Page
                                       <Span class="badge badge-success"> <%= __('Delivered') %> </span>
                                       {% elseif order.status == 'CANCEL'%}
                                       <Span class="badge badge-danger"> <%= __('Cancelled') %> </span>
-                                      {% else%}
+                                      <%} else {%>
                                       <Span class="badge badge-warning"> <%= __('Out of stock') %> </span>
 
-                        {% endif %}
+                        <% } %>
                     </td>
                     <td>
 
                         <a href="/order/<%= order.id %>" class="btn btn-xs btn-default"
                            button-action="edit"> <%= __('View') %> </a>
-                                       {% if order.status === 'PREPARE'%}
+                                       <% if (order.status === 'PREPARE') { %>
                                        <a href="/pay/<%= order.id %>" class="btn btn-xs btn-primary"
                                           button-action="edit"> <%= __('Payment') %> </a>
 
-                        {% endif %}
+                        <% } %>
                     </td>
                 </tr>
 
+                <% })%>
+
                 <% } %>
-                {% endfor %}
-
-
                 </tbody>
             </table>
 
             <div style="text-align: center;">
                 <ul class="pagination">
                     <li><a href="/profile">&laquo;</a></li>
-                    {% for index in pages %}
+                    <% pages.forEach(function( index){ %>
 
                     <% if (typeof loop == 'object' && loop) { %>
 
@@ -198,7 +198,7 @@ My Page
 
                     <% } %>
 
-                    {% endfor %}
+                    <% }) %>
                 </ul>
             </div>
         </div>

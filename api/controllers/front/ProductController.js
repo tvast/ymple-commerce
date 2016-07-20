@@ -58,7 +58,10 @@ module.exports = {
       isSelling: true
     }
 
-    if ( req.query.hasOwnProperty('name') ) {
+
+
+
+    if ( req.query.name ) {
       // query.name = new RegExp('/\s?[^a-z0-9\_]'+req.query.name+'[^a-z0-9\_]/i', 'g', 'gi');
       query.name = new RegExp(req.query.name);
     }
@@ -81,7 +84,7 @@ module.exports = {
       else
         result.cart = [];
 
-      result.query = ( req.query.hasOwnProperty('name') ) ? req.query.name : undefined;
+      result.query = req.query.name;
 
       return res.view('front/index.ejs', result);
     });
