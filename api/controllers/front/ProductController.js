@@ -58,20 +58,37 @@ module.exports = {
       isSelling: true
     }
 
-
-
-
     if ( req.query.name ) {
       // query.name = new RegExp('/\s?[^a-z0-9\_]'+req.query.name+'[^a-z0-9\_]/i', 'g', 'gi');
       query.name = new RegExp(req.query.name);
+
+
+      query.name = req.query.name;
+
+
+
+
+
+      console.info('productController - query.name', query.name);
     }
 
     async.waterfall([
       function GetProductList (next) {
-        Product.find(query, function (err, products) {
+
+
+        product_query = req.query.name;
+
+
+        Product.find({
+          name : {
+            'contains' : product_query
+          }
+        }, function (err, products) {
           if (err) next(err);
 
-          result.products = products;
+          result.products = products
+
+          console.info('productController products', products)
 
           return next(null);
         });

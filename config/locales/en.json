@@ -82,6 +82,7 @@
 
   "Hello!": "Hola!",
   "Hello %s, how are you today?": "¿Hola %s, como estas?",
-  "name": "name"
+  "name": "name",
+  "order": "order"
 
 }

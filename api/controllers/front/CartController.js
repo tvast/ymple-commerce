@@ -64,7 +64,14 @@ module.exports = {
       if (err) return res.serverError(err);
       if (!product) return res.serverError('NO_PRODUCT_FOUND');
 
-      var quantity = ( req.query.hasOwnProperty('quantity') ) ? parseInt(req.query.quantity) : 1;
+
+
+      var quantity = 1;
+
+      if (req.query.quantity ){
+       quantity = req.query.quantity
+      }
+
 
       AddToSessionCart(req.session, product.id, quantity);
       return res.json(req.session.cart);
@@ -154,7 +161,7 @@ module.exports = {
     ], function (err, result) {
       if (err) return res.serverError(err);
 
-      return res.view('checkout.ejs', result);
+      return res.view('front/checkout.ejs', result);
     });
   },
 

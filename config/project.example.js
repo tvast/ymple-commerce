@@ -14,7 +14,7 @@ module.exports.project = {
       'kr': '원',
       'en': 'Won'
     },
-    symbol: '₩'
+    symbol: '€'
   },
   paymentMethods: {
     iamport: {
