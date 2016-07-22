@@ -3,23 +3,26 @@
         <div class="form-group">
 
 
-            <Label for="name"> <%= __( 'name')%> </label>
+            <Label for="name"> <%= __('name') %> </label>
                        <Input type="text" class="form-control" id="name" name="name"
-                              placeholder="<%= __( 'Please enter your name')%>" value="{{edit.name}} ">
+                              placeholder="<%= __('Please enter your name') %>"
+                              value="<% if (typeof edit == 'object') { %> <%= edit.name %> <% } else { %> <%= '' %> <% } %> ">
                     
         </Div>
                 
         <Div class="form-group">
-                       <Label for="price"> <%= __( 'Price')%> </label>
+                       <Label for="price"> <%= __('Price') %> </label>
                        <Input type="text" class="form-control" id="price" name="price"
-                              placeholder="<%= __( 'Please enter the price')%>" value="{{edit.price}} ">
+                              placeholder="<%= __('Please enter the price') %>"
+                              value="<% if (typeof edit == 'object') { %> <%= edit.price %> <% } else { %> <%= '' %> <% } %> ">
                     
         </Div>
                 
         <Div class="form-group">
-                       <Label for="stock"> <%= __( 'Inventory')%> </label>
+                       <Label for="stock"> <%= __('Inventory') %> </label>
                        <Input type="text" class="form-control" id="stock" name="stock"
-                              placeholder="<%= __( 'Please enter the inventory')%>" value="{{edit.stock}} ">
+                              placeholder="<%= __('Please enter the inventory') %>"
+                              value="<% if (typeof edit == 'object') { %> <%= edit.stock %> <% } else { %> <%= '' %> <% } %> ">
 
 
         </div>
@@ -29,49 +32,52 @@
         <div class="form-group">
 
 
-            <Label for="video"> <%= __( 'VIMEO Video ID')%> </label> <br>
+            <Label for="video"> <%= __('VIMEO Video ID') %> </label> <br>
                       <input type="text" class="form-control" id="video" name="video"
-                             placeholder="<%= __( 'VIMEO image ID input please.')%>"
-                             Value="{{edit.video}} ">
+                             placeholder="<%= __('VIMEO image ID input please.') %>"
+                             Value="<% if (typeof edit == 'object') { %> <%= edit.video %> <% } else { %> <%= '' %> <% } %> ">
                     
         </div>
                 
         <div class="form-group">
-                      <Label for="thumbnail"> <%= __( 'representative picture')%> </label> <br>
+                      <Label for="thumbnail"> <%= __('representative picture') %> </label> <br>
                       <Input type="text" class="form-control" id="thumbnail" name="thumbnail"
-                             placeholder="<%= __( 'representative image URL input please')%>"
-                             value="{{edit.thumbnail%> ">
+                             placeholder="<%= __('representative image URL input please') %>"
+                             value="<% if (typeof edit == 'object') { %> <%= edit.thumbnail %> <% } else { %> <%= '' %> <% } %> ">
                     
         </div>
                 
         <div class="form-group">
-                      <Label for="thumbnail"> <%= __( 'Product photos')%> </label> <br>
+                      <Label for="thumbnail"> <%= __('Product photos') %> </label> <br>
                       <Input type="text" class="form-control" id="photos" name="photos"
-                             placeholder="<%= __( 'product images URL to enter your (comma as the separator)')%>"
-                             value="{{edit.photos%>">
+                             placeholder="<%= __('product images URL to enter your (comma as the separator)') %>"
+                             value="<% if (typeof edit == 'object') { %> <%= edit.photos %> <% } else { %> <%= '' %> <% } %> ">
                     
         </div>
 
                 
         <div class="form-group">
-                      <Label for="name"> <%= __( 'product')%> </label>
+                      <Label for="name"> <%= __('product') %> </label>
                       <Select name="related" class="form-control">
-                        
-            <Option value=""> <%= __( 'No')%></option>
+                            
+                <Option value=""> <%= __('No') %></option>
 
 
-            {% for product in products %}
-            <option value="{{ product.id %>">{{ product.name %></option>
-            {% endfor %}
-        </select>
+                <% products.forEach(function(product) {  %>
+                <option value="<%= product.id %>"><%= product.name %>
+                </option>
+                <% })  %>
+            </select>
         </div>
 
         <div class="form-group">
 
 
-            <Label for="tags"> <%= __( 'tags')%> </label>
+            <Label for="tags"> <%= __('tags') %> </label>
+
+
             <Input type="text" class="form-control" id="tags" name="tags"
-                   placeholder="<%= __( 'Please enter tags separated by commas')%>" value="{{ edit.tags%> ">
+                   placeholder="<%= __('Please enter tags separated by commas') %>" value="<%#= edit.tags%> ">
 
 
         </div>
@@ -79,20 +85,17 @@
 </div>
 
 
-
-
-
-
-
 <div class="row clearfix">
     <div class="col-lg-12">
         <div class="form-group">
 
 
-            <Label for="description"> <%= __( 'description')%> </label>
+            <Label for="description"> <%= __('description') %> </label>
                        <Textarea class="form-control" name="description" id="description" cols="30"
                                  rows="10"
-                                 placeholder="<%= __( 'the product to explain MARKDOWN format as input please') %> "> {{edit.description%> </textarea>
+                                 placeholder="<%= __('the product to explain MARKDOWN format as input please') %> ">
+                <%#=edit.description%>
+            </textarea>
                       
             <!-- <Input type = "text" class = "form-control" id = "name" name = "name" placeholder = "{( 'Enter the name') {__%>"> -->
 
@@ -112,16 +115,17 @@
 
 
             <i class="fa fa-fw fa-warning"> </i>
-            <%= __( 'When you register your product is stored in Unavailable state by default.Change your status by clicking the Status button at the bottom. ') %>
-                       {% if edit %}
+            <%= __('When you register your product is stored in Unavailable state by default.Change your status by clicking the Status button at the bottom. ') %>
                       
-            <Button type="submit" class="btn btn-primary btn-lg pull-right"> <%= __( 'modify')%></button>
-                       {% else %}
+            <% if (typeof edit == 'object' ) { %>
                       
-            <Button type="submit" class="btn btn-primary btn-lg pull-right"> <%= __( 'Register')%></button>
+            <Button type="submit" class="btn btn-primary btn-lg pull-right"> <%= __('modify') %></button>
+                      
+            <% } else { %>
+                      
+            <Button type="submit" class="btn btn-primary btn-lg pull-right"> <%= __('Register') %></button>
 
-
-            {% endif %}
+            <% } %>
         </p>
     </div>
 </div>

@@ -1,31 +1,14 @@
-{% extends 'layout.html' %}
-
-{% block title %} {{ product.name }} {% endblock %}
-
-{% block head %}
-<style>
-.preview {
-  width: 100%;
-  cursor: hand;
-}
-</style>
-
-<script>
-
-</script>
-{% endblock %}
-
-{% block content %}
+<br><br><BR>
 <div class="container" width="100%">
   <div class="row">
     <div class="col-sm-6">
-      {% if product.video %}
-      <iframe id="video" src="//player.vimeo.com/video/{{ product.video }}" width="100%" height="320" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+      <% if (product.video) { %>
+      <iframe id="video" src="//player.vimeo.com/video/<%= product.video %>" width="100%" height="320" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
       <a href="{{ product.thumbnail }}"><img src="{{ product.thumbnail }}" width="100%" id="thumbnail" class="thumbnail" style="display: none;"/></a>
-      {% else %}
+      <%} else { %>
 
       <a href="{{ product.thumbnail }}"><img src="{{ product.thumbnail }}" width="100%" id="thumbnail" class="thumbnail" /></a>
-      {% endif %}
+      <%  }  %>
 
       {% if product.photos.length == 0 %}
       <div class="row">
@@ -80,7 +63,7 @@
       </h3>
       <hr>
 
-      <h3>{{ sails.config.project.currency.symbol }}{{ product.price|currency }}</h3>
+      <h3><%= sails.config.project.currency.symbol %>  <%= product.price| 'currency' %></h3>
       <hr>
 
       <div class="form-group form-inline">
@@ -128,6 +111,21 @@
   </div>
 </div><!-- /.container -->
 
+
+<%- include ../commun/library.ejs %>
+
+<style>
+  .preview {
+    width: 100%;
+    cursor: hand;
+  }
+</style>
+
+<script>
+
+</script>
+
+
 <script type="text/javascript">
 $(document).ready(function () {
   var $add = $('button[data-role="add"]');
@@ -173,4 +171,3 @@ $(document).ready(function () {
   });
 });
 </script>
-{% endblock %};

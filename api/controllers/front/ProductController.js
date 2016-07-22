@@ -45,7 +45,7 @@ module.exports = {
     ], function (err, result) {
       if (err) res.serverError (err);
 
-      return res.view('product.ejs', result);
+      return res.view('front/product.ejs', result);
     });
   },
 
