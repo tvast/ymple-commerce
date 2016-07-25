@@ -6,7 +6,7 @@ This generator creates asset files and directories as grunt configuration and ta
 The front end asset are simply copied over from this generators `/template` directory. They are placed in your sails projects at the `/assets` directory.
 
 ## Generation of Grunt Config and Task Files
-There is another [sails genereator](https://github.com/balderdashy/sails-generate-gruntfile) that genereates a gruntfile that is configured to look for grunt config and tasks in a `/tasks/config` and `/tasks/register` directories respectively. Knowing this, the frontend generator will create a tasks folder and populate it with config and register directories that include the grunt files to set up configuation and registering tasks.
+There is another [sails generator](https://github.com/balderdashy/sails-generate-gruntfile) that generates a gruntfile that is configured to look for grunt config and tasks in a `/tasks/config` and `/tasks/register` directories respectively. Knowing this, the frontend generator will create a tasks folder and populate it with config and register directories that include the grunt files to set up configuation and registering tasks.
 
 There are three tasks that are accessable to developers via the terminal. This is the default behavior for each one:
 
@@ -101,7 +101,7 @@ html
     // SCRIPTS END
 ```
 
-Let's say we have `assets/styles/main.css`, `assets/styles/a.js`,  and `assets/styles/b.js`. Given our setup, once we run `sails lift` our `index.html` will look like this.
+Let's say we have `assets/styles/main.css`, `assets/js/a.js`,  and `assets/js/b.js`. Given our setup, once we run `sails lift` our `index.html` will look like this.
 
 ```html
 <!DOCTYPE html>

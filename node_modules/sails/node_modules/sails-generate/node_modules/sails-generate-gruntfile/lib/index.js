@@ -8,19 +8,19 @@
  */
 module.exports = {
 
-	templatesDirectory: require('path').resolve(__dirname,'../templates'),
+  templatesDirectory: require('path').resolve(__dirname,'../templates'),
 
-	before: require('./before'),
+  before: require('./before'),
 
-	targets: {
+  targets: {
 
-		'./Gruntfile.js': { template: './Gruntfile.js' },
+    './Gruntfile.js': { template: './Gruntfile.js' },
 
-		// Tasks folder, subfolders, and README.
-		'./tasks': { folder: {} },
-		'./tasks/config': { folder: {} },
-		'./tasks/register': { folder: {} },
-		'./tasks/README.md': { template: './tasks/README.md' }
-	}
+    // Tasks folder, subfolders, and README.
+    './tasks': { folder: {} },
+    './tasks/config': { folder: {} },
+    './tasks/register': { folder: {} },
+    './tasks/README.md': { template: './tasks/README.md' }
+  }
 };
 

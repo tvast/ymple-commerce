@@ -12,16 +12,16 @@ module.exports = function() {
     Object.keys(adapter).forEach(function(key) {
 
       // Ignore the Identity Property
-      if(['identity', 'tableName'].indexOf(key) >= 0) return;
+      if (['identity', 'tableName'].indexOf(key) >= 0) return;
 
       // Don't override keys that already exists
-      if(self[key]) return;
+      if (self[key]) return;
 
       // Don't override a property, only functions
-      if(typeof adapter[key] != 'function')  {
-				self[key] = adapter[key];
-				return;
-			}
+      if (typeof adapter[key] != 'function') {
+        self[key] = adapter[key];
+        return;
+      }
 
       // Apply the Function with passed in args and set this.identity as
       // the first argument
@@ -29,9 +29,13 @@ module.exports = function() {
 
         var tableName = self.tableName || self.identity;
 
+        // If this is the teardown method, just pass in the connection name,
+        // otherwise pass the connection and the tableName
+        var defaultArgs = key === 'teardown' ? [conn] : [conn, tableName];
+
         // Concat self.identity with args (must massage arguments into a proper array)
         // Use a normalized _tableName set in the core module.
-        var args = [conn, tableName].concat(Array.prototype.slice.call(arguments));
+        var args = defaultArgs.concat(Array.prototype.slice.call(arguments));
         return adapter[key].apply(self, args);
       };
     });
