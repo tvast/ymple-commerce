@@ -41,5 +41,8 @@
     "url": "git://github.com/KimSeokjun/OpenStore.git"
   },
   "author": "KimSeokjun",
-  "license": ""
+  "license": "",
+  "devDependencies": {
+    "bootstrap": "^4.0.0-alpha.2"
+  }
 }

@@ -20,6 +20,16 @@ module.exports = {
     video: {
       type: 'STRING'
     },
+
+    ean13: {
+      type: 'INTEGER'
+    },
+
+
+    reference: {
+      type: 'INTEGER'
+    },
+
     price: {
       type: 'FLOAT',
       required: true
@@ -49,6 +59,8 @@ module.exports = {
       model: 'Category',
       // required: true
     },
+
+
   },
 
   beforeValidate: function (values, callback) {
