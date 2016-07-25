@@ -34,7 +34,10 @@
             <a href="/admin"><%= __('manager') %></a>
           </li>
           <% } %>
-          <li class="dropdown">
+
+
+
+          <li class="dropdown-right">
             <% if (typeof user !== 'object' && typeof admin !== 'object') { %>
             <a href="/login">
               <%= __('login') %>
@@ -75,14 +78,28 @@
 
 
 
+
+
+
+
+
+
+
+
+
         </ul>
 
 
+
+
+
+      <% if (typeof showSearchMenu == 'number' && showSearchMenu == 1) {%>
       <form class="form-inline pull-xs-right" role="search">
         <input class="form-control" type="text" name="name" placeholder="<%= __('Enter a product name') %>">
         <button class="btn btn-success-outline" type="submit"><%= __('Search') %></button>
       </form>
 
+      <%} %>
 
 
 

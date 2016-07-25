@@ -25,8 +25,9 @@
     "mkdirp": "^0.5.0",
     "nodemailer": "^1.3.0",
     "rc": "~0.5.0",
-    "sails": "~0.10.5",
+    "sails": "^0.12.3",
     "sails-disk": "~0.10.0",
+    "sails-mongo": "~0.10.x",
     "shortid": "^2.0.1",
     "skipper-gridfs": "^0.5.2",
     "swig": "^1.4.2"

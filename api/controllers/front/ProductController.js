@@ -102,6 +102,8 @@ module.exports = {
         result.cart = [];
 
       result.query = req.query.name;
+      
+      result.showSearchMenu = 1; 
 
       return res.view('front/index.ejs', result);
     });
