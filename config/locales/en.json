@@ -83,6 +83,8 @@
   "Hello!": "Hola!",
   "Hello %s, how are you today?": "¿Hola %s, como estas?",
   "name": "name",
-  "order": "order"
+  "order": "order",
+  "menu_manager": "menu manager",
+  "name_shop": "shop name"
 
 }

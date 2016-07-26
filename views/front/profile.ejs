@@ -1,4 +1,9 @@
-My Page
+
+<!-- Navigation Bar -->
+<%- include ../front/templates.navbar.ejs %>
+<!-- Navigation Bar -->
+
+<%- include top_space.ejs %>
 
 
 <div class="container">
@@ -16,9 +21,7 @@ My Page
                               
                     <div class="col-sm-8">
                                     <P class="form-control-static"> <%= user.email %> </p>
-                                  
                     </div>
-                            
                 </div>
                         
                 <div class="form-group">
@@ -27,9 +30,7 @@ My Page
                     <div class="col-sm-8">
                                     <Input type="text" class="form-control" name="name" id="name"
                                            placeholder="<%= __('name') %>" value="<%= user.name %>">
-                                  
                     </div>
-                            
                 </div>
                         
                 <div class="form-group">
@@ -38,9 +39,7 @@ My Page
                     <Div class="col-sm-8">
                                     <Input type="text" class="form-control" name="phone" id="phone"
                                            placeholder="<%= __('Telephone') %>" value="<%= user.phone %>">
-                                  
                     </Div>
-                            
                 </div>
                         
                 <div class="form-group">
@@ -49,9 +48,7 @@ My Page
                     <Div class="col-sm-8">
                                     <input type="text" class="form-control" name="address" id="address"
                                            placeholder="<%= __('juso') %>" value="<%= user.address %>">
-                                  
                     </Div>
-                            
                 </div>
                         
                 <div class="form-group">
@@ -60,12 +57,10 @@ My Page
                     <Div class="col-sm-8">
                                     <Input type="text" class="form-control" name="postcode" id="postcode"
                                            placeholder="<%= __('Zip') %>" value="<%= user.postcode %>">
-                                  
                     </Div>
-                            
                 </div>
-                        
-                <hr/>  
+                <hr/>
+                  
                 <Button type="submit" class="btn btn-primary pull-right"> <%= __('Save') %> </button>
             </form>
         </div>
@@ -80,7 +75,7 @@ My Page
     <div class="row">
         <div class="col-sm-12">
 
-            <H1><i class="fa fa-fw fa-truck"> </ i> <%= __('Order History') %> </h1>
+            <h1><i class="fa fa-fw fa-truck"> </i> <%= __('Order History') %> </h1>
                   
             <Table class="table table-hover">
                         
@@ -112,10 +107,9 @@ My Page
                 </thead>
                 <tbody>
 
-
                 <% if (typeof orders == 'object' && orders) { %>
 
-                <% orders.forEach(function(order){%>
+                <% orders.forEach(function(order){ %>
 
                 <tr data-id="<%= order.id %>">
                     <td><%= 'loop.index' %></td>
@@ -128,26 +122,27 @@ My Page
                         <% if (order.shipping > 0) { %>
 
                         <Span class="badge badge-success"> <%= __('advance payment') %> </span>
-                                      <% } else { %>
-                                      <Span class="badge badge-warning"> <%= __('arrears') %> </span>
-                                      <% }%>
-                                    
-                    </Td>
-                                
-                    <Td>
-                                      <% if (order.payment == 'TRANSFER'){ %>
-                                      <Span class="badge badge-default"> <%= __('Bank Transfer') %> </span>
                                       
+                        <% } else { %>
+                                      <Span class="badge badge-warning"> <%= __('arrears') %> </span>
+                                      
+                        <% } %>
+                                   
+                    </td>
+                                
+                    <td>
+                        <% if (order.payment == 'TRANSFER'){ %>
+                                      <Span class="badge badge-default"> <%= __('Bank Transfer') %> </span>
+                        <% } %>
 
-                                        <%}%>
-
-                        <% if (order.payment == 'CARD') {%>
+                        <% if (order.payment == 'CARD') { %>
                                       <Span class="badge badge-default"> <%= __('Card') %> </span>
-                                      <% } %>           
-                    </Td>
+                                      
+                        <% } %>
+                    </td>
                                 
                     <Td>
-                                      <% if (order.status == 'PREPARE') {%>
+                        <% if (order.status == 'PREPARE') { %>
                                       <Span class="badge badge-default"> <%= __('standby payment') %> </span>
                                       {% elseif order.status == 'PAID'%}
                                       <Span class="badge badge-info"> <%= __('payment received') %> </span>
@@ -157,7 +152,8 @@ My Page
                                       <Span class="badge badge-success"> <%= __('Delivered') %> </span>
                                       {% elseif order.status == 'CANCEL'%}
                                       <Span class="badge badge-danger"> <%= __('Cancelled') %> </span>
-                                      <%} else {%>
+                                      
+                        <% } else { %>
                                       <Span class="badge badge-warning"> <%= __('Out of stock') %> </span>
 
                         <% } %>
@@ -166,7 +162,8 @@ My Page
 
                         <a href="/order/<%= order.id %>" class="btn btn-xs btn-default"
                            button-action="edit"> <%= __('View') %> </a>
-                                       <% if (order.status === 'PREPARE') { %>
+                                      
+                        <% if (order.status === 'PREPARE') { %>
                                        <a href="/pay/<%= order.id %>" class="btn btn-xs btn-primary"
                                           button-action="edit"> <%= __('Payment') %> </a>
 
@@ -174,7 +171,7 @@ My Page
                     </td>
                 </tr>
 
-                <% })%>
+                <% }) %>
 
                 <% } %>
                 </tbody>
@@ -183,7 +180,7 @@ My Page
             <div style="text-align: center;">
                 <ul class="pagination">
                     <li><a href="/profile">&laquo;</a></li>
-                    <% pages.forEach(function( index){ %>
+                    <% pages.forEach(function(index){ %>
 
                     <% if (typeof loop == 'object' && loop) { %>
 
@@ -205,7 +202,7 @@ My Page
     </div>
 </div>
 
-<%- include ../front/layout.ejs %>
+<%- include ../commun/library.ejs %>
 
 
 <script type="text/javascript">

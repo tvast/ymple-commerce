@@ -1,10 +1,8 @@
 <div class="container" style="margin-bottom: 70px;">
   <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
-    <div class="navbar-header">
 
 
-        <a class="navbar-brand" href="/"><%= sails.config.project.name %></a>
-        <!-- class="nav navbar-nav">
+         <!-- class="nav navbar-nav">
           <li class="nav-item active">
             <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
           </li>
@@ -18,10 +16,16 @@
             <a class="nav-link" href="#">About</a>
           </li>
         </-->
-
-
+    
 
         <ul class="nav navbar-nav navbar-right">
+
+
+          <li>
+
+            <a class="navbar-brand" href="/"><%= sails.config.project.name %></a>
+
+          </li>
 
 
           <li class="nav-item">
@@ -34,6 +38,9 @@
             <a href="/admin"><%= __('manager') %></a>
           </li>
           <% } %>
+
+
+
 
 
 
@@ -61,34 +68,26 @@
 
 
             <ul class="dropdown-menu" role="menu">
+
+
+
               <li class="dropdown-header"><%= __('User Menu') %></li>
               <% if (typeof user == 'object' && user.permission == 'ADMIN') { %>
               <li><a href="/admin"><%= __('Manager page') %></a></li>
               <% } %>
               <li><a href="/profile" id="edit-profile"><%= __('my page') %></a></li>
               <li class="divider"></li>
+
+              <li class="dropdown nav-item">
+                <a href="/admin/menu"><%= __('menu_manager') %></a>
+              </li>
+
               <li><a href="/logout"><%= __('Log out') %></a></li>
             </ul>
 
 
-
-
             <% } %>
           </li>
-
-
-
-
-
-
-
-
-
-
-
-
-        </ul>
-
 
 
 
@@ -100,14 +99,7 @@
       </form>
 
       <%} %>
-
-
-
-
-    </div>
-
-
-
+        </ul>
 
   </nav>
 </div>

@@ -27,6 +27,7 @@ module.exports.routes = {
 
     'GET    /admin/product/new': {view: 'admin/product/new'},
 
+    'GET    /admin/menu': {view: 'admin/menu'},
 
     // create the new product in db 
     '/admin/product/new/validation': 'admin/AdminController.productNewValidation',
