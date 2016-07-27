@@ -78,7 +78,10 @@ module.exports = {
     ], function (err) {
       if (err) return res.serverError(err);
 
-      return res.view('admin/admin.product.ejs', result);
+
+      result.templateToInclude = 'product';
+
+      return res.view('admin/menu.ejs', result);
     });
   },
 
