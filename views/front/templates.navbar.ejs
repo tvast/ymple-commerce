@@ -16,7 +16,7 @@
             <a class="nav-link" href="#">About</a>
           </li>
         </-->
-    
+
 
         <ul class="nav navbar-nav navbar-right">
 
@@ -28,8 +28,10 @@
           </li>
 
 
-          <li class="nav-item">
-            <a href="/cart"><i class="fa fa-fw fa-shopping-cart"></i> <%= __('shopping basket') %> &nbsp; <span class="badge badge-default"><% if (this.cart) {cart.length} %></span></a>
+
+
+          <li class="">
+            <a class="navbar-brand" href="/cart"><i class="fa fa-fw fa-shopping-cart"></i> <%= __('shopping basket') %> <% if (this.cart) {cart.length} %></a>
           </li>
 
 
@@ -44,7 +46,7 @@
 
 
 
-          <li class="dropdown-right">
+          <li class="navbar-brand">
             <% if (typeof user !== 'object' && typeof admin !== 'object') { %>
             <a href="/login">
               <%= __('login') %>
@@ -53,7 +55,7 @@
 
 
             <% if (typeof user == 'object' && user) { %>
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+
               <% if (user.name) { %>
               <%= user.name %>
               <% } else { %>
@@ -62,12 +64,12 @@
 
 
 
-              <i class="fa fa-fw fa-lg fa-cog"></i><strong class="caret"></strong>
-            </a>
 
 
 
-            <ul class="dropdown-menu" role="menu">
+
+
+            <!--ul class="dropdown-menu" role="menu">
 
 
 
@@ -83,13 +85,23 @@
               </li>
 
               <li><a href="/logout"><%= __('Log out') %></a></li>
-            </ul>
+            </ul-->
 
 
             <% } %>
           </li>
 
 
+          <% if ('admin' == 'admin') { %>
+
+          <li>
+
+            <a class="navbar-brand" href="/admin/menu"><i class="fa fa-fw fa-lg fa-cog"></i>Menu Admin <strong class="caret"></strong>
+            </a>
+
+          </li>
+
+          <% } %>
 
 
       <% if (typeof showSearchMenu == 'number' && showSearchMenu == 1) {%>
