@@ -1,0 +1,42 @@
+<!-- Page Content -->
+<div id="page-content-wrapper">
+    <div class="container-fluid">
+
+
+
+
+
+
+        <%if (typeof templateToInclude == 'string') {%>
+
+
+        <% if (templateToInclude == 'admin') {%>
+
+        <%-  include ../../admin/admin %>
+
+        <%}%>
+
+        <% if (templateToInclude == 'product') {%>
+
+        <%-  include ../../admin/product/new %>
+
+        <%}%>
+
+
+
+
+        <%}%>
+
+
+
+
+
+
+
+
+    </div>
+</div>
+
+
+
+<!-- /#page-content-wrapper -->
