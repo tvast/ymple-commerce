@@ -30,7 +30,7 @@
     height: 100%;
     margin-left: -250px;
     overflow-y: auto;
-    background:     #aab2bd;
+    background:    #bdd2e4;
     -webkit-transition: all 0.5s ease;
     -moz-transition: all 0.5s ease;
     -o-transition: all 0.5s ease;
@@ -93,7 +93,7 @@
 }
 
 .sidebar-nav > .sidebar-brand a {
-    color: green;
+    color: #2E6280;
 }
 
 .sidebar-nav > .sidebar-brand a:hover {
