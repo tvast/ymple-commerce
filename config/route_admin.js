@@ -25,7 +25,7 @@ module.exports.routes = {
     // ADMIN
     'GET    /admin'               : 'admin/AdminController.index',
 
-    'GET    /admin/product/new': 'admin/ProductController.new',
+    'GET    /admin/product/new': 'admin/productController.new',
 
     'GET    /admin/menu': 'admin/AdminController.menu',
 

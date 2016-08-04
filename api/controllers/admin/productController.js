@@ -130,6 +130,25 @@ module.exports = {
     });
   },
 
+
+  edit: function (req, res) {
+
+
+
+    var result = {};
+
+    result.templateToInclude = 'product';
+
+
+    return res.view('admin/menu.ejs', result);
+
+
+
+    /* return res.json({
+     todo: 'new() is not implemented yet!'
+     });*/
+  },
+
 };
 
 function Urlify (text) {

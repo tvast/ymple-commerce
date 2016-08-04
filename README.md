@@ -1,11 +1,11 @@
 <h1>
-<a href="http://ymple-commerce.ymple.com"><img alt="Ymple Commerce logo" src="http://www.ymple.com/assets/img/colors/blue/logo_big.png" title="Ymple-Commerce"/></a>
+<a href="http://commerce.ymple.com"><img alt="Ymple Commerce logo" src="http://www.ymple.com/assets/img/colors/blue/logo_big.png" title="Ymple-Commerce"/></a>
 </h1>
 
 Ymple-Commerce
 ========
 
-### [Website](http://ymple-commerce.ymple.com/) 
+### [Website](http://commerce.ymple.com/)
 
 
 Open Source E-Commerce Solution for Everyone built with Sails.js (Node.js + MongoDB)
