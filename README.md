@@ -19,6 +19,7 @@ How To Run
 
     $ sudo npm install
     $ node app.js
+    go to the url http://localhost:1338/admin/install
 
 
 Contributing
