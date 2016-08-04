@@ -3,10 +3,6 @@
     <div class="container-fluid">
 
 
-
-
-
-
         <%if (typeof templateToInclude == 'string') {%>
 
 
@@ -21,6 +17,51 @@
         <%-  include ../../admin/product/new %>
 
         <%}%>
+
+
+
+        <% if (templateToInclude == 'adminUserManager') {%>
+
+        <%- include ../../commun/navbar.light.ejs %>
+
+        <%-  include ../../admin/admin.user.ejs %>
+
+        <%}%>
+
+
+        <% if (templateToInclude == 'adminOrderManager') {%>
+
+        <%- include ../../commun/navbar.light.ejs %>
+
+        <%-  include ../../admin/admin.order.ejs %>
+
+        <%}%>
+
+
+
+        <% if (templateToInclude == 'adminProductManager') {%>
+
+        <%- include ../../commun/navbar.light.ejs %>
+
+        <%-  include ../../admin/admin.product.ejs %>
+
+        <%}%>
+
+
+
+        <% if (templateToInclude == 'adminUserProfile') {%>
+
+        <%- include ../../commun/navbar.light.ejs %>
+
+        <%-  include ../../admin/user/profile.ejs %>
+
+        <%}%>
+
+
+
+
+
+
 
 
 
