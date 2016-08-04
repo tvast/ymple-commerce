@@ -79,7 +79,9 @@ module.exports = {
       if (err) return res.serverError(err);
 
 
-      result.templateToInclude = 'product';
+      result.templateToInclude = 'adminProductManager';
+
+
 
       return res.view('admin/menu.ejs', result);
     });
@@ -146,11 +148,16 @@ module.exports = {
     ], function (err) {
       if (err) return res.serverError(err);
 
+
+      result.templateToInclude  = 'adminOrderManager';
       // res.json(result);
-      return res.view('admin/admin.order.ejs', result);
+      return res.view('admin/menu.ejs', result);
     });
   },
 
+  
+  
+  
   user: function (req, res) {
     var result = {
       admin: req.session.user
@@ -199,7 +206,12 @@ module.exports = {
     ], function (err) {
       if (err) return res.serverError(err);
 
-      return res.view('admin/admin.user.ejs', result);
+      
+      // we add the name of the template to include 
+      
+      result.templateToInclude = 'adminUserManager'; 
+      
+      return res.view('admin/menu.ejs', result);
     });
   },
   
@@ -239,7 +251,7 @@ module.exports = {
         }
         else {
 
-          return res.ok('ok', req.body);
+          return res.ok('create of the product done', req.body);
         }
 
         //return res.redirect('/admin/product');
@@ -254,7 +266,18 @@ module.exports = {
 
 
 
-  }
+  },
+
+  menu: function (req, res){
+
+
+    var result = {}; 
+    
+    result.templateToInclude = 'admin'; 
+
+    return res.view('admin/menu.ejs', result);
+
+  },
 
 
 

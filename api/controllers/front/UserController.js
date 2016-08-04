@@ -28,8 +28,30 @@ module.exports = {
 
     result.order = {};
 
+
+
+    // we check if the session id user is set.
+
+
+    if ( req.session.user && req.session.user.id )
+    {}
+    else {
+
+
+      // if not set we go to the login page
+
+      
+      return res.redirect('/login');
+
+    }
+
+
     async.waterfall([
       function GetTotalCount (next) {
+
+
+
+
         Order.count({ owner: req.session.user.id }, function (err, num) {
           if (err) return next (err);
 
