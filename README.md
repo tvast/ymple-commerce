@@ -1,3 +1,7 @@
+<h1>
+<a href="http://ymple-commerce.ymple.com"><img alt="Ymple Commerce logo" src="http://www.ymple.com/assets/img/colors/blue/logo_big.png" title="Ymple-Commerce"/></a>
+</h1>
+
 Ymple-Commerce
 ========
 
@@ -9,6 +13,7 @@ Open Source E-Commerce Solution for Everyone built with Sails.js (Node.js + Mong
 System Dependencies
 * Node.js v4.4.1
 * MongoDB v3.2.6
+* Sails.js v0.12
 
 How To Run
 
