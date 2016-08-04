@@ -61,7 +61,15 @@ module.exports.routes = {
     
     
     // page to manage the modules
-    'GET    /admin/module'          : { view: 'admin/module/index' }
+    'GET    /admin/module'          : { view: 'admin/module/index' },
+    
+    
+    
+    // install page 
+    'GET    /admin/install'          : { view: 'admin/install/index' }
+
+
+
 
 
 
