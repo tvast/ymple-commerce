@@ -48,7 +48,8 @@
 
           <li class="navbar-brand">
             <% if (typeof user !== 'object' && typeof admin !== 'object') { %>
-            <a href="/login">
+            <a href="/login"><i class="fa fa-sign-in" aria-hidden="true"></i>
+
               <%= __('login') %>
             </a>
             <% } %>
@@ -57,10 +58,17 @@
             <% if (typeof user == 'object' && user) { %>
 
               <% if (user.name) { %>
-              <%= user.name %>
-              <% } else { %>
+
+
+            <a href="/profile"><i class="fa fa-user" aria-hidden="true"></i>
+              user &nbsp;<%= user.name %></a>
+
+
+            <% } else { %>
               <%= user.email %>
               <% } %>
+
+
 
 
 
