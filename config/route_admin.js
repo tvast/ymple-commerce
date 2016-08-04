@@ -25,21 +25,45 @@ module.exports.routes = {
     // ADMIN
     'GET    /admin'               : 'admin/AdminController.index',
 
-    'GET    /admin/product/new': {view: 'admin/product/new'},
+    'GET    /admin/product/new': 'admin/ProductController.new',
 
-    'GET    /admin/menu': {view: 'admin/menu'},
+    'GET    /admin/menu': 'admin/AdminController.menu',
 
     // create the new product in db 
     '/admin/product/new/validation': 'admin/AdminController.productNewValidation',
 
 
+    // url to use the profile of the admin user
+    'GET    /admin/profile': 'admin/userController.profile',
+
 
     //'admin/AdminController.productCreate',
 
-    'GET    /admin/product'       : 'admin/AdminController.product',
-    'GET    /admin/product/:id'   : 'admin/AdminController.product',
+    
+    
+    // display all the product available 
+    'GET    /admin/product/manager'       : 'admin/productController.manage',
+    
+
+    // display the detail about one product
+    'GET    /admin/product/preview/:id'   : 'admin/productController.detail',
+
+
+    // edit the product
+    'GET    /admin/product/edit/:id'   : 'admin/productController.edit',
+
+
     'GET    /admin/order'         : 'admin/AdminController.order',
-    'GET    /admin/user'          : 'admin/AdminController.user'
+    'GET    /admin/customer/list'          : 'admin/AdminController.user',
+
+    // page of admin preference
+    'GET    /admin/preference'          : { view: 'admin/preference' },
+    
+    
+    // page to manage the modules
+    'GET    /admin/module'          : { view: 'admin/module/index' }
+
+
 
 
 };
