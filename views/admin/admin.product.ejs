@@ -2,7 +2,7 @@
 
 
 <div class="container">
-    <h3><a href="/admin"><i class="fa fa-fw fa-chevron-circle-left"></i></a>PRODUCT MANAGER</h3>
+    <h3><a href="/admin"></a>PRODUCT MANAGER</h3>
     <hr/>
 
     <% if (typeof loop == 'edit' && edit) { %>
@@ -11,7 +11,7 @@
         <form role="form" action="/product" method="POST">
             <% } %>
 
-            <%- include admin_product/include.admin.product.ejs %>
+            <%#- include admin_product/include.admin.product.ejs %>
         </form>
         <hr/>
 
@@ -142,7 +142,7 @@
 </div>
 
 
-<%- include ../commun/library.ejs %>
+<%#- include ../commun/library.ejs %>
 
 <script type="text/javascript">
     $(document).ready(function () {
