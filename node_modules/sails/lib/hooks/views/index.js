@@ -5,7 +5,7 @@
 var configure = require('./configure');
 var defaults = require('./defaults');
 var onRoute = require('./onRoute');
-var addLayoutShim = require('./layoutshim');
+var addShimForLayoutAndPartials = require('./add-shim-for-layout-and-partials');
 var addResViewMethod = require('./res.view');
 var render = require('./render');
 var statViews = require('./stat-views');
@@ -28,7 +28,7 @@ module.exports = function (sails) {
       configure(sails);
     },
 
-    render: render,
+    render: render(sails),
 
     htmlScriptify: htmlScriptify,
 
@@ -73,7 +73,7 @@ module.exports = function (sails) {
 
       // Declare hook loaded when ejs layouts have been applied,
       // views have been inventoried, and view-serving middleware has been prepared
-      addLayoutShim(sails);
+      addShimForLayoutAndPartials(sails);
 
       // Expose `sails.renderView()` function to userland.
       // (experimental!)
