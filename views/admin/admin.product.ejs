@@ -91,15 +91,14 @@
 
                             <%}%>
                         </td>
-
+                        <% if (product.isSelling) { %>
                         <td>
-                            <% if (product.isSelling) { %>
-
-                            <Button class="btn btn-xs btn-success" button-action="status"> <%= __( 'sale')%></button>
-                                           <%}  else { %>         
-                            <Button class="btn btn-xs btn-warning" button-action="status"> <%= __( 'Sell Stop')%>
+<button class="btn btn-xs btn-success" button-action="status"> <%= __( 'sale')%></button>
+</td>
+ <%}  else { %>         
+     <td>                       <button class="btn btn-xs btn-warning" button-action="status"> <%= __( 'Sell Stop')%>
                             </button>
-                            <% } %>
+                       </td>     <% } %>
 
 
                         </td>
@@ -108,10 +107,12 @@
 
                             <a href="/product/<%= product.id %>" class="btn btn-xs btn-default" button-action="edit">PREVIEW</a>
 
+</td>
+                        <td>
 
 
                             <a href="/admin/product/edit/<%= product.id %>" class="btn btn-xs btn-primary"   button-action="edit">EDIT</a>
-
+</td><td>
 
                             <button class="btn btn-xs btn-danger" button-action="delete">DELETE</button>
                         </td>
