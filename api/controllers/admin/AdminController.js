@@ -251,7 +251,16 @@ module.exports = {
         }
         else {
 
-          return res.ok('create of the product done', req.body);
+
+
+          var result = {};
+
+          result.templateToInclude = 'productCreationOk';
+
+          return res.view('admin/menu.ejs', result);
+
+
+          //return res.ok('create of the product done', req.body);
         }
 
         //return res.redirect('/admin/product');
@@ -260,7 +269,15 @@ module.exports = {
     }
     else {
 
-      return res.ok('missing one parameter');
+
+      var result = {};
+
+      result.templateToInclude = 'productCreationKo';
+
+      return res.view('admin/menu.ejs', result);
+
+
+      //return res.ok('missing one parameter');
 
     }
 
