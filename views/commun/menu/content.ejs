@@ -43,7 +43,7 @@
 
         <%- include ../../commun/navbar.light.ejs %>
 
-        <%-  include ../../admin/admin.product.ejs %>
+        <%-  include ../../admin/admin.product.manager.ejs %>
 
         <%}%>
 
@@ -58,6 +58,8 @@
         <%}%>
 
 
+
+        <%# [START]: template to manage the product%>
 
 
         <% if (templateToInclude == 'productCreationOk') {%>
@@ -77,6 +79,20 @@
         <%-  include ../../admin/product/creationKo.ejs %>
 
         <%}%>
+
+
+        <% if (templateToInclude == 'productModification') {%>
+
+        <%- include ../../commun/navbar.light.ejs %>
+
+        <%-  include ../../admin/product/modification.ejs %>
+
+        <%}%>
+
+
+
+
+        <%# [END]: template to manage the product%>
 
 
 
