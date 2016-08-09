@@ -125,20 +125,29 @@
 
                 <div style="text-align: center;">
                     <ul class="pagination">
-                        <li><a href="/admin/product">&laquo;</a></li>
+                        <a href="/admin/product">&laquo;</a>
+                        <a href="/admin/product">&raquo;</a>
 
-                        <% pages.forEach(function(index){%>
+
 
 
                         <% if (page == 1 ) {%>
-                        <li class="active"><a href="/admin/product?page=<%#= loop.index %>"><%#= loop.index %></a></li>
+                        <!--li class="active"><a href="/admin/product?page=<%#= loop.index %>"><%#= loop.index %></a></li>
+
+
                         <%} else { %>
-                        <li><a href="/admin/product?page=<%#= loop.index %>"><%#= loop.index %></a></li>
+
+
+                        <li><a href="/admin/product?page=<%#= loop.index %>"><%#= loop.index %></a></li-->
+
                         <% } %>
+
+
+
                         <% if (typeof loop == 'object' ) { %>
-                        <li><a href="/admin/product?page=<%#= loop.index %>">&raquo;</a></li>
+                        <a href="/admin/product?page=<%#= loop.index %>">&raquo;</a>
                         <%}   %>
-                        <% })  %>
+
 
                     </ul>
                 </div>

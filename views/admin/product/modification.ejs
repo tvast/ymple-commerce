@@ -1,0 +1,143 @@
+
+
+<div class="container">
+    <h3><a href="/admin"></a>Product Modification</h3>
+
+
+    <form role="form" action="/admin/product/new/validation" method="POST">
+
+
+        <div class="row">
+            <div class="col-sm-6">
+                <label> <%= __('name') %> </label>
+                           <input type="text" class="form-control" id="name" name="name"
+                                  placeholder="<%= __('Please enter your name') %>" value="">
+
+            </div>
+            <div class="col-sm-6">
+                <label style="align-content: center;text-align: center">  <%= __('price') %> </label>
+
+                           <input type="text" class="form-control" id="price" name="price"
+                                  placeholder="<%= __('Please enter the price') %>" value="">
+
+            </div>
+
+        </div>
+
+        <br>
+
+
+        <div class="row">
+            <div class="col-sm-6">
+                <label> <%= __('Inventory') %> </label>
+                           <input type="text" class="form-control" id="stock" name="stock"
+                                  placeholder="<%= __('Please enter the inventory') %>" value="">
+
+            </div>
+            <div class="col-sm-6">
+                <label style="align-content: center;text-align: center">  <%= __('VIMEO image ID') %> </label>
+
+                           <input type="text" class="form-control" id="video" name="video"
+                                  placeholder="<%= __('VIMEO image ID input please.') %>" value="">
+
+            </div>
+
+        </div>
+
+        <br>
+
+        <div class="row">
+            <div class="col-sm-6">
+                <label> <%= __('representative picture') %> </label>
+                           <input type="text" class="form-control" id="thumbnail" name="thumbnail"
+                                  placeholder="<%= __('representative image URL input please') %>" value="">
+
+            </div>
+            <div class="col-sm-6">
+                <label style="align-content: center;text-align: center">  <%= __('Product photos') %> </label>
+
+                           <input type="text" class="form-control" id="photos" name="photos"
+                                  placeholder="<%= __('product images URL to enter your (comma as the separator)') %>"
+                                  value="">
+
+            </div>
+
+        </div>
+
+        <br>
+
+        <div class="row">
+            <div class="col-sm-6">
+                <label> <%= __('product') %> </label>
+                            <Select name="related" class="form-control">
+                                
+                    <Option value=""> <%= __('No') %></option>
+
+
+                    {% for product in products %}
+                    <option value="{{ product.id %>">{{ product.name
+                        %>
+                    </option>
+                    {% endfor %}
+                </select>
+
+            </div>
+            <div class="col-sm-6">
+                <label style="align-content: center;text-align: center">  <%= __('tags') %> </label>
+
+                           <input type="text" class="form-control" id="tags" name="tags"
+                                  placeholder="<%= __('Please enter tags separated by commas') %>" value="">
+            </div>
+
+        </div>
+
+        <br>
+
+        <div class="row">
+            <div class="col-sm-6">
+                <label> <%= __('description') %> </label>
+                <textarea class="form-control" name="description" id="description" cols="30" rows="4"
+                          placeholder="<%= __('the product to explain MARKDOWN format as input please') %> ">
+                </textarea>
+
+            </div>
+            <div class="col-sm-6">
+
+
+            </div>
+
+        </div>
+
+        <br>
+
+
+        <div class="row">
+            <div class="col-sm-6" style="text-align: center;align-content: center">
+
+                <% if (typeof edit == 'object' && edit) { %>
+                          
+                <Button type="submit" class="btn btn-primary btn-lg pull-right"> <%= __('modify') %></button>
+                          
+                <% } else { %>
+                          
+                <Button type="submit" class="btn btn-primary btn-lg pull-right"> <%= __('Register') %></button>
+
+                <% } %>
+            </div>
+
+
+            <div class="col-sm-6">
+                <p class="help-block">
+
+                    <i class="fa fa-fw fa-warning"> </i>
+                    <%= __('When you register your product is stored in Unavailable state by default.') %>
+
+                </p>
+
+            </div>
+        </div>
+    </form>
+</div>
+
+
+<%#- include ../../commun/library.ejs %>
