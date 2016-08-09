@@ -131,13 +131,42 @@ module.exports = {
   },
 
 
-  edit: function (req, res) {
+  edit: function (req, res, id) {
 
+
+    // we take the id of the product and get all the product details to set the template
+
+//     console.info('modification product - req: ', req);
+
+    console.info('modification product id: ', req.params.id);
+
+
+    console.info( req.params.id.length);
+
+
+    if ( req.params.id && (req.params.id.length > 0 ))
+    {
+
+
+      // we retrieve the product informations
+
+
+
+
+    }
+
+
+ //    alert(id);
+
+
+
+
+    // if ( req.query.)
 
 
     var result = {};
 
-    result.templateToInclude = 'product';
+    result.templateToInclude = 'productModification';
 
 
     return res.view('admin/menu.ejs', result);
