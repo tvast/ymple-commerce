@@ -11,14 +11,14 @@
             <div class="col-sm-6">
                 <label> <%= __('name') %> </label>
                            <input type="text" class="form-control" id="name" name="name"
-                                  placeholder="<%= __('Please enter your name') %>" value="">
+                                  placeholder="<%= __('Please enter your name') %>" value="<% if (product && product.name) {%> <%= product.name%>  <%}%>">
 
             </div>
             <div class="col-sm-6">
                 <label style="align-content: center;text-align: center">  <%= __('price') %> </label>
 
                            <input type="text" class="form-control" id="price" name="price"
-                                  placeholder="<%= __('Please enter the price') %>" value="">
+                                  placeholder="<%= __('Please enter the price') %>" value="<% if (product && product.price) {%> <%= product.price%>  <%}%>">
 
             </div>
 
@@ -31,14 +31,14 @@
             <div class="col-sm-6">
                 <label> <%= __('Inventory') %> </label>
                            <input type="text" class="form-control" id="stock" name="stock"
-                                  placeholder="<%= __('Please enter the inventory') %>" value="">
+                                  placeholder="<%= __('Please enter the inventory') %>" value="<% if (product && product.stock) {%> <%= product.stock%>  <%}%>">
 
             </div>
             <div class="col-sm-6">
                 <label style="align-content: center;text-align: center">  <%= __('VIMEO image ID') %> </label>
 
                            <input type="text" class="form-control" id="video" name="video"
-                                  placeholder="<%= __('VIMEO image ID input please.') %>" value="">
+                                  placeholder="<%= __('VIMEO image ID input please.') %>" value="<% if (product && product.video) {%> <%= product.video%>  <%}%>">
 
             </div>
 
@@ -50,7 +50,7 @@
             <div class="col-sm-6">
                 <label> <%= __('representative picture') %> </label>
                            <input type="text" class="form-control" id="thumbnail" name="thumbnail"
-                                  placeholder="<%= __('representative image URL input please') %>" value="">
+                                  placeholder="<%= __('representative image URL input please') %>" value="<% if (product && product.thumbnail) {%> <%= product.thumbnail%>  <%}%>">
 
             </div>
             <div class="col-sm-6">
@@ -97,7 +97,7 @@
             <div class="col-sm-6">
                 <label> <%= __('description') %> </label>
                 <textarea class="form-control" name="description" id="description" cols="30" rows="4"
-                          placeholder="<%= __('the product to explain MARKDOWN format as input please') %> ">
+                          placeholder="<%= __('the product to explain MARKDOWN format as input please') %>" value="<% if (product && product.description) {%> <%= product.description%>  <%}%>">
                 </textarea>
 
             </div>

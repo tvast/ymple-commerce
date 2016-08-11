@@ -133,7 +133,7 @@ module.exports = {
 
   edit: function (req, res, id) {
 
-
+    var result ={};
     // we take the id of the product and get all the product details to set the template
 
 //     console.info('modification product - req: ', req);
@@ -151,6 +151,49 @@ module.exports = {
       // we retrieve the product informations
 
 
+      var productId = req.params.id;
+
+      var queryOptions = {
+        where: {id:productId },
+//         skip: skip,
+        limit: 10,
+        sort: 'createdAt DESC'
+      };
+
+      Product.find(queryOptions, function (err, products) {
+        if (err) next (err);
+
+
+
+        result.product = {};
+
+        result.product = products[0];
+
+        console.info('edit query result', products);
+
+        console.info('edit - result', result);
+
+
+        result.templateToInclude = 'productModification';
+
+
+        return res.view('admin/menu.ejs', result);
+   //      return next(null);
+      });
+
+
+
+
+
+
+
+    }
+    else{
+
+      result.templateToInclude = 'productModification';
+
+
+      return res.view('admin/menu.ejs', result);
 
 
     }
@@ -164,12 +207,9 @@ module.exports = {
     // if ( req.query.)
 
 
-    var result = {};
-
-    result.templateToInclude = 'productModification';
 
 
-    return res.view('admin/menu.ejs', result);
+
 
 
 
