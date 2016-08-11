@@ -1,3 +1,4 @@
+
 <!-- Sidebar -->
 <div id="sidebar-wrapper">
     <ul class="sidebar-nav">
@@ -15,23 +16,27 @@
 
 
 
-        <li>
-            <div class="dropdown">
-                <button style="background-color:#bdd2e4;" class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                    <i class="fa fa-product-hunt" aria-hidden="true"></i>
-                    Product&nbsp;
 
-                </button>
-                <ul class="dropdown-menu" aria-labelledby="dropdownMenu1" style="background-color:#bdd2e4;">
-                    <li><a href="/admin/product/new">New</a></li>
-                    <li><a href="/admin/product/manager">Full List / Catalog</a></li>
-                </ul>
-            </div>
 
+
+        <li class="dropdown dropdown-submenu"><a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-product-hunt" aria-hidden="true"></i>
+                &nbsp;&nbsp;Product<i class="fa fa-caret-down" aria-hidden="true"></i>
+            </a>
+            <ul class="dropdown-menu">
+                <li><a href="/admin/product/new">New</a></li>
+                <li><a href="/admin/product/manager">Full List</a></li>
+
+            </ul>
         </li>
 
 
 
+
+
+
+        <li>
+            <a href="/admin/category"><i class="fa fa-tags" aria-hidden="true"></i>&nbsp;Category</a>
+        </li>
 
 
 
@@ -44,22 +49,30 @@
 
 
 
-        <li>
-            <div class="dropdown">
-                <button style="background-color:#bdd2e4;" class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                    <i class="fa fa-users" aria-hidden="true"></i>
-                    Customers&nbsp;
 
-                </button>
-                <ul class="dropdown-menu" aria-labelledby="dropdownMenu1" style="background-color:#bdd2e4;">
-                    <li><a href="/admin/customer/list">List</a></li>
 
-                </ul>
-            </div>
+        <li class="dropdown dropdown-submenu"><a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-users" aria-hidden="true"></i>
+                &nbsp;&nbsp;Customers<i class="fa fa-caret-down" aria-hidden="true"></i>
+            </a>
+            <ul class="dropdown-menu">
+                <li><a href="/admin/customer/list">List</a></li>
 
+            </ul>
         </li>
 
 
+
+
+
+        <li class="dropdown dropdown-submenu"><a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-line-chart" aria-hidden="true"></i>
+                &nbsp;&nbsp;Analysis<i class="fa fa-caret-down" aria-hidden="true"></i>
+            </a>
+            <ul class="dropdown-menu">
+                <li><a href="/admin/analysis/traffic">Traffic</a></li>
+                <li><a href="/admin/analysis/search">Search</a></li>
+
+            </ul>
+        </li>
 
 
 
@@ -91,11 +104,6 @@
         <li>
             <a href="/logout"> <i class="fa fa-sign-out" aria-hidden="true"></i>&nbsp;Logout</a>
         </li>
-
-
-
-
-
 
 
 
