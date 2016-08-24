@@ -17,8 +17,12 @@ System Dependencies
 
 How To Run
 
-    $ sudo npm install
-    $ node app.js
+    For Ubuntu and Centos run: 
+    $ npm install bcrypt
+
+    Go to the folder ymple-commerce and run :
+    $node app.js
+
     go to the url http://localhost:1338/admin/install
 
 
