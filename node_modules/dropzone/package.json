@@ -1,0 +1,76 @@
+{
+  "name": "dropzone",
+  "version": "4.3.0",
+  "description": "Handles drag and drop of files for you.",
+  "keywords": [
+    "dragndrop",
+    "drag and drop",
+    "file upload",
+    "upload"
+  ],
+  "homepage": "http://www.dropzonejs.com",
+  "main": "./dist/dropzone.js",
+  "maintainers": [
+    {
+      "name": "enyo",
+      "email": "m@tias.me"
+    }
+  ],
+  "contributors": [
+    {
+      "name": "Matias Meno",
+      "email": "m@tias.me",
+      "url": "http://www.matiasmeno.com"
+    }
+  ],
+  "scripts": {
+    "test": "./test.sh"
+  },
+  "bugs": {
+    "url": "https://github.com/enyo/dropzone/issues",
+    "email": "m@tias.me"
+  },
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "http://www.opensource.org/licenses/MIT"
+    }
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/enyo/dropzone.git"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "chai": "1.7.x",
+    "grunt": "^0.4.4",
+    "grunt-contrib-coffee": "^0.10.1",
+    "grunt-contrib-concat": "^0.4.0",
+    "grunt-contrib-sass": "^0.8.1",
+    "grunt-contrib-uglify": "^0.4.0",
+    "grunt-contrib-watch": "^0.6.1",
+    "mocha": "^1.18.2",
+    "mocha-phantomjs": "^3.3.2",
+    "sinon": "1.9.1"
+  },
+  "gitHead": "d8ef7a82e6ab5447c1f2d9512c8e1bfd4de5ac9e",
+  "_id": "dropzone@4.3.0",
+  "_shasum": "48b0b8f2ad092872e4b535b672a7c3f1a1d67c91",
+  "_from": "dropzone@latest",
+  "_npmVersion": "3.5.3",
+  "_nodeVersion": "5.5.0",
+  "_npmUser": {
+    "name": "enyo",
+    "email": "m@tias.me"
+  },
+  "dist": {
+    "shasum": "48b0b8f2ad092872e4b535b672a7c3f1a1d67c91",
+    "tarball": "https://registry.npmjs.org/dropzone/-/dropzone-4.3.0.tgz"
+  },
+  "_npmOperationalInternal": {
+    "host": "packages-9-west.internal.npmjs.com",
+    "tmp": "tmp/dropzone-4.3.0.tgz_1455423596164_0.10646394803188741"
+  },
+  "directories": {},
+  "_resolved": "https://registry.npmjs.org/dropzone/-/dropzone-4.3.0.tgz"
+}
