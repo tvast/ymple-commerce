@@ -23,7 +23,10 @@ module.exports.routes = {
      ***************************************************************************/
 
     // ADMIN
-    'GET    /admin'               : 'admin/AdminController.index',
+    // old with menu toogle 'GET    /admin'               : 'admin/AdminController.index',
+
+    'GET    /admin'               : 'admin/AdminController.menu',
+
 
     'GET    /admin/product/new': 'admin/productController.new',
 
