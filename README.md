@@ -21,7 +21,7 @@ How To Run
     $ npm install bcrypt
 
     Go to the folder ymple-commerce and run :
-    $node app.js
+    $ node app.js
 
     go to the url http://localhost:1338/admin/install
 
