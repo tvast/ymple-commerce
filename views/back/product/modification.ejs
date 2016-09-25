@@ -1,7 +1,7 @@
 
 
-<div class="container">
-    <h3><a href="/admin"></a>Product Modification</h3>
+<div class="">
+    <h4 style="color:forestgreen"><a href="/admin"></a>Modification Product</h4>
 
 
     <form role="form" action="/admin/product/new/validation" method="POST">
@@ -101,10 +101,7 @@
                 </textarea>
 
             </div>
-            <div class="col-sm-6">
 
-
-            </div>
 
         </div>
 
@@ -114,27 +111,13 @@
         <div class="row">
             <div class="col-sm-6" style="text-align: center;align-content: center">
 
-                <% if (typeof edit == 'object' && edit) { %>
-                          
-                <Button type="submit" class="btn btn-primary btn-lg pull-right"> <%= __('modify') %></button>
-                          
-                <% } else { %>
-                          
-                <Button type="submit" class="btn btn-primary btn-lg pull-right"> <%= __('Register') %></button>
 
-                <% } %>
+                          
+                <Button type="submit" class="btn btn-primary btn-lg pull-right"> <%= __('save') %></button>
+                          
+
             </div>
 
-
-            <div class="col-sm-6">
-                <p class="help-block">
-
-                    <i class="fa fa-fw fa-warning"> </i>
-                    <%= __('When you register your product is stored in Unavailable state by default.') %>
-
-                </p>
-
-            </div>
         </div>
     </form>
 </div>
