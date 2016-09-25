@@ -1,0 +1,5 @@
+showSearchMenu : if 1 display the search navigation bar
+
+templateToInclude decide the template to include in the template file [commun/menu(content.ejs]
+
+main template for admin side is : admin/menu.js
