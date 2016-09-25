@@ -209,7 +209,7 @@ module.exports = {
       
       // we add the name of the template to include 
       
-      result.templateToInclude = 'adminUserManager'; 
+      result.templateToInclude = 'customerList';
       
       return res.view('back/menu.ejs', result);
     });
