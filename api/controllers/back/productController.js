@@ -21,7 +21,7 @@ module.exports = {
     result.templateToInclude = 'product';
 
 
-    return res.view('admin/menu.ejs', result);
+    return res.view('back/menu.ejs', result);
 
 
 
@@ -54,7 +54,7 @@ module.exports = {
     ], function (err, result) {
       if (err) res.serverError (err);
 
-      return res.view('admin/product/detail.ejs', result);
+      return res.view('back/product/detail.ejs', result);
     });
   },
 
@@ -126,7 +126,7 @@ module.exports = {
 
 
 
-      return res.view('admin/menu.ejs', result);
+      return res.view('back/menu.ejs', result);
     });
   },
 
@@ -177,7 +177,7 @@ module.exports = {
         result.templateToInclude = 'productModification';
 
 
-        return res.view('admin/menu.ejs', result);
+        return res.view('back/menu.ejs', result);
    //      return next(null);
       });
 
@@ -193,7 +193,7 @@ module.exports = {
       result.templateToInclude = 'productModification';
 
 
-      return res.view('admin/menu.ejs', result);
+      return res.view('back/menu.ejs', result);
 
 
     }

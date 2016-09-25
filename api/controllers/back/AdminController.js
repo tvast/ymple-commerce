@@ -11,7 +11,7 @@ module.exports = {
       admin: req.session.user
     };
 
-    return res.view('admin/admin.ejs', result);
+    return res.view('back/admin.ejs', result);
   },
 
 
@@ -83,7 +83,7 @@ module.exports = {
 
 
 
-      return res.view('admin/menu.ejs', result);
+      return res.view('back/menu.ejs', result);
     });
   },
 
@@ -151,7 +151,7 @@ module.exports = {
 
       result.templateToInclude  = 'adminOrderManager';
       // res.json(result);
-      return res.view('admin/menu.ejs', result);
+      return res.view('back/menu.ejs', result);
     });
   },
 
@@ -211,7 +211,7 @@ module.exports = {
       
       result.templateToInclude = 'adminUserManager'; 
       
-      return res.view('admin/menu.ejs', result);
+      return res.view('back/menu.ejs', result);
     });
   },
   
@@ -257,7 +257,7 @@ module.exports = {
 
           result.templateToInclude = 'productCreationOk';
 
-          return res.view('admin/menu.ejs', result);
+          return res.view('back/menu.ejs', result);
 
 
           //return res.ok('create of the product done', req.body);
@@ -274,7 +274,7 @@ module.exports = {
 
       result.templateToInclude = 'productCreationKo';
 
-      return res.view('admin/menu.ejs', result);
+      return res.view('back/menu.ejs', result);
 
 
       //return res.ok('missing one parameter');
@@ -292,7 +292,7 @@ module.exports = {
     
     result.templateToInclude = 'admin'; 
 
-    return res.view('admin/menu.ejs', result);
+    return res.view('back/menu.ejs', result);
 
   },
 

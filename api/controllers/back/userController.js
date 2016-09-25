@@ -96,7 +96,7 @@ module.exports = {
 
       result.templateToInclude  = 'adminUserProfile';
 
-      return res.view('admin/menu.ejs', result);
+      return res.view('back/menu.ejs', result);
     });
   },
 
