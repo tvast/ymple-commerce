@@ -1,5 +1,0 @@
-class = "submenu" is the class for the submenu (forestgreen) #228b22
-and we use royal blue #4169e1
-
-blue logo color : 72e3f8
-
