@@ -1,0 +1,11 @@
+list of the collection mongodb existing:
+
+product ( contain the list of product) 
+
+user ( contain the list of customer) 
+
+category ( to create and contain the list of product category) 
+- field: name, description, idCategory, createdAt, updatedAt
+
+
+
