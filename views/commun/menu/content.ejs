@@ -2,105 +2,65 @@
 <div id="page-content-wrapper">
     <div class="container-fluid">
 
+        <% if (typeof templateToInclude == 'string') { %>
 
-        <%if (typeof templateToInclude == 'string') {%>
+        <% if (templateToInclude == 'admin') { %>
+        <%- include ../../back/admin %>
+        <% } %>
 
+        <% if (templateToInclude == 'product') { %>
+        <%- include ../../back/product/new %>
+        <% } %>
 
-        <% if (templateToInclude == 'admin') {%>
-
-        <%-  include ../../back/admin %>
-
-        <%}%>
-
-        <% if (templateToInclude == 'product') {%>
-
-        <%-  include ../../back/product/new %>
-
-        <%}%>
-
-
-
-        <% if (templateToInclude == 'customerList') {%>
-
+        <% if (templateToInclude == 'customerList') { %>
         <%- include ../../commun/navbar.light.ejs %>
+        <%- include ../../back/customer/list.ejs %>
+        <% } %>
 
-        <%-  include ../../back/customer/list.ejs %>
-
-        <%}%>
-
-
-        <% if (templateToInclude == 'adminOrderManager') {%>
-
+        <% if (templateToInclude == 'adminOrderManager') { %>
         <%- include ../../commun/navbar.light.ejs %>
+        <%- include ../../back/admin.order.ejs %>
+        <% } %>
 
-        <%-  include ../../back/admin.order.ejs %>
-
-        <%}%>
-
-
-
-        <% if (templateToInclude == 'adminProductManager') {%>
-
+        <% if (templateToInclude == 'adminProductManager') { %>
         <%- include ../../commun/navbar.light.ejs %>
+        <%- include ../../back/product/list.ejs %>
+        <% } %>
 
-        <%-  include ../../back/product/list.ejs %>
-
-        <%}%>
-
-
-
-        <% if (templateToInclude == 'adminUserProfile') {%>
-
+        <% if (templateToInclude == 'categoryList') { %>
         <%- include ../../commun/navbar.light.ejs %>
+        <%- include ../../back/category/list.ejs %>
+        <% } %>
 
-        <%-  include ../../back/user/profile.ejs %>
-
-        <%}%>
-
-
+        <% if (templateToInclude == 'adminUserProfile') { %>
+        <%- include ../../commun/navbar.light.ejs %>
+        <%- include ../../back/user/profile.ejs %>
+        <% } %>
 
         <%# [START]: template to manage the product%>
 
-
-        <% if (templateToInclude == 'productCreationOk') {%>
-
-        <%#- include ../../commun/navbar.light.ejs %>
-
-        <%-  include ../../back/product/creationOk.ejs %>
-
-        <%}%>
-
-
-
-        <% if (templateToInclude == 'productCreationKo') {%>
+        <% if (templateToInclude == 'productCreationOk') { %>
 
         <%#- include ../../commun/navbar.light.ejs %>
 
-        <%-  include ../../back/product/creationKo.ejs %>
+        <%- include ../../back/product/creationOk.ejs %>
+        <% } %>
 
-        <%}%>
+        <% if (templateToInclude == 'productCreationKo') { %>
+        <%#- include ../../commun/navbar.light.ejs %>
+        <%- include ../../back/product/creationKo.ejs %>
+        <% } %>
 
-
-        <% if (templateToInclude == 'productModification') {%>
-
+        <% if (templateToInclude == 'productModification') { %>
         <%- include ../../commun/navbar.light.ejs %>
-
-        <%-  include ../../back/product/modification.ejs %>
-
-        <%}%>
-
-
-
+        <%- include ../../back/product/modification.ejs %>
+        <% } %>
 
         <%# [END]: template to manage the product%>
-
-
-        <%}%>
-
+        <% } %>
 
     </div>
 </div>
-
 
 
 <!-- /#page-content-wrapper -->

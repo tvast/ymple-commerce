@@ -46,7 +46,10 @@ module.exports.routes = {
     
     // display all the product available 
     'GET    /admin/product/manager'       : 'back/productController.manage',
-    
+
+    'GET    /admin/category'       : 'back/CategoryController.list',
+
+
 
     // display the detail about one product
     'GET    /admin/product/preview/:id'   : 'back/productController.detail',
