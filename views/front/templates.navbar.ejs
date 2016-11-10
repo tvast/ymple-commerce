@@ -1,83 +1,72 @@
 <div class="container" style="margin-bottom: 70px;">
-  <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
 
 
-         <!-- class="nav navbar-nav">
-          <li class="nav-item active">
-            <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Features</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Pricing</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">About</a>
-          </li>
-        </-->
+        <!-- class="nav navbar-nav">
+         <li class="nav-item active">
+           <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+         </li>
+         <li class="nav-item">
+           <a class="nav-link" href="#">Features</a>
+         </li>
+         <li class="nav-item">
+           <a class="nav-link" href="#">Pricing</a>
+         </li>
+         <li class="nav-item">
+           <a class="nav-link" href="#">About</a>
+         </li>
+       </-->
 
 
         <ul class="nav navbar-nav navbar-right">
 
 
-          <li>
+            <li>
 
-            <a class="navbar-brand" href="/"><%= sails.config.project.name %></a>
+                <a class="navbar-brand" href="/"><%= sails.config.project.name %></a>
 
-          </li>
-
-
+            </li>
 
 
-          <li class="">
-            <a class="navbar-brand" href="/cart"><i class="fa fa-fw fa-shopping-cart"></i> <%= __('shopping basket') %> <% if (this.cart) {cart.length} %></a>
-          </li>
+            <li class="">
+                <a class="navbar-brand" href="/cart"><i
+                            class="fa fa-fw fa-shopping-cart"></i> <%= __('shopping basket') %>
+                    <% if (this.cart) {
+                        cart.length
+                    } %>
+                </a>
+            </li>
 
-
-          <% if (this.admin) { %>
-          <li class="dropdown nav-item">
-            <a href="/admin"><%= __('manager') %></a>
-          </li>
-          <% } %>
-
-
-
-
-
-
-          <li class="navbar-brand">
-            <% if (typeof user !== 'object' && typeof admin !== 'object') { %>
-            <a href="/login"><i class="fa fa-sign-in" aria-hidden="true"></i>
-
-              <%= __('login') %>
-            </a>
+            <% if (this.admin) { %>
+            <li class="dropdown nav-item">
+                <a href="/admin"><%= __('manager') %></a>
+            </li>
             <% } %>
 
+            <li class="navbar-brand">
+                <% if (typeof user !== 'object' && typeof admin !== 'object') { %>
+                <a href="/login"><i class="fa fa-sign-in" aria-hidden="true"></i>
+                    <%= __('login') %>
+                </a>
 
-            <% if (typeof user == 'object' && user) { %>
+                <a href="/admin"><i class="fa fa-sign-in" aria-hidden="true"></i>
+                    <%= 'Back End' %>
+                </a>
 
-              <% if (user.name) { %>
+                <% } %>
 
+                <% if (typeof user == 'object' && user) { %>
 
-            <a href="/profile"><i class="fa fa-user" aria-hidden="true"></i>
-              user &nbsp;<%= user.name %></a>
+                <% if (user.name) { %>
 
+                <a href="/profile"><i class="fa fa-user" aria-hidden="true"></i>
+                    user &nbsp;<%= user.name %></a>
 
-            <% } else { %>
-              <%= user.email %>
-              <% } %>
+                <% } else { %>
+                <%= user.email %>
+                <% } %>
 
-
-
-
-
-
-
-
-
-
-            <!--ul class="dropdown-menu" role="menu">
+                <!--ul class="dropdown-menu" role="menu">
 
 
 
@@ -95,31 +84,28 @@
               <li><a href="/logout"><%= __('Log out') %></a></li>
             </ul-->
 
+                <% } %>
+            </li>
+
+            <% if ('admin' == 'admin') { %>
+
+            <!--li>
+
+              <a class="navbar-brand" href="/admin/menu"><i class="fa fa-fw fa-lg fa-cog"></i>Menu Admin <strong class="caret"></strong>
+              </a>
+
+            </li-->
 
             <% } %>
-          </li>
 
+            <% if (typeof showSearchMenu == 'number' && showSearchMenu == 1) { %>
+            <form class="form-inline pull-xs-right" role="search">
+                <input class="form-control" type="text" name="name" placeholder="<%= __('Enter a product name') %>">
+                <button class="btn btn-success-outline" type="submit"><%= __('Search') %></button>
+            </form>
 
-          <% if ('admin' == 'admin') { %>
-
-          <!--li>
-
-            <a class="navbar-brand" href="/admin/menu"><i class="fa fa-fw fa-lg fa-cog"></i>Menu Admin <strong class="caret"></strong>
-            </a>
-
-          </li-->
-
-          <% } %>
-
-
-      <% if (typeof showSearchMenu == 'number' && showSearchMenu == 1) {%>
-      <form class="form-inline pull-xs-right" role="search">
-        <input class="form-control" type="text" name="name" placeholder="<%= __('Enter a product name') %>">
-        <button class="btn btn-success-outline" type="submit"><%= __('Search') %></button>
-      </form>
-
-      <%} %>
+            <% } %>
         </ul>
 
-  </nav>
+    </nav>
 </div>
