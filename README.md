@@ -1,8 +1,8 @@
 <h1>
-<a href="http://www.ymple.com"><img alt="Ymple Commerce" src="http://www.ymple.com/img/logo_big.png" title="Ymple-Commerce"/></a>
+<a href="http://www.ymple.com"><img alt="YmpleCommerce" src="http://www.ymple.com/img/logo_big.png" title="YmpleCommerce"/></a>
 </h1>
 
-Ymple-Commerce
+YmpleCommerce version 0.1.1 (11.2016)
 =========
 
 
