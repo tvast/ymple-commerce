@@ -6,9 +6,7 @@
  */
 
 module.exports = {
-	
-
-
+  
   /**
    * `Admin/productController.new()`
    */
@@ -218,6 +216,37 @@ module.exports = {
      });*/
   },
 
+
+  productNewValidation: function (req, res) {
+
+    console.info('req');
+    console.info(req.body);
+
+    if (req && req.body && req.body.name) {
+      var data = {};
+      data = req.body;
+
+      Product.create(data, function (err, product) {
+        if (err) {
+          return res.serverError(err);
+        }
+        else {
+          var result = {};
+          result.templateToInclude = 'productCreationOk';
+          return res.view('back/menu.ejs', result);
+          //return res.ok('create of the product done', req.body);
+        }
+        //return res.redirect('/admin/product');
+      });
+
+    }
+    else {
+      var result = {};
+      result.templateToInclude = 'productCreationKo';
+      return res.view('back/menu.ejs', result);
+      //return res.ok('missing one parameter');
+    }
+  }
 };
 
 function Urlify (text) {

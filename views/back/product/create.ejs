@@ -5,9 +5,7 @@
     <h4 style="color:forestgreen"><a href="/admin"></a>New Product</h4>
 
 
-    <form role="form" action="/admin/product/new/validation" method="POST">
-
-
+    <form role="form" action="/admin/product/create/validation" method="POST">
         <div class="row">
             <div class="col-sm-6">
                 <label> <%= __('name') %> </label>
@@ -22,66 +20,48 @@
                                   placeholder="<%= __('Please enter the price') %>" value="">
 
             </div>
-
         </div>
-
         <br>
-
 
         <div class="row">
             <div class="col-sm-6">
                 <label> <%= __('Inventory') %> </label>
                            <input type="text" class="form-control" id="stock" name="stock"
                                   placeholder="<%= __('Please enter the inventory') %>" value="">
-
             </div>
             <div class="col-sm-6">
                 <label style="align-content: center;text-align: center">  <%= __('VIMEO image ID') %> </label>
 
                            <input type="text" class="form-control" id="video" name="video"
                                   placeholder="<%= __('VIMEO image ID input please.') %>" value="">
-
             </div>
-
         </div>
-
         <br>
-
         <div class="row">
             <div class="col-sm-6">
                 <label> <%= __('representative picture') %> </label>
                            <input type="text" class="form-control" id="thumbnail" name="thumbnail"
                                   placeholder="<%= __('representative image URL input please') %>" value="">
-
             </div>
             <div class="col-sm-6">
                 <label style="align-content: center;text-align: center">  <%= __('Product photos') %> </label>
-
                            <input type="text" class="form-control" id="photos" name="photos"
                                   placeholder="<%= __('product images URL to enter your (comma as the separator)') %>"
                                   value="">
-
             </div>
-
         </div>
-
         <br>
-
         <div class="row">
             <div class="col-sm-6">
                 <label> <%= __('product') %> </label>
-                            <Select name="related" class="form-control">
-                                
+                            <Select name="related" class="form-control">            
                     <Option value=""> <%= __('No') %></option>
-
-
                     {% for product in products %}
                     <option value="{{ product.id %>">{{ product.name
                         %>
                     </option>
                     {% endfor %}
                 </select>
-
             </div>
             <div class="col-sm-6">
                 <label style="align-content: center;text-align: center">  <%= __('tags') %> </label>
@@ -89,78 +69,52 @@
                            <input type="text" class="form-control" id="tags" name="tags"
                                   placeholder="<%= __('Please enter tags separated by commas') %>" value="">
             </div>
-
         </div>
-
         <br>
-
         <div class="row">
             <div class="col-sm-6">
                 <label> <%= __('description') %> </label>
                 <textarea class="form-control" name="description" id="description" cols="30" rows="4"
-                    placeholder="<%= __('the product to explain MARKDOWN format as input please') %> ">
+                          placeholder="<%= __('the product to explain MARKDOWN format as input please') %> ">
                 </textarea>
-
             </div>
-            <div class="col-sm-6">
-
-
-            </div>
-
         </div>
-
         <br>
-
-
         <div class="row">
             <div class="col-sm-6" style="text-align: center;align-content: center">
-
-                <% if (typeof edit == 'object' && edit) { %>
-                          
-                <Button type="submit" class="btn btn-primary btn-lg pull-right"> <%= __('modify') %></button>
-                          
-                <% } else { %>
-                          
-                <Button type="submit" class="btn btn-primary btn-lg pull-right"> <%= __('Register') %></button>
-
+                <% if (typeof edit == 'object' && edit) { %>         
+                <Button type="submit" class="btn btn-primary btn-lg pull-right"> <%= __('modify') %></button>          
+                <% } else { %>          
+                <Button type="submit" class="btn btn-primary btn-lg pull-right"> <%= __('Save') %></button>
                 <% } %>
             </div>
-
-
             <div class="col-sm-6">
                 <p class="help-block">
 
                     <i class="fa fa-fw fa-warning"> </i>
                     <%= __('When you register your product is stored in Unavailable state by default.') %>
-
                 </p>
-
             </div>
         </div>
     </form>
 </div>
 
-
 <br>
-
 <form action="/target-url" id="my-dropzone" class="dropzone"></form>
-
 <script>
     // myDropzone is the configuration for the element that has an id attribute
     // with the value my-dropzone (or myDropzone)
     Dropzone.options.myDropzone = {
-        init: function() {
-            this.on("addedfile", function(file) {
+        init: function () {
+            this.on("addedfile", function (file) {
 
                 // Create the remove button
                 var removeButton = Dropzone.createElement("<button>Remove file</button>");
-
-
                 // Capture the Dropzone instance as closure.
                 var _this = this;
 
                 // Listen to the click event
-                removeButton.addEventListener("click", function(e) {
+                removeButton.addEventListener("click", function (e) {
                     // Make sure the button click doesn't submit the form:
                     e.preventDefault();
                     e.stopPropagation();
@@ -170,7 +124,6 @@
                     // If you want to the delete the file on the server as well,
                     // you can do the AJAX request here.
                 });
-
                 // Add the button to the file preview element.
                 file.previewElement.appendChild(removeButton);
             });
