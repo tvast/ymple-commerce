@@ -1,5 +1,5 @@
 <h1>
-<a href="http://commerce.ymple.com"><img alt="Ymple Commerce logo" src="http://www.ymple.com/assets/img/colors/blue/logo_big.png" title="Ymple-Commerce"/></a>
+<a href="http://www.ymple.com"><img alt="Ymple Commerce" src="http://www.ymple.com/img/logo_big.png" title="Ymple-Commerce"/></a>
 </h1>
 
 Ymple-Commerce
@@ -7,7 +7,7 @@ Ymple-Commerce
 
 
 
-### [Website](http://commerce.ymple.com/)
+### [Website](http://www.ymple.com/)
 
 
 Open Source E-Commerce Solution for Everyone built with Sails.js (Node.js + MongoDB)
