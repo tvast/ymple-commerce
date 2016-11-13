@@ -12,7 +12,7 @@ module.exports = {
   /**
    * `Admin/productController.new()`
    */
-  new: function (req, res) {
+  create: function (req, res) {
 
 
 

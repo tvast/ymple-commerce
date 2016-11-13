@@ -6,48 +6,55 @@
  */
 
 module.exports = {
-	
 
 
-  /**
-   * `CategoryController.list()`
-   */
-  list: function (req, res) {
+    /**
+     * `CategoryController.list()`
+     */
+    list: function (req, res) {
 
-    var result = {
-      admin: req.session.user
-    };
-
-
-    result.products = [];
-    result.pages = [];
-    result.page = '';
-
-    result.templateToInclude = 'categoryList';
-
-    return res.view('back/menu.ejs', result);
+        var result = {
+            admin: req.session.user
+        };
 
 
-  },
+        result.products = [];
+        result.pages = [];
+        result.page = '';
+
+        result.templateToInclude = 'categoryList';
+
+        return res.view('back/menu.ejs', result);
 
 
-  /**
-   * `CategoryController.create()`
-   */
-  create: function (req, res) {
-    return res.json({
-      todo: 'create() is not implemented yet!'
-    });
-  },
+    },
 
 
-  /**
-   * `CategoryController.update()`
-   */
-  update: function (req, res) {
-    return res.json({
-      todo: 'update() is not implemented yet!'
-    });
-  }
+    /**
+     * `CategoryController.create()`
+     */
+    create: function (req, res) {
+
+        var result = {};
+
+        result.templateToInclude = 'categoryCreate';
+
+        return res.view('back/menu.ejs', result);
+
+
+        /* return res.json({
+         todo: 'new() is not implemented yet!'
+         });*/
+    },
+
+
+    /**
+     * `CategoryController.update()`
+     */
+    update: function (req, res) {
+        return res.json({
+            todo: 'update() is not implemented yet!'
+        });
+    }
 };
 

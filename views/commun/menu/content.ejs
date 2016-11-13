@@ -9,7 +9,7 @@
         <% } %>
 
         <% if (templateToInclude == 'product') { %>
-        <%- include ../../back/product/new %>
+        <%- include ../../back/product/create %>
         <% } %>
 
         <% if (templateToInclude == 'customerList') { %>
@@ -57,6 +57,11 @@
         <% } %>
 
         <%# [END]: template to manage the product%>
+        <% } %>
+
+
+        <% if (templateToInclude == 'categoryCreate') { %>
+        <%- include ../../back/category/create %>
         <% } %>
 
     </div>
