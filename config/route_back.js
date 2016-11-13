@@ -43,7 +43,7 @@ module.exports.routes = {
     'GET    /admin/category/list'       : 'back/CategoryController.list',
     'GET    /admin/category/create'       : 'back/CategoryController.create',
 
-    'GET    /admin/order'         : 'back/AdminController.order',
+    'GET    /admin/order/manage'         : 'back/AdminController.order',
     'GET    /admin/customer/list'          : 'back/AdminController.user',
 
     // page of admin preference
