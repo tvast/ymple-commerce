@@ -41,6 +41,7 @@ module.exports.routes = {
 
     'GET    /admin/category/list': 'back/CategoryController.list',
     'GET    /admin/category/create': 'back/CategoryController.create',
+    'POST    /admin/category/create/validation': 'back/CategoryController.createValidation',
 
     'GET    /admin/order/manage': 'back/OrderController.manage',
     'GET    /admin/customer/list': 'back/AdminController.user',
