@@ -85,6 +85,8 @@
   "name": "name",
   "order": "order",
   "menu_manager": "menu manager",
-  "name_shop": "shop name"
+  "name_shop": "shop name",
+  "placeholder_url": "Please enter the representative image URL input",
+  "placeholder_description": "Enter the description"
 
 }
