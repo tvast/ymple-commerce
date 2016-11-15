@@ -55,6 +55,40 @@ module.exports = {
         return res.json({
             todo: 'update() is not implemented yet!'
         });
+    },
+
+    createValidation: function (req, res) {
+
+        console.info('req');
+        console.info(req.body);
+
+        if (req && req.body && req.body.name) {
+            var data = {};
+            data = req.body;
+
+            console.log('create data', data);
+
+            Category.create(data, function (err, product) {
+                if (err) {
+                    return res.serverError(err);
+                }
+                else {
+                    var result = {};
+                    result.templateToInclude = 'categoryCreationOk';
+                    return res.view('back/menu.ejs', result);
+                    //return res.ok('create of the product done', req.body);
+                }
+                //return res.redirect('/admin/product');
+            });
+
+        }
+        else {
+            var result = {};
+            result.templateToInclude = 'categoryCreationKo';
+            return res.view('back/menu.ejs', result);
+            //return res.ok('missing one parameter');
+        }
     }
+
 };
 

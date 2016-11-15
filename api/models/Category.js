@@ -9,19 +9,52 @@ module.exports = {
 
   attributes: {
     name: {
-      type: 'STRING',
+      type: 'string',
       required: true
     },
     icon: {
-      type: 'STRING',
-      required: true
+      type: 'string',
+      required: false
     },
     description: {
-      type: 'STRING'
+      type: 'string',
+      required: false
+
     },
-    products: {
-      collection: 'Product',
-      via: 'category'
+
+    idCategory: {
+      type: 'integer',
+      required: false
+
+    },
+    createdAt: {
+      type: 'datetime',
+      required: false
+
+    },
+    updatedAt: {
+      type: 'datetime',
+      required: false
+
+    },
+
+
+
+
+
+
+
+    beforeCreate : function (values, cb) {
+
+      // add seq number, use
+      Sequence.next("order", function(err, num) {
+
+        if (err) return cb(err);
+
+        values.idCategory = num;
+
+        cb();
+      });
     }
   }
 };
