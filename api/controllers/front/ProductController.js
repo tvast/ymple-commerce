@@ -66,17 +66,11 @@ module.exports = {
             product_query = req.query.name;
         }
         else {
-            product_query = '';
+            product_query = ''; //default value, return all the product
         }
 
         async.waterfall([
             function GetProductList(next) {
-
-
-
-
-
-
 
                 Product.find({
                     name: {
@@ -95,15 +89,14 @@ module.exports = {
         ], function (err) {
             if (err) return res.serverError(err);
 
-            if (req.session.hasOwnProperty('cart'))
+            if (req.session.hasOwnProperty('cart')){
                 result.cart = req.session.cart;
-            else
+            }
+            else {
                 result.cart = [];
-
+            }
             result.query = req.query.name;
-
             result.showSearchMenu = 1;
-
             return res.view('front/index.ejs', result);
         });
     },
