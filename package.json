@@ -1,7 +1,7 @@
 {
-  "name": "OpenStore",
-  "private": true,
-  "version": "0.0.0",
+  "name": "YmpleCommerce",
+  "private": false,
+  "version": "0.1.0",
   "description": "a Sails application",
   "keywords": [],
   "dependencies": {
@@ -39,9 +39,9 @@
   "main": "app.js",
   "repository": {
     "type": "git",
-    "url": "git://github.com/KimSeokjun/OpenStore.git"
+    "url": "git://github.com/Ymple/ymple-commerce.git"
   },
-  "author": "KimSeokjun",
+  "author": "FabienThetis",
   "license": "",
   "devDependencies": {
     "bootstrap": "^4.0.0-alpha.2",

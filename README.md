@@ -19,6 +19,20 @@ System Dependencies
 
 How To Run
 
+- With Node Package
+
+    npm install YmpleCommerce
+    
+    run a mongodb instance on port 27017 
+
+    run node app.js
+
+
+- With Github
+
+
+    Clone the Git project
+
     For Ubuntu and Centos run: 
     $ npm install bcrypt
 
@@ -31,7 +45,7 @@ How To Run
 Contributing
 --------
 
-Ymple-Commerce is an Open Source project.
+YmpleCommerce is an Open Source project.
 
 If you want to contribute code to Ymple-Commerce, read the [CONTRIBUTING.md][7] file in this repository or read the [tutorials about contribution][8] on the documentation site.
 
