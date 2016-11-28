@@ -100,13 +100,28 @@
 </div>
 
 <br>
-<form action="/target-url" id="my-dropzone" class="dropzone"></form>
+<form action="/target-url" id="my-dropzone" class="dropzone" method="post" enctype="multipart/form-data">
+
+</form>
 <script>
     // myDropzone is the configuration for the element that has an id attribute
     // with the value my-dropzone (or myDropzone)
     Dropzone.options.myDropzone = {
         init: function () {
             this.on("addedfile", function (file) {
+
+
+                console.log('file added');
+
+                /*fs.readFile(request.files.file.path, function(err, data) {
+
+                    var newPath = __dirname + "/public/img/xspectra/customlogo.png";
+                    fs.writeFile(newPath, data, function (err) {
+                        console.log("Finished writing file..." + err);
+                        response.redirect("back");
+                    });
+
+                });*/
 
                 // Create the remove button
                 var removeButton = Dropzone.createElement("<button>Remove file</button>");
@@ -127,7 +142,14 @@
                 // Add the button to the file preview element.
                 file.previewElement.appendChild(removeButton);
             });
-        }
+        },
+        paramName: "file", // The name that will be used to transfer the file
+        maxFilesize: 10, // MB
+        uploadMultiple: false,
+        addRemoveLinks: true,
+        parallelUploads: true,
+        dictDefaultMessage: 'Drag files here <br />or<br /><button class="dzUploadBtn" type="button">click here to upload</button>',
+        //acceptedMimeTypes: '.jpg'
     };
 </script>
 
