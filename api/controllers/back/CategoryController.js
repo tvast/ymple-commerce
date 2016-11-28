@@ -17,7 +17,6 @@ module.exports = {
             admin: req.session.user
         };
 
-
         result.products = [];
         result.pages = [];
         result.page = '';
@@ -25,10 +24,7 @@ module.exports = {
         result.templateToInclude = 'categoryList';
 
         return res.view('back/menu.ejs', result);
-
-
     },
-
 
     /**
      * `CategoryController.create()`
@@ -40,7 +36,6 @@ module.exports = {
         result.templateToInclude = 'categoryCreate';
 
         return res.view('back/menu.ejs', result);
-
 
         /* return res.json({
          todo: 'new() is not implemented yet!'
