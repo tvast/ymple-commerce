@@ -3,6 +3,10 @@
 </h1>
 
 YmpleCommerce version 0.1.1 (11.2016)
+
+Version 0.2.0 will be released in 3.2017
+
+Version 0.3.0 will be released in 9.2017
 =========
 
 
@@ -19,7 +23,7 @@ System Dependencies
 
 How To Run
 
-- With Node Package
+- With Node Package ( Not the last version)
 
     npm install YmpleCommerce
     
