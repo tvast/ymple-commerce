@@ -6,254 +6,193 @@
  */
 
 module.exports = {
-  
-  /**
-   * `Admin/productController.new()`
-   */
-  create: function (req, res) {
 
+    /**
+     * `Admin/productController.new()`
+     */
+    create: function (req, res) {
 
+        var result = {};
+        result.templateToInclude = 'product';
+        return res.view('back/menu.ejs', result);
 
-    var result = {};
+        /* return res.json({
+         todo: 'new() is not implemented yet!'
+         });*/
+    },
 
-    result.templateToInclude = 'product';
+    detail: function (req, res) {
+        var result = {
+            user: (req.session.hasOwnProperty('user')) ? req.session.user : undefined
+        };
 
+        async.waterfall([
+            function GetProduct(next) {
+                Product.findOne(req.params.id, function (err, product) {
+                    if (err) return res.serverError(err);
+                    if (!product) return res.serverError('NO_PRODUCT_FOUND');
 
-    return res.view('back/menu.ejs', result);
+                    // URLIFY
+                    //product.description = Urlify(product.description);
 
+                    result.cart = req.session.cart;
+                    result.product = product;
 
+                    return next(null, result);
+                });
+            }
+        ], function (err, result) {
+            if (err) res.serverError(err);
 
-   /* return res.json({
-      todo: 'new() is not implemented yet!'
-    });*/
-  },
-
-
-  detail: function (req, res) {
-    var result = {
-      user: (req.session.hasOwnProperty('user')) ? req.session.user : undefined
-    };
-
-    async.waterfall([
-      function GetProduct (next)  {
-        Product.findOne(req.params.id, function (err, product) {
-          if (err) return res.serverError(err);
-          if (!product) return res.serverError('NO_PRODUCT_FOUND');
-
-          // URLIFY
-          //product.description = Urlify(product.description);
-
-          result.cart = req.session.cart;
-          result.product = product;
-
-          return next(null, result);
+            return res.view('back/product/detail.ejs', result);
         });
-      }
-    ], function (err, result) {
-      if (err) res.serverError (err);
+    },
 
-      return res.view('back/product/detail.ejs', result);
-    });
-  },
+    manage: function (req, res) {
+        var result = {
+            admin: req.session.user
+        };
+        var skip = 0;
+        var page = 1;
 
-
-  manage: function (req, res) {
-    var result = {
-      admin: req.session.user
-    };
-    var skip = 0;
-    var page = 1;
-
-    if ( req.query.hasOwnProperty('page') ){
-      skip = (req.query.page - 1) * 10;
-      page = req.query.page;
-    }
-
-    var queryOptions = {
-      where: {},
-      skip: skip,
-      limit: 10,
-      sort: 'createdAt DESC'
-    };
-
-    result.page = page;
-
-    async.waterfall([
-      function GetTotalCount (next) {
-        Product.count(function (err, num) {
-          if (err) return next (err);
-
-          result.pages = [];
-
-          for ( var i = 0, count = parseInt(num/queryOptions.limit); i <= count; i++ ) {
-            result.pages.push(i+1);
-          }
-
-          return next(null);
-        });
-      },
-
-      function GetProducts (next) {
-        Product.find(queryOptions, function (err, products) {
-          if (err) next (err);
-
-          result.products = products;
-
-          return next(null);
-        });
-      },
-
-      function GetEditProduct (next) {
-        if ( !req.params.hasOwnProperty('id') ) {
-          return next(null);
-          return;
+        if (req.query.hasOwnProperty('page')) {
+            skip = (req.query.page - 1) * 10;
+            page = req.query.page;
         }
 
-        Product.findOne(req.params.id, function (err, product) {
-          if (err) next (err);
-          result.edit = product;
+        var queryOptions = {
+            where: {},
+            skip: skip,
+            limit: 10,
+            sort: 'createdAt DESC'
+        };
 
-          return next(null);
+        result.page = page;
+
+        async.waterfall([
+            function GetTotalCount(next) {
+                Product.count(function (err, num) {
+                    if (err) return next(err);
+
+                    result.pages = [];
+
+                    for (var i = 0, count = parseInt(num / queryOptions.limit); i <= count; i++) {
+                        result.pages.push(i + 1);
+                    }
+
+                    return next(null);
+                });
+            },
+
+            function GetProducts(next) {
+                Product.find(queryOptions, function (err, products) {
+                    if (err) next(err);
+
+                    result.products = products;
+
+                    return next(null);
+                });
+            },
+
+            function GetEditProduct(next) {
+                if (!req.params.hasOwnProperty('id')) {
+                    return next(null);
+                    return;
+                }
+
+                Product.findOne(req.params.id, function (err, product) {
+                    if (err) next(err);
+                    result.edit = product;
+
+                    return next(null);
+                });
+            }
+        ], function (err) {
+            if (err) return res.serverError(err);
+            result.templateToInclude = 'adminProductManager';
+            return res.view('back/menu.ejs', result);
         });
-      }
-    ], function (err) {
-      if (err) return res.serverError(err);
+    },
 
+    edit: function (req, res, id) {
 
-      result.templateToInclude = 'adminProductManager';
+        var result = {};
+        // we take the id of the product and get all the product details to set the template
+        //     console.info('modification product - req: ', req);
+        console.info('modification product id: ', req.params.id);
+        console.info(req.params.id.length);
 
-
-
-      return res.view('back/menu.ejs', result);
-    });
-  },
-
-
-  edit: function (req, res, id) {
-
-    var result ={};
-    // we take the id of the product and get all the product details to set the template
-
-//     console.info('modification product - req: ', req);
-
-    console.info('modification product id: ', req.params.id);
-
-
-    console.info( req.params.id.length);
-
-
-    if ( req.params.id && (req.params.id.length > 0 ))
-    {
-
-
-      // we retrieve the product informations
-
-
-      var productId = req.params.id;
-
-      var queryOptions = {
-        where: {id:productId },
+        if (req.params.id && (req.params.id.length > 0 )) {
+            // we retrieve the product informations
+            var productId = req.params.id;
+            var queryOptions = {
+                where: {id: productId},
 //         skip: skip,
-        limit: 10,
-        sort: 'createdAt DESC'
-      };
+                limit: 10,
+                sort: 'createdAt DESC'
+            };
 
-      Product.find(queryOptions, function (err, products) {
-        if (err) next (err);
+            Product.find(queryOptions, function (err, products) {
+                if (err) next(err);
 
+                result.product = {};
+                result.product = products[0];
+                console.info('edit query result', products);
+                console.info('edit - result', result);
+                result.templateToInclude = 'productModification';
+                return res.view('back/menu.ejs', result);
+            });
 
-
-        result.product = {};
-
-        result.product = products[0];
-
-        console.info('edit query result', products);
-
-        console.info('edit - result', result);
-
-
-        result.templateToInclude = 'productModification';
-
-
-        return res.view('back/menu.ejs', result);
-   //      return next(null);
-      });
-
-
-
-
-
-
-
-    }
-    else{
-
-      result.templateToInclude = 'productModification';
-
-
-      return res.view('back/menu.ejs', result);
-
-
-    }
-
-
- //    alert(id);
-
-
-
-
-    // if ( req.query.)
-
-
-
-
-
-
-
-
-    /* return res.json({
-     todo: 'new() is not implemented yet!'
-     });*/
-  },
-
-
-  productNewValidation: function (req, res) {
-
-    console.info('req');
-    console.info(req.body);
-
-    if (req && req.body && req.body.name) {
-      var data = {};
-      data = req.body;
-
-      Product.create(data, function (err, product) {
-        if (err) {
-          return res.serverError(err);
         }
         else {
-          var result = {};
-          result.templateToInclude = 'productCreationOk';
-          return res.view('back/menu.ejs', result);
-          //return res.ok('create of the product done', req.body);
+            result.templateToInclude = 'productModification';
+            return res.view('back/menu.ejs', result);
         }
-        //return res.redirect('/admin/product');
-      });
 
+
+        /* return res.json({
+         todo: 'new() is not implemented yet!'
+         });*/
+    },
+
+
+    productNewValidation: function (req, res) {
+
+        console.info('req');
+        console.info(req.body);
+
+        if (req && req.body && req.body.name) {
+            var data = {};
+            data = req.body;
+
+            Product.create(data, function (err, product) {
+                if (err) {
+                    return res.serverError(err);
+                }
+                else {
+                    var result = {};
+                    result.templateToInclude = 'productCreationOk';
+                    return res.view('back/menu.ejs', result);
+                    //return res.ok('create of the product done', req.body);
+                }
+                //return res.redirect('/admin/product');
+            });
+
+        }
+        else {
+            var result = {};
+            result.templateToInclude = 'productCreationKo';
+            return res.view('back/menu.ejs', result);
+            //return res.ok('missing one parameter');
+        }
     }
-    else {
-      var result = {};
-      result.templateToInclude = 'productCreationKo';
-      return res.view('back/menu.ejs', result);
-      //return res.ok('missing one parameter');
-    }
-  }
 };
 
-function Urlify (text) {
-  var urlRegex = /(https?:\/\/[^\s]+)/g;
+function Urlify(text) {
+    var urlRegex = /(https?:\/\/[^\s]+)/g;
 
-  return text.replace(urlRegex, function(url) {
-    return '<a href="' + url + '" target="_blank">' + url + '</a>';
-  });
+    return text.replace(urlRegex, function (url) {
+        return '<a href="' + url + '" target="_blank">' + url + '</a>';
+    });
 };
 
