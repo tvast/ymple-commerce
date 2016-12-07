@@ -2,13 +2,11 @@
 <a href="http://www.ymple.com"><img alt="YmpleCommerce" src="http://www.ymple.com/img/logo_big.png" title="YmpleCommerce"/></a>
 </h1>
 
-YmpleCommerce version 0.1.1 (11.2016)
+YmpleCommerce version 0.1.1 (released 11.2016)
 
 Version 0.2.0 will be released in 3.2017
 
 Version 0.3.0 will be released in 9.2017
-=========
-
 
 
 ### [Website](http://www.ymple.com/)
