@@ -1,7 +1,7 @@
 // InsertDbService.js
 
 var nodemailer = require('nodemailer');
-var Promise = require('bluebird');
+//var Promise = require('bluebird');
 //var mp = require('mongodb-promise');
 
 // create reusable transporter object using SMTP transport
@@ -31,17 +31,35 @@ module.exports = {
     },
 
 
-    otherMethod: function(){
+    incrementId: function (fieldName) { // increment the idProduct in the table counter
 
+        console.log('InsertDbService - incrementId', fieldName);
+
+        var MongoClient = require('mongodb').MongoClient;
+
+        var url = "mongodb://localhost:27017/ymple-commerce";
+
+        MongoClient.connect(url).then(function (db) {
+
+            console.log('InsertDbService - incrementId - error');
+
+            var collectionCounter1 = db.collection('counter');
+
+            collectionCounter1.update(
+                {_id: fieldName},
+                {$inc: {seq: 1}}
+            )
+        });
+    },
+
+    otherMethod: function () {
 
         var mongodb = require('mongodb');
-
         var MongoClient = mongodb.MongoClient;
         var Collection = mongodb.Collection;
 
-        Promise.promisifyAll(Collection.prototype);
-        Promise.promisifyAll(MongoClient);
-
+       // Promise.promisifyAll(Collection.prototype);
+        //Promise.promisifyAll(MongoClient);
 
         //Connect to the db
         MongoClient.connect("mongodb://localhost:27017/ymple-commerce").then(function (err, db) {
@@ -103,16 +121,5 @@ module.exports = {
                 //return 123;//docs.seq;
             });
         });
-
-        // initCounter():{}
-        /* db.counters.insert(
-         {
-         _id: fieldName,
-         seq: 0
-         }
-         );*/
-
-        //var MongoClient = require('mongodb').MongoClient;
-
     }
 };
