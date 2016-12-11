@@ -1,11 +1,11 @@
-// EmailService.js
+// InsertDbService.js
 
 var nodemailer = require('nodemailer');
 
 // create reusable transporter object using SMTP transport
 var transporter = nodemailer.createTransport({
-    service: 'Gmail',
-    auth: sails.config.project.nodemailer.auth
+  service: 'Gmail',
+  auth: sails.config.project.nodemailer.auth
 });
 
 module.exports = {
@@ -27,5 +27,27 @@ module.exports = {
   test: function(){
 
     return  'test ok service';
+  },
+
+
+  getNewIdProduct: function (){
+
+
+
+
+
+
+    return 1;
+
+
   }
+
+
+
+
+
+
+
+
+
 };
