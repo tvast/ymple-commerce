@@ -26,52 +26,26 @@ module.exports = {
 
 
 
-            function GetTotalCount (next) {
+            function getNewIdProducT (next) {
 
+                //var data = 1111;
 
+                //console.log('next value 1rst function', data );
 
+                var newIdProduct = ReadDbService.getNewIdProduct('product').then(function(idProduct){
 
-
-                var data = 1111;
-
-                console.log('next value 1rst function', data );
-
-
-
-
-
-
-                var newIdProduct = ReadDbService.getNewIdProduct('product').then(function(doc){
-
-                    console.log('promise return value:', doc);
+                    console.log('promise return value:', idProduct);
 
                     //return doc;
 
-                    return next(null, doc);
-
-
+                    return next(null, idProduct);
                     //return res.json({photos: photos.length});
                 });
-
-
-
-
-                //data =2222;
-
-
-
-
 
             },
 
 
-
-
-
-
-
-
-            function GetUserAndOrders (thumbnail, next) {
+            /*function GetUserAndOrders (thumbnail, next) {
 
                 console.info('value 2nd function', thumbnail);
 
@@ -84,41 +58,31 @@ module.exports = {
 
                 return next(null, data2);
 
-            },
+            },*/
 
 
 
-            function GetUserAndOrders2 (thumbnail, next) {
+            /*function GetUserAndOrders2 (thumbnail, next) {
 
                 console.info('value 3rd function', thumbnail);
-
-
-
-
-
-
-                var data2 = 20;
+                  var data2 = 20;
 
                 return next(null, data2);
 
-            }
+            }*/
 
-
-
-
-
-
-
-        ], function (err, result) {
+        ], function (err, data) {
             if (err) {
                 return res.serverError (err);
             }
             else
             {
 
+                console.log('productController - result', data);
+
                 var result = {};
                 result.templateToInclude = 'product';
-                result.newIdProduct = 10;
+                result.newIdProduct = data;
                 return res.view('back/menu.ejs', result);
 
             }
