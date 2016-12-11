@@ -30,19 +30,45 @@ module.exports = {
   },
 
 
-  getNewIdProduct: function (){
+
+
+  getNewIdProduct: function (fieldName) { // initialize the counter for name field, for example the productId
+
+    var result = getNewIdProduct(fieldName);
+
+    //return doc;
+
+    //return 112;
 
 
 
 
+    return result; //11111;
 
 
-    return 1;
+    //console.log('result',result);
 
 
-  }
+    return result;
 
 
+    function getNewIdProduct() { // return the new id product to use
+      var MongoClient = require('mongodb').MongoClient;
+
+      var url = "mongodb://localhost:27017/ymple-commerce";
+
+      return new Promise(
+          function (resolve, reject) {
+            MongoClient.connect(url, function (err, db) {
+              var col = db.collection('counter');
+              var data = col.find({id: fieldName}).toArray(function (err, docs) {
+                db.close();
+                resolve(docs[0].seq);//docs[0].name.toString()); // returns to the function that calls the callback
+              });
+            })
+          })
+    }
+  },
 
 
 
