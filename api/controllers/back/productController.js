@@ -11,20 +11,12 @@ var Promise = require('bluebird');
 module.exports = {
 
 
-
-
-
-
-
     /**
      * `Admin/productController.new()`
      */
     create: function (req, res) {
 
         async.waterfall([
-
-
-
 
             function getNewIdProducT (next) {
 
@@ -44,23 +36,15 @@ module.exports = {
 
             },
 
-
             /*function GetUserAndOrders (thumbnail, next) {
 
                 console.info('value 2nd function', thumbnail);
-
-
-
-
-
 
                 var data2 = 20;
 
                 return next(null, data2);
 
             },*/
-
-
 
             /*function GetUserAndOrders2 (thumbnail, next) {
 
@@ -92,34 +76,10 @@ module.exports = {
            // return res.view('back/menu.ejs', result);
         });
 
-
-
-
-
-
-
-
             //result.templateToInclude  = 'adminUserProfile';
 
             //return res.view('back/menu.ejs', result);
         },
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -155,17 +115,6 @@ module.exports = {
          todo: 'new() is not implemented yet!'
          });*/
    // },*/
-
-
-
-
-
-
-
-
-
-
-
 
     detail: function (req, res) {
         var result = {
@@ -309,8 +258,8 @@ module.exports = {
 
         if (req && req.body && req.body.name) {
             var data = {};
-            data = req.body;
 
+            data = req.body;
 
 
             console.log('product creation - req.body',data );
@@ -320,9 +269,17 @@ module.exports = {
                     return res.serverError(err);
                 }
                 else {
+
+                    // once created we increment the id produit in counter table
+
+                    InsertDbService.incrementId('product');
+
                     var result = {};
+
                     result.templateToInclude = 'productCreationOk';
+
                     return res.view('back/menu.ejs', result);
+
                     //return res.ok('create of the product done', req.body);
                 }
                 //return res.redirect('/admin/product');
