@@ -1,0 +1,14 @@
+{
+    "node": true,
+    "sub": true,
+    "predef": [
+        "after",
+        "afterEach",
+        "before",
+        "beforeEach",
+        "context",
+        "describe",
+        "it",
+        "sails"
+    ]
+}

@@ -25,11 +25,11 @@ module.exports.routes = {
     // old with menu toogle 'GET    /admin'               : 'back/AdminController.index',
 
     'GET    /admin': 'back/AdminController.menu',
-    'GET    /admin/product/create': 'back/productController.create',
     'GET    /admin/menu': 'back/AdminController.menu',
 
     // create the new product in db 
     '/admin/product/create/validation': 'back/productController.productNewValidation',
+    'GET    /admin/product/create': 'back/productController.create',
     'GET    /admin/product/manager': 'back/productController.manage',// display all the product available
     'GET    /admin/product/preview/:id': 'back/productController.detail',// display the detail about one product
     'GET    /admin/product/edit/:id': 'back/productController.edit',// edit the product

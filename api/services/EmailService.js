@@ -21,5 +21,11 @@ module.exports = {
       if (err) return console.log(err);
       else return console.log('Message sent: ' + info.response);
     });
+  },
+
+
+  test: function(){
+
+    return  'test ok service';
   }
 };

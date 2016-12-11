@@ -7,6 +7,13 @@
 
 module.exports = {
   attributes: {
+
+
+
+    idProduct: {
+      type: 'INTEGER'
+    },
+
     name: {
       type: 'STRING',
       required: true
