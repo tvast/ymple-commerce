@@ -5,21 +5,203 @@
  * @help        :: See http://sailsjs.org/#!/documentation/concepts/Controllers
  */
 
+var Promise = require('bluebird');
+
+
 module.exports = {
+
+
+
+
+
+
 
     /**
      * `Admin/productController.new()`
      */
     create: function (req, res) {
 
+        async.waterfall([
+
+
+
+
+            function GetTotalCount (next) {
+
+
+
+
+
+                var data = 1111;
+
+                console.log('next value 1rst function', data );
+
+
+
+
+
+
+                var newIdProduct = ReadDbService.getNewIdProduct('product').then(function(doc){
+
+                    console.log('promise return value:', doc);
+
+                    //return doc;
+
+                    return next(null, doc);
+
+
+                    //return res.json({photos: photos.length});
+                });
+
+
+
+
+                //data =2222;
+
+
+
+
+
+            },
+
+
+
+
+
+
+
+
+            function GetUserAndOrders (thumbnail, next) {
+
+                console.info('value 2nd function', thumbnail);
+
+
+
+
+
+
+                var data2 = 20;
+
+                return next(null, data2);
+
+            },
+
+
+
+            function GetUserAndOrders2 (thumbnail, next) {
+
+                console.info('value 3rd function', thumbnail);
+
+
+
+
+
+
+                var data2 = 20;
+
+                return next(null, data2);
+
+            }
+
+
+
+
+
+
+
+        ], function (err, result) {
+            if (err) {
+                return res.serverError (err);
+            }
+            else
+            {
+
+                var result = {};
+                result.templateToInclude = 'product';
+                result.newIdProduct = 10;
+                return res.view('back/menu.ejs', result);
+
+            }
+
+            //result.templateToInclude  = 'adminUserProfile';
+
+           // return res.view('back/menu.ejs', result);
+        });
+
+
+
+
+
+
+
+
+            //result.templateToInclude  = 'adminUserProfile';
+
+            //return res.view('back/menu.ejs', result);
+        },
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   /*     function (req, res) {
+
+        // get the new idProduct
+
+        //console.log('create test service - last id', ReadDbService.getNewIdProduct());
+
+        async.waterfall([
+
+        var newIdProduct = ReadDbService.getNewIdProduct('product').then(function(doc){
+
+                    console.log('promise return value:', doc);
+
+            return doc;
+
+
+            //return res.json({photos: photos.length});
+        });
+        ,
+
+
+
+        console.log('productController - newIdProduct:', doc );
+
         var result = {};
         result.templateToInclude = 'product';
+        result.newIdProduct = newIdProduct;
         return res.view('back/menu.ejs', result);
 
         /* return res.json({
          todo: 'new() is not implemented yet!'
          });*/
-    },
+   // },*/
+
+
+
+
+
+
+
+
+
+
+
 
     detail: function (req, res) {
         var result = {
@@ -164,6 +346,10 @@ module.exports = {
         if (req && req.body && req.body.name) {
             var data = {};
             data = req.body;
+
+
+
+            console.log('product creation - req.body',data );
 
             Product.create(data, function (err, product) {
                 if (err) {
