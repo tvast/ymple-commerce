@@ -11,7 +11,9 @@ module.exports = {
     /**
      * `UploadControllerController.imageProduct()`
      */
-    imageProduct: function (req, res) {
+    imageProduct: function (req, res, idProduct) {
+
+        console.log('uploadController - imageProduct - idProduct', req.params.idProduct); // we have the product id
 
         var fs = require("fs");
 
