@@ -1,6 +1,6 @@
 module.exports.routes = {
 
-    'POST    /target-url': 'api/UploadController.imageProduct'
+    'POST    /product/save_image/:idProduct': 'api/UploadController.saveImageProduct'
 };
 
 

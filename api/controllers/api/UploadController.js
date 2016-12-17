@@ -11,7 +11,11 @@ module.exports = {
     /**
      * `UploadControllerController.imageProduct()`
      */
-    imageProduct: function (req, res) {
+    saveImageProduct: function (req, res, idProduct) {
+
+        console.log('uploadController - imageProduct - idProduct', req.params.idProduct); // we have the product id
+
+        var idProduct = req.params.idProduct;
 
         var fs = require("fs");
 
@@ -29,6 +33,12 @@ module.exports = {
                 // copy of the file to assets/images/
                 fs.createReadStream(filePath).pipe(fs.createWriteStream('assets/images/product/'+productId+ '.png'));
             }
+
+            // add the imagePath for this product
+
+            console.log('UploadController - saveImageProduct - start' );
+            InsertDbService.saveImageProduct(idProduct, filePath);
+
         });
 
         return res.json({

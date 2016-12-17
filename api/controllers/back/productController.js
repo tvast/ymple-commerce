@@ -261,30 +261,29 @@ module.exports = {
 
             data = req.body;
 
+            InsertDbService.insertProduct(data);
 
-            console.log('product creation - req.body',data );
+            InsertDbService.incrementId('product');
 
-            Product.create(data, function (err, product) {
+            var result = {};
+
+            result.templateToInclude = 'productCreationOk';
+
+            return res.view('back/menu.ejs', result);
+
+            console.log('productController - productNewValidation - req.body',data );
+
+           /* Product.create(data, function (err, product) {
                 if (err) {
                     return res.serverError(err);
                 }
                 else {
 
                     // once created we increment the id produit in counter table
-
-                    InsertDbService.incrementId('product');
-
-                    var result = {};
-
-                    result.templateToInclude = 'productCreationOk';
-
-                    return res.view('back/menu.ejs', result);
-
                     //return res.ok('create of the product done', req.body);
                 }
                 //return res.redirect('/admin/product');
-            });
-
+            });*/
         }
         else {
             var result = {};
