@@ -1,14 +1,15 @@
 // InsertDbService.js
 
 var nodemailer = require('nodemailer');
-//var Promise = require('bluebird');
-//var mp = require('mongodb-promise');
 
 // create reusable transporter object using SMTP transport
 var transporter = nodemailer.createTransport({
     service: 'Gmail',
     auth: sails.config.project.nodemailer.auth
 });
+
+var urlConnection = "mongodb://localhost:27017/ymple-commerce";
+
 
 module.exports = {
     sendAlertEmail: function () {
@@ -37,9 +38,9 @@ module.exports = {
 
         var MongoClient = require('mongodb').MongoClient;
 
-        var url = "mongodb://localhost:27017/ymple-commerce";
+        //var url = "mongodb://localhost:27017/ymple-commerce";
 
-        MongoClient.connect(url).then(function (db) {
+        MongoClient.connect(urlConnection).then(function (db) {
 
             console.log('InsertDbService - incrementId - error');
 
@@ -52,6 +53,51 @@ module.exports = {
         });
     },
 
+
+    insertProduct: function (data) { // Insert a product in table product
+
+        var MongoClient = require('mongodb').MongoClient;
+        console.log('InsertDbService - url connexion ', urlConnection);
+
+        //Connect to the db
+        MongoClient.connect(urlConnection).then(function (db) {
+
+            console.log('data.name' , data.name);
+
+            var date = new Date();
+
+            var createdAt = date.toISOString();
+
+            var updatedAt = date.toISOString();
+
+            console.log ('date',  date);
+
+            var idProduct = data.idProduct;
+            var price = data.price;
+            var stock = data.stock;
+            var video = data.video;
+            var description = data.description;
+
+            var dataToInsert = {name:data.name,
+            idProduct:idProduct,
+            price:price,
+            stock:stock,
+            video: video,
+            description:  description,
+            createdAt: createdAt,
+            updatedAt: updatedAt
+            }
+
+            console.log ( 'insert test2');
+
+            var collection = db.collection('product');
+            //var lotsOfDocs = [{'hello': 'doc3'}, {'hello': 'doc4'}];
+
+            collection.insert(dataToInsert);
+
+        });
+    },
+
     otherMethod: function () {
 
         var mongodb = require('mongodb');
@@ -61,8 +107,9 @@ module.exports = {
        // Promise.promisifyAll(Collection.prototype);
         //Promise.promisifyAll(MongoClient);
 
+
         //Connect to the db
-        MongoClient.connect("mongodb://localhost:27017/ymple-commerce").then(function (err, db) {
+        MongoClient.connect(urlConnection).then(function (err, db) {
 
             if (err) {
                 return console.dir(err);
