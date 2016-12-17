@@ -72,8 +72,8 @@ module.exports = {
 
             console.log ('date',  date);
 
-            var idProduct = data.idProduct;
-            var price = data.price;
+            var idProduct = parseInt(data.idProduct);
+            var price = parseInt(data.price);
             var stock = data.stock;
             var video = data.video;
             var description = data.description;
@@ -95,6 +95,45 @@ module.exports = {
 
             collection.insert(dataToInsert);
 
+        });
+    },
+
+
+    saveImageProduct: function (idProduct, imagePath) { // Insert a product in table product
+
+        var MongoClient = require('mongodb').MongoClient;
+        console.log('InsertDbService - saveImageProduct - url connexion ', urlConnection);
+        console.log('InsertDbService - saveImageProduct - imagePath ',imagePath);
+
+        var idProduct = 41;
+
+        //Connect to the db
+        MongoClient.connect(urlConnection).then(function (db) {
+
+            //console.log('data.name' , data.name);
+
+            var date = new Date();
+
+            var createdAt = date.toISOString();
+
+            var updatedAt = date.toISOString();
+
+            var collection = db.collection('product');
+            //var lotsOfDocs = [{'hello': 'doc3'}, {'hello': 'doc4'}];
+
+            //collection.insert(dataToInsert);
+
+            console.log('saveImageProduct - update');
+
+            collection.update(
+                {idProduct: idProduct},
+                // {price: '999999999999999'}
+
+                { $set: { image: [ imagePath ] } },
+                {upsert: true})
+
+
+            //      { $set: { reorder: false, tags: [ "literature", "translated" ] } })
         });
     },
 
