@@ -19,7 +19,7 @@ System Dependencies
 * MongoDB v3.2.6
 * Sails.js v0.12
 
-How To Run
+How To Run the code
 
 - With Node Package ( Not the last version)
 
@@ -47,7 +47,7 @@ How To Run
 Contributing
 --------
 
-YmpleCommerce is an Open Source project.
+YmpleCommerce is an Open Source project For OS Users.
 
 If you want to contribute code to Ymple-Commerce, read the [CONTRIBUTING.md][7] file in this repository or read the [tutorials about contribution][8] on the documentation site.
 
